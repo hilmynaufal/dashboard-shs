@@ -1,0 +1,191 @@
+<?php
+
+namespace App\Authorization;
+
+use App\Models\{EvidenceFile, ItemReview, KkrDocument, KkrVersion, Proposal, ProposalItem, ProposalItemVersion, ReviewAssignment, ReviewNote, User};
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\DB;
+
+class ResourceAccess
+{
+    /** Use this subquery for lists, counts and exports; a package grant is not a grant to every item. */
+    public function visibleItemIds(User $user): Builder
+    {
+        return DB::table('proposal_items as item')->join('proposals as proposal', 'proposal.id', '=', 'item.proposal_id')
+            ->select('item.id')->where(function (Builder $query) use ($user): void {
+                $query->whereRaw('1 = 0');
+                if ($user->hasPermission('proposals.view_own') && $user->organization_id !== null) {
+                    $query->orWhere('proposal.organization_id', $user->organization_id);
+                }
+                if ($user->hasPermission('proposals.view_all')) {
+                    $query->orWhere('proposal.status', '!=', 'draft');
+                }
+                if ($user->hasPermission('proposals.view_assigned')) {
+                    $query->orWhere(function (Builder $assigned) use ($user): void {
+                        $assigned->where('proposal.status', '!=', 'draft')->whereIn('item.id',
+                            $this->scopeQuery($user)->select('scope.proposal_item_id'));
+                    });
+                }
+            });
+    }
+
+    public function owns(User $user, int $organizationId): bool
+    {
+        return $user->isEnabled() && $user->organization_id !== null && (int) $user->organization_id === $organizationId;
+    }
+
+    private function scopeQuery(User $user): Builder
+    {
+        $roles = array_values(array_filter(['examiner', 'team_lead', 'technical_controller'], fn ($role) => $user->hasRole($role)));
+
+        return DB::table('assignment_items as scope')
+            ->join('review_assignments as assignment', 'assignment.id', '=', 'scope.review_assignment_id')
+            ->join('assignment_members as actor', 'actor.review_assignment_id', '=', 'assignment.id')
+            ->where('actor.user_id', $user->id)->where('actor.is_active', true)
+            ->whereIn('actor.role', $roles)->whereIn('assignment.status', ['active', 'completed'])
+            ->where(function (Builder $q): void {
+                $q->whereIn('actor.role', ['team_lead', 'technical_controller'])
+                    ->orWhereColumn('scope.examiner_member_id', 'actor.id');
+            });
+    }
+
+    public function membership(User $user, int $assignmentId, string $role): bool
+    {
+        return $user->hasRole($role) && DB::table('assignment_members')
+            ->where('review_assignment_id', $assignmentId)->where('user_id', $user->id)
+            ->where('role', $role)->where('is_active', true)->exists();
+    }
+
+    public function proposal(User $user, Proposal $proposal): bool
+    {
+        if ($user->hasPermission('proposals.view_own') && $this->owns($user, $proposal->organization_id)) {
+            return true;
+        }
+        if ($proposal->status === 'draft') {
+            return false;
+        }
+        if ($user->hasPermission('proposals.view_all')) {
+            return true;
+        }
+
+        return $user->hasPermission('proposals.view_assigned') && $this->scopeQuery($user)
+            ->join('proposal_items as item', 'item.id', '=', 'scope.proposal_item_id')
+            ->where('item.proposal_id', $proposal->id)->exists();
+    }
+
+    public function item(User $user, ProposalItem $item): bool
+    {
+        $proposal = Proposal::findOrFail($item->proposal_id);
+        if (($user->hasPermission('proposals.view_own') && $this->owns($user, $proposal->organization_id)) ||
+            ($user->hasPermission('proposals.view_all') && $proposal->status !== 'draft')) {
+            return true;
+        }
+
+        return $proposal->status !== 'draft' && $user->hasPermission('proposals.view_assigned') &&
+            $this->scopeQuery($user)->where('scope.proposal_item_id', $item->id)->exists();
+    }
+
+    public function version(User $user, ProposalItemVersion $version): bool
+    {
+        $item = ProposalItem::findOrFail($version->proposal_item_id);
+        $proposal = Proposal::findOrFail($item->proposal_id);
+        if ($user->hasPermission('proposals.view_own') && $this->owns($user, $proposal->organization_id)) {
+            return true;
+        }
+
+        return $version->submitted_at !== null && $this->item($user, $item);
+    }
+
+    public function evidence(User $user, EvidenceFile $file): bool
+    {
+        if ($user->hasPermission('proposals.view_own') && $this->owns($user, $file->organization_id)) {
+            return true;
+        }
+        $versions = DB::table('item_version_evidence as link')
+            ->join('proposal_item_versions as version', 'version.id', '=', 'link.item_version_id')
+            ->join('proposal_items as item', 'item.id', '=', 'version.proposal_item_id')
+            ->join('proposals as proposal', 'proposal.id', '=', 'item.proposal_id')
+            ->where('link.evidence_file_id', $file->id)->whereNotNull('version.submitted_at')
+            ->where('proposal.status', '!=', 'draft')->where('proposal.organization_id', $file->organization_id);
+        if ($user->hasPermission('proposals.view_all')) {
+            return $versions->exists();
+        }
+        if (! $user->hasPermission('proposals.view_assigned')) {
+            return false;
+        }
+        $scope = $this->scopeQuery($user)->select('scope.proposal_item_id');
+
+        return $versions->whereIn('item.id', $scope)->exists();
+    }
+
+    public function review(User $user, ItemReview $review): bool
+    {
+        $version = ProposalItemVersion::find($review->item_version_id);
+
+        return $version !== null && $version->submitted_at !== null &&
+            $user->hasPermission('proposals.view_assigned') && $this->scopeQuery($user)
+            ->where('scope.id', $review->assignment_item_id)->exists();
+    }
+
+    public function writeReview(User $user, ItemReview $review): bool
+    {
+        return $this->review($user, $review) && $user->hasPermission('reviews.write') && $review->status !== 'completed' &&
+            $this->scopeQuery($user)->where('scope.id', $review->assignment_item_id)
+                ->where('assignment.status', 'active')->where('actor.role', 'examiner')->exists();
+    }
+
+    public function note(User $user, ReviewNote $note): bool
+    {
+        $review = $note->item_review_id ? ItemReview::find($note->item_review_id) : null;
+        if ($note->type === 'substantive' && ($review === null || (int) $review->item_version_id !== (int) $note->item_version_id)) {
+            return false;
+        }
+        if ($note->type === 'administrative' && $user->hasPermission('notes.administrative')) {
+            return $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
+        }
+        if ($user->hasPermission('notes.respond_own')) {
+            return in_array($note->status, ['sent', 'responded', 'resolved', 'open_at_final'], true) &&
+                $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
+        }
+        if ($note->type === 'substantive') {
+            return $review !== null && $this->review($user, $review);
+        }
+
+        return $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
+    }
+
+    public function assignment(User $user, ReviewAssignment $assignment, string $role): bool
+    {
+        return $this->membership($user, $assignment->id, $role);
+    }
+
+    public function kkr(User $user, KkrDocument $document): bool
+    {
+        if (! $user->hasPermission('kkr.view')) {
+            return false;
+        }
+
+        return $this->membership($user, $document->review_assignment_id, 'team_lead') ||
+            $this->membership($user, $document->review_assignment_id, 'technical_controller') ||
+            ($document->prepared_by === $user->id && $this->membership($user, $document->review_assignment_id, 'examiner'));
+    }
+
+    public function approve(User $user, KkrVersion $version, string $role): bool
+    {
+        $document = KkrDocument::findOrFail($version->kkr_document_id);
+        $permission = $role === 'team_lead' ? 'kkr.approve_lead' : 'kkr.approve_technical';
+        $status = $role === 'team_lead' ? 'awaiting_lead' : 'awaiting_controller';
+        if (! $user->hasPermission($permission) || $document->prepared_by === $user->id ||
+            $document->status !== $status || $version->submitted_at === null || $version->finalized_at !== null ||
+            ! $this->membership($user, $document->review_assignment_id, $role) ||
+            (int) $version->version_number !== (int) KkrVersion::where('kkr_document_id', $document->id)->max('version_number')) {
+            return false;
+        }
+        if ($role === 'technical_controller') {
+            return DB::table('kkr_approvals')->where('kkr_version_id', $version->id)
+                ->where('level', 'team_lead')->where('decision', 'approved')->exists();
+        }
+
+        return true;
+    }
+}

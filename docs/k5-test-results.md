@@ -1,0 +1,64 @@
+# Hasil pengujian K-5
+
+Tanggal: 1 November 2026. Sumber: laporan JUnit aktual dari `php artisan test --log-junit storage/app/private/K-5-junit.xml`.
+
+Total: 35 uji, 129 assertions, nol gagal, error, atau dilewati.
+
+Lingkungan: MySQL khusus shs_new_testing. Data sintetis; bukan persetujuan UAT. UI login belum dibuat sesuai arahan pengembang.
+
+## DomainSchemaTest
+
+7 uji · 11 assertions
+
+- test_versions_keep_exact_prices_and_master_snapshots
+- test_referenced_master_cannot_be_deleted
+- test_item_supports_multiple_accounts_without_duplicate_links
+- test_import_batch_identity_prevents_duplicate_imports_in_same_package
+- test_assignment_cannot_reference_another_items_version
+- test_member_from_another_assignment_cannot_receive_scope
+- test_approvals_belong_to_specific_kkr_version
+
+## ExampleTest
+
+2 uji · 2 assertions
+
+- test_the_application_returns_a_successful_response
+- test_application_health_endpoint_is_available
+
+## ResourceAuthorizationTest
+
+16 uji · 81 assertions
+
+- test_role_matrix_has_expected_sensitive_boundaries
+- test_seed_is_idempotent_and_creates_no_accounts
+- test_operator_cannot_read_other_organization_even_through_direct_url
+- test_bkad_cannot_read_unsubmitted_draft_versions
+- test_assignment_and_current_examiner_limit_access
+- test_global_role_does_not_override_membership_role
+- test_operator_sees_only_official_notes_and_can_respond_only_to_own
+- test_evidence_requires_ownership_or_assigned_submitted_item
+- test_kkr_supervision_requires_exact_team_level_and_same_version_lead_approval
+- test_author_cannot_approve_own_kkr_even_with_both_roles
+- test_inactive_assignment_member_cannot_read_or_write_scope
+- test_draft_version_cannot_be_exposed_through_review
+- test_mislinked_substantive_note_is_denied_even_when_marked_official
+- test_operator_without_organization_cannot_create_or_view_packages
+- test_list_scope_does_not_expose_other_items_inside_same_package
+- test_team_lead_cannot_manage_another_teams_assignment
+
+## SessionAuthenticationTest
+
+10 uji · 35 assertions
+
+- test_login_rotates_session_and_logout_removes_access
+- test_wrong_password_and_disabled_account_have_same_generic_response
+- test_disabled_organization_cannot_login
+- test_deactivated_user_loses_existing_session
+- test_role_revocation_is_visible_without_reusing_old_permissions
+- test_login_attempts_are_limited
+- test_csrf_is_required_outside_unit_test_bypass
+- test_anonymous_access_is_denied_even_without_json_header
+- test_malformed_login_input_is_rejected
+- test_authenticated_user_cannot_switch_identity_without_logging_out
+
+SHA-256 laporan JUnit: `f2bc9a1342e5ed982c556fa6ff84f4a8466695d5be5d6d7835c3938d5801dd44`.
