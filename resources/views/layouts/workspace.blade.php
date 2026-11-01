@@ -6,7 +6,7 @@
     <title>@yield('title') · SHS/SBU</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="operator-app account-app">
+<body class="operator-app account-app {{ request()->routeIs('proposals.*') ? 'proposal-workspace' : '' }}">
 <a class="skip-link" href="#main-content">Lewati navigasi</a>
 <aside class="sidebar" id="workspace-sidebar" aria-label="Navigasi utama">
     <a class="brand" href="{{ route('workspace') }}"><span class="brand-mark"><x-ui-icon name="building"/></span><span><strong>SHS <span class="brand-slash">/</span> SBU</strong><small>Ruang kerja</small></span></a>
@@ -14,6 +14,7 @@
     <p class="nav-section">RUANG KERJA</p>
     <nav>
         <a href="{{ route('workspace') }}" class="{{ request()->routeIs('workspace') ? 'active' : '' }}" @if(request()->routeIs('workspace')) aria-current="page" @endif><x-ui-icon name="home"/>Beranda</a>
+        @if(array_intersect(auth()->user()->permissionCodes(),['proposals.view_own','proposals.view_all','proposals.view_assigned']))<a href="{{ route('proposals.index') }}" class="{{ request()->routeIs('proposals.*') ? 'active' : '' }}" @if(request()->routeIs('proposals.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Usulan</a>@endif
         @can('accounts.manage')<a href="{{ route('accounts.index') }}" class="{{ request()->routeIs('accounts.*') ? 'active' : '' }}" @if(request()->routeIs('accounts.*')) aria-current="page" @endif><x-ui-icon name="users"/>Kelola akun</a>@endcan
         @can('periods.manage')<a href="{{ route('periods.index') }}" class="{{ request()->routeIs('periods.*') ? 'active' : '' }}" @if(request()->routeIs('periods.*')) aria-current="page" @endif><x-ui-icon name="calendar"/>Periode pengusulan</a>@endcan
         @can('references.manage')<a href="{{ route('references.index','barang') }}" class="{{ request()->routeIs('references.*') ? 'active' : '' }}" @if(request()->routeIs('references.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Data referensi</a>@endcan

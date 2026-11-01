@@ -40,6 +40,20 @@
 .catalog-tabs a.selected { background: var(--ink); color: #fffaf1; font-weight: 500; }
 .catalog-tabs a:hover:not(.selected) { background: var(--surface-muted); }
 .account-app .catalog-delete { color: var(--danger); }
+.proposal-followup { margin-top: 12px; }
+.proposal-history-row, .proposal-check-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.proposal-check-row > div { min-width: 0; }
+.proposal-check-row strong { overflow-wrap: anywhere; }
+.proposal-check-row small { display: block; font-size: 11px; color: var(--muted); margin-top: 4px; }
+.proposal-file { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+.proposal-file a { color: var(--accent); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.proposal-file small { display: block; color: var(--muted); font-size: 10px; margin-top: 4px; }
+.proposal-upload-form { margin-top: 12px; }
+.proposal-version-facts { margin: 12px 0; }
+.proposal-version-facts > div { margin-bottom: 12px; }
+.proposal-version-facts dt { font-size: 11px; color: var(--muted); }
+.proposal-version-facts dd { margin: 4px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+.proposal-mapping.mapping-grid { padding: 0; gap: 12px; }
 .password-field { position: relative; }
 .password-field input { padding-right: 110px; }
 .password-field button { position: absolute; right: 2px; top: 1px; min-height: 40px; padding: 0 12px; background: transparent; color: var(--accent); font-size: 11px; border-radius: 8px; }

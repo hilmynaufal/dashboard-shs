@@ -46,7 +46,8 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
 - Target prototipe fungsional menggunakan database dan unggah berkas sungguhan.
   Rancangan UI K-3 pada /prototype/operator merupakan demonstrasi terpisah:
   data sintetis berada di memori tab, file dibaca lokal, dan kirim disimulasikan.
-  Integrasi penyimpanan dan endpoint bisnis dilanjutkan pada kartu fitur.
+  K-10/K-11 menyediakan alur nyata terpisah pada /usulan: draf MySQL, pratinjau
+  XLSX, versi item, bukti privat, pemeriksaan dan pengiriman sesuai periode.
 - Usulan dapat diisi melalui formulir atau diimpor dari Excel, dengan pratinjau
   serta penjelasan baris bermasalah sebelum disimpan.
 - Bukti dan dokumen pendukung terhubung dengan item dan versinya.
@@ -60,8 +61,9 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
 - Sistem awal berdiri sendiri; integrasi dengan sistem BKAD yang telah ada
   belum disepakati dengan klien.
 - Hosting disiapkan pengembang. Staging ditunda atas arahan pengembang.
-- Backend sesi dan policy sudah ada; endpoint bisnis dan layar produk tetap
-  harus dibangun serta diuji pada kartu masing-masing.
+- Backend sesi, pengaturan akun/akses, periode/referensi, usulan dan bukti sudah
+  tersedia; verifikasi BKAD, reviu, tanggapan, supervisi, dan KKR dilanjutkan
+  serta diuji pada kartu masing-masing.
 
 ## Brand Commitments
 

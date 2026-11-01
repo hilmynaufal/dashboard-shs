@@ -20,10 +20,10 @@ kolom SQL berpresisi detik. `SubmissionPeriod::availability()` membedakan Draf,
 Ditutup, Belum dibuka, Terbuka, dan Berakhir. Status pengaturan Dibuka belum
 menjamin ketersediaan di luar rentang tanggal.
 
-`SubmissionWindow::assertOpen()` disiapkan dan diuji pada batas waktu. Controller
-pengiriman K-10 wajib mengunci periode serta memanggil guard tersebut dalam
-transaksi pengiriman, setelah memeriksa izin pengguna. Kartu ini belum membuat
-endpoint pengiriman Operator, sehingga guard saja bukan bukti kriteria kedua.
+`SubmissionWindow::assertOpen()` dipakai controller pengiriman K-10 setelah
+memeriksa izin, dengan periode terkunci dalam transaksi. Pengujian endpoint
+nyata membuktikan pengiriman ditolak untuk periode Draf/Ditutup, belum dibuka,
+dan berakhir, lalu diterima dalam rentang terbuka.
 
 ## Kode barang, rekening dan satuan
 
@@ -56,8 +56,7 @@ konflik versi, CSRF, render HTML galat, serta penghapusan referensi terpakai.
 Pembaruan referensi melalui endpoint diperiksa tidak mengubah snapshot versi item,
 rekening versi, dan isi JSON versi KKR yang sudah memiliki tanggal finalisasi.
 
-Kriteria pertama dan ketiga K-9 dapat dicentang. Kriteria kedua menunggu pengiriman
-Operator pada K-10; kriteria keempat menunggu pembuktian unduh ulang arsip final
+Kriteria pertama, kedua, dan ketiga K-9 dapat dicentang. Kriteria keempat menunggu pembuktian unduh ulang arsip final
 pada K-18, meskipun perlindungan relasi dan snapshot tersimpan sudah diuji. K-9
 tetap **Berjalan**, tanpa menyatakan UAT selesai.
 

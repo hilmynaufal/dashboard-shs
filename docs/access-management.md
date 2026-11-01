@@ -47,12 +47,12 @@ SKPD tanpa pemindahan proposal, pencabutan peran reviu, formulir kedaluwarsa,
 proteksi Admin sendiri, validasi organisasi/peran, masukan HTML rusak, dan CSRF.
 Regresi policy K-5 tetap dijalankan untuk item, bukti, catatan, penugasan, dan KKR.
 
-Kriteria pertama K-8 dapat ditandai terpenuhi. Kriteria 2–4 mencakup pembatasan
-data/dokumen dan tindakan bisnis melalui endpoint sesungguhnya; controller
-usulan, unggah/unduh bukti, reviu, serta supervisi belum dibuat. Pengujian policy
-atau route khusus pengujian tidak diperlakukan sebagai pengganti pengujian
-controller tersebut. K-8 tetap Berjalan sampai integrasi pada kartu terkait
-(terutama K-10/K-11/K-13/K-14/K-17/K-18) selesai dan diuji kembali.
+Kriteria pertama dan kedua K-8 dapat ditandai terpenuhi. K-10/K-11 membuktikan
+batas SKPD pada baca/ubah usulan dan unggah/unduh bukti melalui endpoint nyata,
+termasuk ID langsung serta pembatasan item Pemeriksa. Kriteria ketiga dan
+keempat yang mencakup seluruh tindakan reviu/supervisi tetap menunggu integrasi
+K-13/K-14/K-17/K-18; policy saja tidak menggantikan endpoint bisnis tersebut.
+K-8 tetap Berjalan dan tidak dinyatakan selesai menyeluruh.
 
 Atas arahan pengembang, belum ada Admin nyata yang diprovisikan untuk browser.
 Formulir ini diperiksa melalui render server dan pengujian otomatis; belum

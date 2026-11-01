@@ -24,4 +24,9 @@ class ProposalPolicy
         return $user->hasPermission('proposals.update_own') && $this->access->owns($user, $proposal->organization_id) &&
             $proposal->status === 'draft';
     }
+
+    public function submit(User $user, Proposal $proposal): bool
+    {
+        return $user->hasPermission('proposals.submit_own') && $this->access->owns($user, $proposal->organization_id) && $proposal->status === 'draft';
+    }
 }

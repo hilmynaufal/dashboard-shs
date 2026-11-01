@@ -55,8 +55,10 @@ document.querySelectorAll('[data-submit-form]').forEach((form) => {
 });
 window.addEventListener('pageshow', () => {
     document.querySelectorAll('[data-submit-form] button[type="submit"]').forEach((button) => {
+        if (!Object.hasOwn(button.dataset, 'originalLabel')) return;
         button.disabled = false;
-        if (button.dataset.originalLabel) button.textContent = button.dataset.originalLabel;
+        button.textContent = button.dataset.originalLabel;
+        delete button.dataset.originalLabel;
     });
 });
 document.querySelectorAll('.field-error').forEach((error) => {

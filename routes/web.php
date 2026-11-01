@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\RequireActiveSession;
-use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ReferenceController, WorkspaceController};
+use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, WorkspaceController};
 use App\Support\ReferenceCatalog;
 
 Route::get('/', function () {
@@ -36,6 +36,31 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
         Route::patch('/{record}', [ReferenceController::class, 'update'])->whereNumber('record')->name('references.update');
         Route::delete('/{record}', [ReferenceController::class, 'destroy'])->whereNumber('record')->name('references.destroy');
     });
+    Route::get('/usulan',[ProposalController::class,'index'])->name('proposals.index');
+    Route::get('/usulan/buat',[ProposalController::class,'create'])->name('proposals.create');
+    Route::post('/usulan',[ProposalController::class,'store'])->name('proposals.store');
+    Route::get('/usulan/referensi/{kind}',[ProposalController::class,'references'])->whereIn('kind',array_keys(ReferenceCatalog::TYPES))->name('proposals.references');
+    Route::prefix('usulan/{proposal}')->whereNumber('proposal')->group(function():void{
+        Route::get('/',[ProposalController::class,'show'])->name('proposals.show');
+        Route::get('/item/buat',[ProposalController::class,'itemForm'])->name('proposals.items.create');
+        Route::post('/item',[ProposalController::class,'saveItem'])->name('proposals.items.store');
+        Route::get('/item/{item}/ubah',[ProposalController::class,'itemForm'])->whereNumber('item')->name('proposals.items.edit');
+        Route::patch('/item/{item}',[ProposalController::class,'saveItem'])->whereNumber('item')->name('proposals.items.update');
+        Route::get('/item/{item}/versi/{version}',[ProposalController::class,'version'])->whereNumber(['item','version'])->name('proposals.items.version');
+        Route::post('/item/{item}/bukti',[ProposalEvidenceController::class,'store'])->whereNumber('item')->name('proposals.evidence.store');
+        Route::delete('/item/{item}/bukti/{file}',[ProposalEvidenceController::class,'remove'])->whereNumber(['item','file'])->name('proposals.evidence.remove');
+        Route::get('/periksa',[ProposalController::class,'check'])->name('proposals.check');
+        Route::post('/kirim',[ProposalController::class,'submit'])->name('proposals.submit');
+        Route::get('/impor',[ProposalImportController::class,'create'])->name('proposals.import.create');
+        Route::post('/impor',[ProposalImportController::class,'upload'])->middleware('throttle:10,1')->name('proposals.import.upload');
+        Route::get('/impor/{batch}',[ProposalImportController::class,'show'])->whereNumber('batch')->name('proposals.import.show');
+        Route::patch('/impor/{batch}/pemetaan',[ProposalImportController::class,'mapping'])->whereNumber('batch')->name('proposals.import.mapping');
+        Route::get('/impor/{batch}/baris/{row}',[ProposalImportController::class,'rowForm'])->whereNumber(['batch','row'])->name('proposals.import.row');
+        Route::patch('/impor/{batch}/baris/{row}',[ProposalImportController::class,'rowUpdate'])->whereNumber(['batch','row'])->name('proposals.import.row.update');
+        Route::post('/impor/{batch}/simpan',[ProposalImportController::class,'commit'])->whereNumber('batch')->name('proposals.import.commit');
+        Route::post('/impor/{batch}/batal',[ProposalImportController::class,'cancel'])->whereNumber('batch')->name('proposals.import.cancel');
+    });
+    Route::get('/bukti/{file}',[ProposalEvidenceController::class,'download'])->whereNumber('file')->name('evidence.download');
 });
 
 Route::get('/prototype/operator', function () {

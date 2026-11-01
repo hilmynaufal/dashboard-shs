@@ -25,7 +25,10 @@ class RequireActiveSession
         }
         $request->session()->put('auth_password_fingerprint', $fingerprint);
 
-        return $next($request)->header('Cache-Control', 'no-store, private');
+        $response = $next($request);
+        $response->headers->set('Cache-Control', 'no-store, private');
+
+        return $response;
     }
 
     private function denied(Request $request, string $message): Response

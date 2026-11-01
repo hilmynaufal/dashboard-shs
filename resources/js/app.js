@@ -4,3 +4,6 @@ if (document.querySelector('#operator-prototype')) {
 if (document.querySelector('.account-app')) {
     import('./accounts.js');
 }
+if (document.querySelector('.proposal-workspace')) {
+    import('./proposals.js');
+}

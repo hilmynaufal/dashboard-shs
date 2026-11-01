@@ -1,0 +1,5 @@
+@extends('layouts.workspace')
+@section('title','Perbaiki baris '.$row->row_number)
+@section('subtitle',$batch->sheet_name.' · Koreksi hanya berlaku pada pratinjau ini.')
+@section('actions')<a class="btn secondary" href="{{ route('proposals.import.show',[$proposal,$batch->id]) }}">Kembali ke pratinjau</a>@endsection
+@section('content')<section class="form-panel catalog-form-panel"><form method="POST" action="{{ route('proposals.import.row.update',[$proposal,$batch->id,$row->id]) }}" data-submit-form>@csrf @method('PATCH')<input type="hidden" name="record_version" value="{{ $recordVersion }}"><input type="hidden" name="operation" value="correct">@include('proposals.fields',['prefix'=>'fields[','suffix'=>']','oldPrefix'=>'fields.'])<p class="form-bottom-note">Nilai asli Excel tetap disimpan sebagai asal data. Koreksi ini diperiksa lagi sebelum impor disimpan.</p><div class="form-actionbar"><button class="btn primary" type="submit">Simpan koreksi baris</button></div></form></section>@endsection
