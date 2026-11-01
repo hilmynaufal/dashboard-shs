@@ -92,3 +92,9 @@ keyboard; render server/pengujian otomatis bukan kelulusan UAT. Demo terpisah
 `/prototype/operator` tetap sintetis dan tidak menjadi sumber data `/usulan`.
 Verifikasi BKAD, pengembalian/tanggapan resmi, reviu, supervisi, dan ekspor KKR
 belum disediakan oleh kartu ini.
+
+Pembaruan K-12: verifikasi administratif BKAD dan kelengkapan ulang item yang
+dikembalikan kini tersedia pada endpoint tersendiri, sebagaimana dirinci dalam
+`docs/item-verification.md`. Hal itu tidak membuka edit versi terkirim; Operator
+membuat versi perbaikan baru hanya untuk item yang dikembalikan. Catatan reviu
+substantif, penugasan, supervisi, dan ekspor KKR tetap pada kartu berikutnya.

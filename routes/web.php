@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\RequireActiveSession;
-use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, WorkspaceController};
+use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
 
 Route::get('/', function () {
@@ -37,6 +37,9 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
         Route::delete('/{record}', [ReferenceController::class, 'destroy'])->whereNumber('record')->name('references.destroy');
     });
     Route::get('/usulan',[ProposalController::class,'index'])->name('proposals.index');
+    Route::get('/verifikasi', [VerificationController::class, 'index'])->name('verification.index');
+    Route::get('/verifikasi/{item}', [VerificationController::class, 'show'])->whereNumber('item')->name('verification.show');
+    Route::post('/verifikasi/{item}', [VerificationController::class, 'decide'])->whereNumber('item')->name('verification.decide');
     Route::get('/usulan/buat',[ProposalController::class,'create'])->name('proposals.create');
     Route::post('/usulan',[ProposalController::class,'store'])->name('proposals.store');
     Route::get('/usulan/referensi/{kind}',[ProposalController::class,'references'])->whereIn('kind',array_keys(ReferenceCatalog::TYPES))->name('proposals.references');
@@ -46,6 +49,8 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
         Route::post('/item',[ProposalController::class,'saveItem'])->name('proposals.items.store');
         Route::get('/item/{item}/ubah',[ProposalController::class,'itemForm'])->whereNumber('item')->name('proposals.items.edit');
         Route::patch('/item/{item}',[ProposalController::class,'saveItem'])->whereNumber('item')->name('proposals.items.update');
+        Route::post('/item/{item}/kelengkapan', [VerificationController::class, 'resubmit'])->whereNumber('item')->name('proposals.items.resubmit');
+        Route::get('/item/{item}/kelengkapan', [VerificationController::class, 'completion'])->whereNumber('item')->name('proposals.items.completion');
         Route::get('/item/{item}/versi/{version}',[ProposalController::class,'version'])->whereNumber(['item','version'])->name('proposals.items.version');
         Route::post('/item/{item}/bukti',[ProposalEvidenceController::class,'store'])->whereNumber('item')->name('proposals.evidence.store');
         Route::delete('/item/{item}/bukti/{file}',[ProposalEvidenceController::class,'remove'])->whereNumber(['item','file'])->name('proposals.evidence.remove');

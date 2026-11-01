@@ -28,6 +28,14 @@
 .access-role-option { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0; font-size: 12px; cursor: pointer; }
 .access-role-option input { width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
 .access-reload { margin-top: 12px; }
+.verification-copy { white-space: pre-wrap; overflow-wrap: anywhere; }
+.verification-current-status { margin: 0 0 12px; }
+.verification-history-entry { padding: 12px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.verification-history-entry:last-child { border-bottom: 0; padding-bottom: 0; }
+.verification-history-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.verification-history-heading small { color: var(--muted); font-size: 11px; }
+.verification-history-entry .account-body-copy { margin: 4px 0 !important; }
+.verification-history-entry .verification-copy { font-size: 13px; }
 .account-error-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
 .account-error-content { width: 100%; max-width: 560px; }
 .catalog-form-panel { max-width: 820px; }

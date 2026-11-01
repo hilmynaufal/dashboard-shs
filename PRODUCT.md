@@ -62,8 +62,9 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   belum disepakati dengan klien.
 - Hosting disiapkan pengembang. Staging ditunda atas arahan pengembang.
 - Backend sesi, pengaturan akun/akses, periode/referensi, usulan dan bukti sudah
-  tersedia; verifikasi BKAD, reviu, tanggapan, supervisi, dan KKR dilanjutkan
-  serta diuji pada kartu masing-masing.
+  tersedia. K-12 menyediakan verifikasi BKAD dan kelengkapan ulang per item
+  berversi; penugasan aktual, reviu substantif, tanggapan resmi, supervisi,
+  dan KKR dilanjutkan serta diuji pada kartu masing-masing.
 
 ## Brand Commitments
 

@@ -1,0 +1,3 @@
+<section class="form-panel proposal-followup" aria-label="Riwayat verifikasi"><h2>Riwayat verifikasi</h2>
+@forelse($history as $decision)<div class="verification-history-entry"><div class="verification-history-heading"><strong>{{ \App\Models\ProposalItem::LABELS[$decision->result] }} · Versi {{ $decision->version_number }}</strong><small>{{ \Carbon\CarbonImmutable::parse($decision->verified_at,'UTC')->timezone('Asia/Jakarta')->format('d/m/Y H:i') }} WIB</small></div><p class="account-body-copy">{{ $decision->verifier_name }}</p>@if($decision->reason!==null)<p class="verification-copy">{{ $decision->reason }}</p>@endif</div>@empty<p class="account-body-copy">Belum ada keputusan verifikasi pada versi ini.</p>@endforelse
+</section>

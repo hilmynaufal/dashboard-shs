@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Authorization\ResourceAccess;
-use App\Models\{Proposal, ProposalItemVersion, SubmissionPeriod};
-use App\Support\{AccountValidation, CatalogAudit, ProposalDraft, ProposalItemInput, RecordVersion, ReferenceCatalog, SubmissionWindow};
+use App\Models\{Proposal, ProposalItem, ProposalItemVersion, SubmissionPeriod};
+use App\Support\{AccountValidation, CatalogAudit, ItemVerification, ProposalDraft, ProposalItemInput, RecordVersion, ReferenceCatalog, SubmissionWindow};
 use Illuminate\Http\{JsonResponse, RedirectResponse, Request};
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\{DB, Gate, Storage};
@@ -70,16 +70,22 @@ class ProposalController extends Controller
         $items=new LengthAwarePaginator($rows->forPage($page,25)->values(),$rows->count(),25,$page,['path'=>$request->url(),'query'=>$request->query()]);
 
         return view('proposals.show',['proposal'=>$proposal,'items'=>$items,'period'=>SubmissionPeriod::findOrFail($proposal->submission_period_id),
+            'itemModels'=>ProposalItem::whereIn('id',$items->pluck('item_id'))->get()->keyBy('id'),
+            'decisions'=>DB::table('verification_results as result')->join('proposal_item_versions as version','version.id','=','result.item_version_id')
+                ->whereIn('version.proposal_item_id',$items->pluck('item_id'))->orderByDesc('result.id')->select('result.*','version.proposal_item_id')->get()->groupBy('proposal_item_id')->map->first(),
             'batches'=>DB::table('import_batches')->where('proposal_id',$proposal->id)->orderByDesc('id')->get(['id','status','sheet_name']),
             'draftVersion'=>Gate::allows('update',$proposal)?ProposalDraft::version($proposal):null]);
     }
 
     public function itemForm(Proposal $proposal, ?int $item = null): View
     {
-        Gate::authorize('update',$proposal);
+        $itemModel=$item===null?null:ItemVerification::item($proposal,$item);
+        Gate::authorize('update',$itemModel??$proposal);
         $version=$item===null?null:$this->itemVersion($proposal,$item);
 
         return view('proposals.item',['proposal'=>$proposal,'itemId'=>$item,'version'=>$version,'fields'=>$version?ProposalItemInput::fields($version):[],
+            'itemModel'=>$itemModel,'verificationHistory'=>$item?ItemVerification::history($item):collect(),
+            'verificationVersion'=>$item?ItemVerification::token($itemModel):null,
             'recordVersion'=>$version?RecordVersion::of((array)$version):ProposalDraft::version($proposal),
             'files'=>$version?DB::table('item_version_evidence')->join('evidence_files','evidence_files.id','=','evidence_file_id')->where('item_version_id',$version->id)->where('organization_id',$proposal->organization_id)->select('evidence_files.*')->get():collect(),
             'versions'=>$item?DB::table('proposal_item_versions')->where('proposal_item_id',$item)->orderByDesc('version_number')->get(['id','version_number','created_at']):collect()]);
@@ -87,11 +93,11 @@ class ProposalController extends Controller
 
     public function saveItem(Request $request, Proposal $proposal, ?int $item = null): JsonResponse|RedirectResponse
     {
-        Gate::authorize('update',$proposal);
+        Gate::authorize('update',$item===null?$proposal:ItemVerification::item($proposal,$item));
         $request->validate(['record_version'=>['required','string','regex:/\A[a-f0-9]{64}\z/']],['required'=>'Muat ulang formulir sebelum menyimpan.']);
         $data=(new ProposalItemInput)->validate($request->only(['name','spec','code','unit','account','price']));
         $versionId=DB::transaction(function () use ($request,$proposal,$item,$data): int {
-            $locked=ProposalDraft::lock($request->user(),$proposal->id);
+            $locked=$item===null?ProposalDraft::lock($request->user(),$proposal->id):ItemVerification::lock($request->user(),$item,'update',$proposal->id)[0];
             $state=$item===null?null:(array)$this->itemVersion($locked,$item);
             if ($item===null) { if (!hash_equals(ProposalDraft::version($locked),$request->input('record_version'))) { throw ValidationException::withMessages(['record_version'=>'Draf berubah. Muat ulang formulir.'])->status(409); } }
             else { RecordVersion::assertCurrent($request->input('record_version'),$state); }
@@ -122,6 +128,7 @@ class ProposalController extends Controller
         Gate::authorize('view',$version);
 
         return view('proposals.version',['proposal'=>$proposal,'itemId'=>$item,'version'=>$version,'fields'=>ProposalItemInput::fields($version),
+            'verificationHistory'=>ItemVerification::history($item)->where('item_version_id',$version->id),
             'files'=>DB::table('item_version_evidence')->join('evidence_files','evidence_files.id','=','evidence_file_id')->where('item_version_id',$version->id)->where('organization_id',$proposal->organization_id)->select('evidence_files.*')->get()]);
     }
 

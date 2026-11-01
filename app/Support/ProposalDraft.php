@@ -28,7 +28,7 @@ final class ProposalDraft
                 if (! $owner) { $q->whereNotNull('latest.submitted_at'); }
             });
         if ($viewer !== null) { $query->whereIn('i.id', app(ResourceAccess::class)->visibleItemIds($viewer)); }
-        $rows = $query->select(['v.*', 'v.id as version_id', 'i.id as item_id', 'i.public_id', 'i.lock_version'])->orderBy('i.id')->get();
+        $rows = $query->select(['v.*', 'v.id as version_id', 'i.id as item_id', 'i.public_id', 'i.lock_version', 'i.status as item_status'])->orderBy('i.id')->get();
         $files = DB::table('item_version_evidence as e')->join('evidence_files as f', 'f.id', '=', 'e.evidence_file_id')
             ->whereIn('e.item_version_id', $rows->pluck('version_id'))->where('f.organization_id', $proposal->organization_id)
             ->get(['e.item_version_id', 'f.id', 'f.original_name', 'f.byte_size', 'f.created_at'])->groupBy('item_version_id');
@@ -109,10 +109,11 @@ final class ProposalDraft
         }
     }
 
-    public static function problems(Proposal $proposal, bool $lockReferences = false): array
+    public static function problems(Proposal $proposal, bool $lockReferences = false, ?int $itemId = null): array
     {
         $problems = [];
         $rows = self::rows($proposal);
+        if ($itemId !== null) { $rows = $rows->where('item_id', $itemId)->values(); }
         $ids = $lockReferences ? ['code'=>$rows->pluck('item_classification_id')->unique()->all(), 'unit'=>$rows->pluck('unit_id')->unique()->all(),
             'account'=>DB::table('item_version_accounts')->whereIn('item_version_id',$rows->pluck('version_id'))->pluck('account_code_id')->unique()->all()] : null;
         $lookup = new ProposalItemInput($ids);
@@ -122,7 +123,7 @@ final class ProposalDraft
             catch (ValidationException $error) { $problems[$row->item_id] = array_merge(...array_values($error->errors())); }
             if ($row->files->isEmpty()) { $problems[$row->item_id][] = 'Bukti pendukung belum dilampirkan.'; }
         }
-        if (DB::table('import_batches')->where('proposal_id',$proposal->id)->where('status','preview')->exists()) { $problems['import'] = ['Simpan atau batalkan pratinjau impor sebelum mengirim usulan.']; }
+        if ($itemId === null && DB::table('import_batches')->where('proposal_id',$proposal->id)->where('status','preview')->exists()) { $problems['import'] = ['Simpan atau batalkan pratinjau impor sebelum mengirim usulan.']; }
 
         return $problems;
     }
