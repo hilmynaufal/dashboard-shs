@@ -1,0 +1,415 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T13:46:33.361Z",
+  "title": "Design System: Sistem Informasi SHS New",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Krem kanvas",
+        "canonical": "#f4f1eb",
+        "tonalRamp": [
+          "oklch(15% 0.0086 84.57)",
+          "oklch(26% 0.0086 84.57)",
+          "oklch(37% 0.0086 84.57)",
+          "oklch(49% 0.0086 84.57)",
+          "oklch(60% 0.0086 84.57)",
+          "oklch(72% 0.0086 84.57)",
+          "oklch(84% 0.0086 84.57)",
+          "oklch(95% 0.0086 84.57)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Putih hangat",
+        "canonical": "#fffdfa",
+        "tonalRamp": [
+          "oklch(15% 0.0045 78.30)",
+          "oklch(26% 0.0045 78.30)",
+          "oklch(37% 0.0045 78.30)",
+          "oklch(49% 0.0045 78.30)",
+          "oklch(60% 0.0045 78.30)",
+          "oklch(72% 0.0045 78.30)",
+          "oklch(84% 0.0045 78.30)",
+          "oklch(95% 0.0045 78.30)"
+        ]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Krem teduh",
+        "canonical": "#eeebe5",
+        "tonalRamp": [
+          "oklch(15% 0.0086 84.57)",
+          "oklch(26% 0.0086 84.57)",
+          "oklch(37% 0.0086 84.57)",
+          "oklch(49% 0.0086 84.57)",
+          "oklch(60% 0.0086 84.57)",
+          "oklch(72% 0.0086 84.57)",
+          "oklch(84% 0.0086 84.57)",
+          "oklch(95% 0.0086 84.57)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Arang hangat",
+        "canonical": "#211e1a",
+        "tonalRamp": [
+          "oklch(15% 0.0088 75.18)",
+          "oklch(26% 0.0088 75.18)",
+          "oklch(37% 0.0088 75.18)",
+          "oklch(49% 0.0088 75.18)",
+          "oklch(60% 0.0088 75.18)",
+          "oklch(72% 0.0088 75.18)",
+          "oklch(84% 0.0088 75.18)",
+          "oklch(95% 0.0088 75.18)"
+        ]
+      },
+      "sidebar-active": {
+        "role": "neutral",
+        "displayName": "Arang aktif",
+        "canonical": "#353029",
+        "tonalRamp": [
+          "oklch(15% 0.0141 76.36)",
+          "oklch(26% 0.0141 76.36)",
+          "oklch(37% 0.0141 76.36)",
+          "oklch(49% 0.0141 76.36)",
+          "oklch(60% 0.0141 76.36)",
+          "oklch(72% 0.0141 76.36)",
+          "oklch(84% 0.0141 76.36)",
+          "oklch(95% 0.0141 76.36)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta hangat",
+        "canonical": "#292620",
+        "tonalRamp": [
+          "oklch(15% 0.0117 84.58)",
+          "oklch(26% 0.0117 84.58)",
+          "oklch(37% 0.0117 84.58)",
+          "oklch(49% 0.0117 84.58)",
+          "oklch(60% 0.0117 84.58)",
+          "oklch(72% 0.0117 84.58)",
+          "oklch(84% 0.0117 84.58)",
+          "oklch(95% 0.0117 84.58)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Abu hangat",
+        "canonical": "#716b61",
+        "tonalRamp": [
+          "oklch(15% 0.0170 80.66)",
+          "oklch(26% 0.0170 80.66)",
+          "oklch(37% 0.0170 80.66)",
+          "oklch(49% 0.0170 80.66)",
+          "oklch(60% 0.0170 80.66)",
+          "oklch(72% 0.0170 80.66)",
+          "oklch(84% 0.0170 80.66)",
+          "oklch(95% 0.0170 80.66)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Garis pasir",
+        "canonical": "#e8e3db",
+        "tonalRamp": [
+          "oklch(15% 0.0121 79.78)",
+          "oklch(26% 0.0121 79.78)",
+          "oklch(37% 0.0121 79.78)",
+          "oklch(49% 0.0121 79.78)",
+          "oklch(60% 0.0121 79.78)",
+          "oklch(72% 0.0121 79.78)",
+          "oklch(84% 0.0121 79.78)",
+          "oklch(95% 0.0121 79.78)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Oranye terakota",
+        "canonical": "#c44920",
+        "tonalRamp": [
+          "oklch(15% 0.1660 37.71)",
+          "oklch(26% 0.1660 37.71)",
+          "oklch(37% 0.1660 37.71)",
+          "oklch(49% 0.1660 37.71)",
+          "oklch(60% 0.1660 37.71)",
+          "oklch(72% 0.1660 37.71)",
+          "oklch(84% 0.1660 37.71)",
+          "oklch(95% 0.1660 37.71)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Terakota pekat",
+        "canonical": "#aa3815",
+        "tonalRamp": [
+          "oklch(15% 0.1559 36.43)",
+          "oklch(26% 0.1559 36.43)",
+          "oklch(37% 0.1559 36.43)",
+          "oklch(49% 0.1559 36.43)",
+          "oklch(60% 0.1559 36.43)",
+          "oklch(72% 0.1559 36.43)",
+          "oklch(84% 0.1559 36.43)",
+          "oklch(95% 0.1559 36.43)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Terakota lembut",
+        "canonical": "#fae9df",
+        "tonalRamp": [
+          "oklch(15% 0.0229 52.69)",
+          "oklch(26% 0.0229 52.69)",
+          "oklch(37% 0.0229 52.69)",
+          "oklch(49% 0.0229 52.69)",
+          "oklch(60% 0.0229 52.69)",
+          "oklch(72% 0.0229 52.69)",
+          "oklch(84% 0.0229 52.69)",
+          "oklch(95% 0.0229 52.69)"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Hijau kelengkapan",
+        "canonical": "#087b65",
+        "tonalRamp": [
+          "oklch(15% 0.0972 174.13)",
+          "oklch(26% 0.0972 174.13)",
+          "oklch(37% 0.0972 174.13)",
+          "oklch(49% 0.0972 174.13)",
+          "oklch(60% 0.0972 174.13)",
+          "oklch(72% 0.0972 174.13)",
+          "oklch(84% 0.0972 174.13)",
+          "oklch(95% 0.0972 174.13)"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Kuning perhatian",
+        "canonical": "#94600a",
+        "tonalRamp": [
+          "oklch(15% 0.1112 71.50)",
+          "oklch(26% 0.1112 71.50)",
+          "oklch(37% 0.1112 71.50)",
+          "oklch(49% 0.1112 71.50)",
+          "oklch(60% 0.1112 71.50)",
+          "oklch(72% 0.1112 71.50)",
+          "oklch(84% 0.1112 71.50)",
+          "oklch(95% 0.1112 71.50)"
+        ]
+      },
+      "danger": {
+        "role": "semantic",
+        "displayName": "Merah galat",
+        "canonical": "#b33930",
+        "tonalRamp": [
+          "oklch(15% 0.1596 28.11)",
+          "oklch(26% 0.1596 28.11)",
+          "oklch(37% 0.1596 28.11)",
+          "oklch(49% 0.1596 28.11)",
+          "oklch(60% 0.1596 28.11)",
+          "oklch(72% 0.1596 28.11)",
+          "oklch(84% 0.1596 28.11)",
+          "oklch(95% 0.1596 28.11)"
+        ]
+      },
+      "info": {
+        "role": "semantic",
+        "displayName": "Ungu reviu",
+        "canonical": "#6650ae",
+        "tonalRamp": [
+          "oklch(15% 0.1441 291.07)",
+          "oklch(26% 0.1441 291.07)",
+          "oklch(37% 0.1441 291.07)",
+          "oklch(49% 0.1441 291.07)",
+          "oklch(60% 0.1441 291.07)",
+          "oklch(72% 0.1441 291.07)",
+          "oklch(84% 0.1441 291.07)",
+          "oklch(95% 0.1441 291.07)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Judul halaman",
+        "purpose": "Judul halaman desktop."
+      },
+      "headline-mobile": {
+        "displayName": "Judul mobile",
+        "purpose": "Judul halaman pada lebar maksimal 720px."
+      },
+      "title": {
+        "displayName": "Judul bagian",
+        "purpose": "Heading bagian."
+      },
+      "body": {
+        "displayName": "Isi dasar",
+        "purpose": "Teks dasar aplikasi."
+      },
+      "table": {
+        "displayName": "Isi tabel",
+        "purpose": "Isi tabel dan label utama item."
+      },
+      "button": {
+        "displayName": "Tombol",
+        "purpose": "Tindakan dengan bobot sedang."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel",
+        "value": "0 5px 18px #38220c05",
+        "purpose": "Bayangan ambient panel."
+      },
+      {
+        "name": "primary-button",
+        "value": "0 4px 8px #7a391522",
+        "purpose": "Tombol tindakan utama."
+      },
+      {
+        "name": "primary-button-hover",
+        "value": "0 5px 12px #7a39152b",
+        "purpose": "Hover tombol utama."
+      },
+      {
+        "name": "dialog",
+        "value": "0 16px 60px #20150d2e",
+        "purpose": "Lapisan dialog."
+      },
+      {
+        "name": "toast",
+        "value": "0 7px 25px #251a1433",
+        "purpose": "Umpan balik tindakan."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-state",
+        "value": "160ms ease",
+        "purpose": "Latar, warna, dan bayangan pada perubahan keadaan."
+      },
+      {
+        "name": "drawer",
+        "value": "180ms ease-out",
+        "purpose": "Transform drawer navigasi."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "Transisi dinonaktifkan pada prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1600px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1250px"
+      },
+      {
+        "name": "drawer",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tombol primer",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Buat usulan",
+      "html": "<button type=\"button\" class=\"ds-primary\">Buat usulan</button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--accent,#c44920);color:#fff;box-shadow:0 4px 8px #7a391522;}.ds-primary:hover:not(:disabled){background:var(--accent-hover,#aa3815);box-shadow:0 5px 12px #7a39152b;}.ds-primary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-primary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Tombol sekunder",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Impor Excel",
+      "html": "<button type=\"button\" class=\"ds-secondary\">Impor Excel</button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--surface,#fffdfa);color:var(--ink,#292620);box-shadow:inset 0 0 0 1px #ded8ce;}.ds-secondary:hover:not(:disabled){background:#ece7df;}.ds-secondary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-secondary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
+    },
+    {
+      "name": "Tombol ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Batal",
+      "html": "<button type=\"button\" class=\"ds-ghost\">Batal</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:transparent;color:var(--muted,#716b61);padding-right:4px;}.ds-ghost:hover:not(:disabled){color:var(--ink,#292620);}.ds-ghost:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-ghost:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-ghost{transition:none}}"
+    },
+    {
+      "name": "Isian formulir",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Label tetap terlihat; tinggi isian minimal 42px.",
+      "html": "<label class=\"ds-field\">Uraian item<input class=\"ds-input\" type=\"text\" value=\"Kertas HVS A4\"></label>",
+      "css": ".ds-field{display:block;color:var(--ink,#292620);font:500 12px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-input{display:block;width:100%;margin-top:8px;border:1px solid #ddd7cd;padding:10px 12px;border-radius:8px;background:var(--surface,#fffdfa);color:var(--ink,#292620);min-height:42px;font:400 12px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;caret-color:var(--accent,#c44920)}.ds-input:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-input[readonly]{background:#f5f2ec;color:#6c6558}"
+    },
+    {
+      "name": "Navigasi aktif",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Pilihan aktif pada sidebar arang dengan penanda oranye.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#usulan\" class=\"ds-nav-active\" aria-current=\"page\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M4 4h16v16H4zM8 8h8M8 12h8M8 16h5\"/></svg>Usulan SKPD</a></nav>",
+      "css": ".ds-nav{background:var(--sidebar,#211e1a);padding:16px}.ds-nav-active{position:relative;display:flex;align-items:center;gap:12px;min-height:43px;padding:11px 13px;border-radius:10px;background:var(--sidebar-active,#353029);color:#fff9ed;text-decoration:none;font:500 13px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;transition:background 160ms,color 160ms}.ds-nav-active::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:2px;background:#f2703e}.ds-nav-active svg{color:#f28559}.ds-nav-active:hover{background:#2c2822;color:#fff}.ds-nav-active:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-nav-active{transition:none}}"
+    },
+    {
+      "name": "Badge status",
+      "kind": "chip",
+      "refersTo": "status-neutral",
+      "description": "Status teks selalu hadir bersama warna dan titik.",
+      "html": "<span class=\"ds-badge\"><span class=\"ds-status-dot\" aria-hidden=\"true\"></span>Draf</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:20px;background:var(--surface-muted,#eeebe5);color:#696155;white-space:nowrap;font:500 10px/1.4 'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-status-dot{width:5px;height:5px;border-radius:50%;background:currentColor}"
+    },
+    {
+      "name": "Panel formulir",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Panel terang berbayang lembut untuk satu kelompok data.",
+      "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\">Data item</h2><p class=\"ds-panel-copy\">Lengkapi data dan bukti pendukung.</p></section>",
+      "css": ".ds-panel{background:var(--surface,#fffdfa);color:var(--ink,#292620);border-radius:16px;padding:26px;box-shadow:0 5px 18px #38220c05;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-panel-title{margin:0;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}.ds-panel-copy{margin:3px 0 0;color:var(--muted,#716b61);font-size:11px;line-height:1.5}"
+    },
+    {
+      "name": "Kelengkapan item",
+      "kind": "custom",
+      "description": "Progress dan jumlah item lengkap terpisah dari status paket.",
+      "html": "<span class=\"ds-progress\" aria-label=\"8 dari 10 item lengkap\"><span class=\"ds-track\" aria-hidden=\"true\"><span class=\"ds-fill\"></span></span>8/10</span>",
+      "css": ".ds-progress{display:inline-flex;align-items:center;gap:9px;min-width:95px;color:#4b685b;font:400 10px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums}.ds-track{width:56px;height:4px;border-radius:4px;background:#eae7e0;overflow:hidden}.ds-fill{display:block;height:100%;width:80%;background:#13876d;border-radius:inherit}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Hearth",
+    "overview": "Pertahankan arah yang dikonfirmasi pengembang pada 1 November 2026: sidebar\narang hangat, bidang kerja krem, panel terang, dan aksen oranye. Dunia visual\nini mendukung pekerjaan administrasi yang padat melalui tabel rapi, hierarki\ntipografi, jarak, dan pengelompokan. Identitas resmi instansi masih menyusul.\n\nDokumen ini merekam rancangan K-3 di `/prototype/operator`, dengan sumber\n`resources/css/operator.css`. Desktop/laptop adalah perangkat kerja utama;\nponsel mendukung pemantauan dan tindakan singkat. Prototipe lokal memakai data\nsintetis dan perubahan dalam memori tab; refresh mereset demo. Berkas dibaca\ndi browser, pengiriman disimulasikan, dan tidak ada persistensi bisnis atau\npengiriman ke BKAD. Ini bukan bukti penyelesaian fitur backend.",
+    "keyCharacteristics": [
+      "Navigasi arang dengan bidang kerja krem dan panel putih hangat.",
+      "Aksen oranye untuk tindakan utama; status selalu disertai teks.",
+      "Tabel sebagai bidang kerja, dengan kelengkapan terpisah dari status paket.",
+      "Ikon SVG garis, sudut lembut, dan bayangan tipis."
+    ],
+    "rules": [
+      {
+        "name": "The Status Text Rule",
+        "body": "Warna tidak menggantikan label status atau penjelasan galat.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "**Do** pertahankan sidebar arang, kanvas krem, panel terang, dan aksen oranye.",
+      "**Do** tampilkan kelengkapan dan status sebagai dua informasi berbeda.",
+      "**Do** sediakan fokus terlihat, target interaksi minimal 40px, dan teks untuk status.",
+      "**Do** nyatakan batas simulasi dan keberadaan berkas di browser dengan jujur."
+    ],
+    "donts": [
+      "**Don't** menjadikan grafik dekoratif sebagai pengganti daftar kerja.",
+      "**Don't** menyatakan identitas resmi instansi sebelum asetnya tersedia.",
+      "**Don't** menyebut simulasi lokal sebagai penyimpanan server atau pengiriman nyata."
+    ]
+  }
+}

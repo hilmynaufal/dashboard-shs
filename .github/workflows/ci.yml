@@ -92,5 +92,7 @@ jobs:
           cache: npm
       - name: Install locked frontend dependencies
         run: npm ci --ignore-scripts
+      - name: Check prototype validation and import mapping
+        run: npm run test:ui
       - name: Build assets
         run: npm run build

@@ -11,6 +11,9 @@
         <p class="mb-4 text-sm text-slate-500">Inspektorat Daerah</p>
         <h1 class="text-3xl font-semibold">{{ config('app.name') }}</h1>
         <p class="mt-4 text-slate-600">Fondasi aplikasi pengusulan dan reviu SHS/SBU.</p>
+        @if (app()->environment('local'))
+            <a class="mt-8 inline-flex rounded-lg bg-orange-700 px-5 py-3 font-medium text-white" href="{{ route('prototype.operator') }}">Buka prototipe Operator SKPD →</a>
+        @endif
     </main>
 </body>
 </html>
