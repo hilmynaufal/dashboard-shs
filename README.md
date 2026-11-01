@@ -53,7 +53,18 @@ npm run build
 
 Uji fondasi memeriksa halaman awal dan /up tanpa memakai database. Uji domain
 berikutnya menggunakan MySQL khusus shs_new_testing, terpisah dari operasional.
-Keberhasilan uji fondasi belum membuktikan migrasi MySQL.
+K-4 menambahkan pengujian integritas skema; pengujian akan mengosongkan database
+khusus shs_new_testing. Jangan arahkan database uji ke data penting.
+
+Dokumentasi skema aktual dapat diperbarui setelah migrasi MySQL:
+
+```sh
+php artisan app:document-schema
+```
+
+Lihat [model data](docs/data-model.md), [ERD](docs/erd.mmd), serta
+[kamus skema](docs/schema-dictionary.md). Pengujian fondasi dan skema belum
+membuktikan kelulusan fitur, policy akses, atau UAT.
 
 ## Ketentuan
 

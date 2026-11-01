@@ -1,0 +1,503 @@
+erDiagram
+    account_codes {
+        bigint id PK
+        varchar code
+        varchar name
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    activity_logs {
+        bigint id PK
+        bigint actor_id FK
+        varchar action
+        varchar subject_type
+        bigint subject_id
+        json before_values
+        json after_values
+        text reason
+        datetime occurred_at
+    }
+    assignment_items {
+        bigint id PK
+        bigint review_assignment_id FK
+        bigint proposal_item_id FK
+        bigint initial_version_id FK
+        bigint examiner_member_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    assignment_members {
+        bigint id PK
+        bigint review_assignment_id FK
+        bigint user_id FK
+        enum role
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    assignment_transfers {
+        bigint id PK
+        bigint assignment_item_id FK
+        bigint from_member_id FK
+        bigint to_member_id FK
+        bigint transferred_by FK
+        text reason
+        datetime transferred_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    cache {
+        varchar key PK
+        mediumtext value
+        bigint expiration
+    }
+    cache_locks {
+        varchar key PK
+        varchar owner
+        bigint expiration
+    }
+    evidence_files {
+        bigint id PK
+        bigint organization_id FK
+        bigint uploaded_by FK
+        varchar original_name
+        varchar disk
+        varchar path
+        varchar mime_type
+        bigint byte_size
+        char sha256
+        timestamp created_at
+        timestamp updated_at
+    }
+    failed_jobs {
+        bigint id PK
+        varchar uuid
+        varchar connection
+        varchar queue
+        longtext payload
+        longtext exception
+        timestamp failed_at
+    }
+    import_batches {
+        bigint id PK
+        bigint proposal_id FK
+        bigint created_by FK
+        char file_sha256
+        varchar sheet_name
+        enum status
+        json mapping
+        json result_summary
+        timestamp created_at
+        timestamp updated_at
+    }
+    import_rows {
+        bigint id PK
+        bigint import_batch_id FK
+        int row_number
+        json raw_values
+        json errors
+        bigint item_version_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    item_classifications {
+        bigint id PK
+        varchar code
+        varchar name
+        bigint parent_id FK
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    item_reviews {
+        bigint id PK
+        bigint assignment_item_id FK
+        bigint proposal_item_id FK
+        bigint item_version_id FK
+        bigint reviewed_by FK
+        enum status
+        decimal comparison_price
+        decimal recommended_price
+        text recommendation
+        datetime completed_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    item_version_accounts {
+        bigint item_version_id PK
+        bigint account_code_id PK
+        varchar code_snapshot
+        varchar name_snapshot
+    }
+    item_version_evidence {
+        bigint item_version_id PK
+        bigint evidence_file_id PK
+        varchar purpose
+    }
+    job_batches {
+        varchar id PK
+        varchar name
+        int total_jobs
+        int pending_jobs
+        int failed_jobs
+        longtext failed_job_ids
+        mediumtext options
+        int cancelled_at
+        int created_at
+        int finished_at
+    }
+    jobs {
+        bigint id PK
+        varchar queue
+        longtext payload
+        smallint attempts
+        int reserved_at
+        int available_at
+        int created_at
+    }
+    kkr_approvals {
+        bigint id PK
+        bigint kkr_version_id FK
+        bigint decided_by FK
+        enum level
+        enum decision
+        text notes
+        datetime decided_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    kkr_documents {
+        bigint id PK
+        bigint review_assignment_id FK
+        bigint prepared_by FK
+        varchar number
+        varchar title
+        enum status
+        int lock_version
+        timestamp created_at
+        timestamp updated_at
+    }
+    kkr_entries {
+        bigint id PK
+        bigint kkr_version_id FK
+        bigint item_review_id FK
+        int display_order
+        tinyint has_open_notes
+        json snapshot
+    }
+    kkr_exports {
+        bigint id PK
+        bigint kkr_version_id FK
+        bigint generated_by FK
+        varchar disk
+        varchar path
+        char sha256
+        bigint byte_size
+        timestamp created_at
+        timestamp updated_at
+    }
+    kkr_versions {
+        bigint id PK
+        bigint kkr_document_id FK
+        int version_number
+        varchar template_version
+        json snapshot
+        char snapshot_sha256
+        bigint created_by FK
+        bigint supersedes_version_id FK
+        text change_reason
+        datetime submitted_at
+        datetime finalized_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    migrations {
+        int id PK
+        varchar migration
+        int batch
+    }
+    note_responses {
+        bigint id PK
+        bigint review_note_id FK
+        bigint responded_by FK
+        text response
+        bigint revised_version_id FK
+        datetime responded_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    organizations {
+        bigint id PK
+        varchar code
+        varchar name
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    password_reset_tokens {
+        varchar email PK
+        varchar token
+        timestamp created_at
+    }
+    permission_role {
+        bigint permission_id PK
+        bigint role_id PK
+    }
+    permissions {
+        bigint id PK
+        varchar code
+        varchar name
+        timestamp created_at
+        timestamp updated_at
+    }
+    price_sources {
+        bigint id PK
+        bigint item_version_id FK
+        enum type
+        varchar name
+        text source_location
+        date source_date
+        bigint reference_document_id FK
+        json reference_snapshot
+        varchar unit_description
+        text specification
+        decimal base_price
+        decimal tax_amount
+        decimal shipping_amount
+        decimal other_amount
+        decimal total_price
+        enum tax_status
+        text calculation_notes
+        timestamp created_at
+        timestamp updated_at
+    }
+    proposal_item_versions {
+        bigint id PK
+        bigint proposal_item_id FK
+        int version_number
+        bigint item_classification_id FK
+        bigint unit_id FK
+        varchar description
+        text specification
+        decimal proposed_price
+        decimal tkdn_percent
+        enum origin
+        text justification
+        json reference_snapshot
+        bigint created_by FK
+        text change_reason
+        datetime submitted_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    proposal_items {
+        bigint id PK
+        char public_id
+        bigint proposal_id FK
+        enum status
+        int lock_version
+        timestamp created_at
+        timestamp updated_at
+    }
+    proposals {
+        bigint id PK
+        bigint organization_id FK
+        bigint submission_period_id FK
+        enum type
+        varchar number
+        varchar title
+        enum status
+        bigint created_by FK
+        datetime submitted_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    reference_documents {
+        bigint id PK
+        varchar title
+        varchar number
+        varchar reference_version
+        date effective_from
+        date effective_until
+        smallint budget_year
+        text description
+        timestamp created_at
+        timestamp updated_at
+    }
+    review_aspects {
+        bigint id PK
+        varchar code
+        varchar name
+        tinyint is_required
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    review_assignments {
+        bigint id PK
+        varchar number
+        varchar title
+        bigint submission_period_id FK
+        bigint object_organization_id FK
+        bigint created_by FK
+        text task_basis
+        text scope_description
+        enum status
+        timestamp created_at
+        timestamp updated_at
+    }
+    review_notes {
+        bigint id PK
+        bigint item_version_id FK
+        bigint item_review_id FK
+        bigint created_by FK
+        enum type
+        varchar category
+        text description
+        text recommendation
+        enum status
+        bigint sent_by FK
+        datetime sent_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    review_results {
+        bigint id PK
+        bigint item_review_id FK
+        bigint review_aspect_id FK
+        enum result
+        json criterion_snapshot
+        text reason
+        timestamp created_at
+        timestamp updated_at
+    }
+    role_user {
+        bigint role_id PK
+        bigint user_id PK
+        timestamp created_at
+        timestamp updated_at
+    }
+    roles {
+        bigint id PK
+        varchar code
+        varchar name
+        timestamp created_at
+        timestamp updated_at
+    }
+    sessions {
+        varchar id PK
+        bigint user_id
+        varchar ip_address
+        text user_agent
+        longtext payload
+        int last_activity
+    }
+    submission_periods {
+        bigint id PK
+        smallint budget_year
+        varchar name
+        datetime opens_at
+        datetime closes_at
+        enum status
+        bigint created_by FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    units {
+        bigint id PK
+        varchar code
+        varchar name
+        tinyint is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    users {
+        bigint id PK
+        varchar name
+        varchar email
+        timestamp email_verified_at
+        varchar password
+        varchar remember_token
+        timestamp created_at
+        timestamp updated_at
+        bigint organization_id FK
+        tinyint is_active
+        varchar position
+    }
+    verification_results {
+        bigint id PK
+        bigint item_version_id FK
+        bigint verified_by FK
+        enum result
+        text reason
+        datetime verified_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    users |o--o{ activity_logs : "actor_id"
+    assignment_members ||--o{ assignment_items : "review_assignment_id_examiner_member_id"
+    proposal_item_versions ||--o{ assignment_items : "proposal_item_id_initial_version_id"
+    proposal_items ||--o{ assignment_items : "proposal_item_id"
+    review_assignments ||--o{ assignment_items : "review_assignment_id"
+    review_assignments ||--o{ assignment_members : "review_assignment_id"
+    users ||--o{ assignment_members : "user_id"
+    assignment_items ||--o{ assignment_transfers : "assignment_item_id"
+    assignment_members ||--o{ assignment_transfers : "from_member_id"
+    assignment_members ||--o{ assignment_transfers : "to_member_id"
+    users ||--o{ assignment_transfers : "transferred_by"
+    organizations ||--o{ evidence_files : "organization_id"
+    users ||--o{ evidence_files : "uploaded_by"
+    users ||--o{ import_batches : "created_by"
+    proposals ||--o{ import_batches : "proposal_id"
+    import_batches ||--o{ import_rows : "import_batch_id"
+    proposal_item_versions |o--o{ import_rows : "item_version_id"
+    item_classifications |o--o{ item_classifications : "parent_id"
+    assignment_items ||--o{ item_reviews : "assignment_item_id_proposal_item_id"
+    proposal_item_versions ||--o{ item_reviews : "proposal_item_id_item_version_id"
+    users ||--o{ item_reviews : "reviewed_by"
+    account_codes ||--o{ item_version_accounts : "account_code_id"
+    proposal_item_versions ||--o{ item_version_accounts : "item_version_id"
+    evidence_files ||--o{ item_version_evidence : "evidence_file_id"
+    proposal_item_versions ||--o{ item_version_evidence : "item_version_id"
+    users ||--o{ kkr_approvals : "decided_by"
+    kkr_versions ||--o{ kkr_approvals : "kkr_version_id"
+    users ||--o{ kkr_documents : "prepared_by"
+    review_assignments ||--o{ kkr_documents : "review_assignment_id"
+    item_reviews ||--o{ kkr_entries : "item_review_id"
+    kkr_versions ||--o{ kkr_entries : "kkr_version_id"
+    users ||--o{ kkr_exports : "generated_by"
+    kkr_versions ||--o{ kkr_exports : "kkr_version_id"
+    users ||--o{ kkr_versions : "created_by"
+    kkr_documents ||--o{ kkr_versions : "kkr_document_id"
+    kkr_versions |o--o{ kkr_versions : "supersedes_version_id"
+    users ||--o{ note_responses : "responded_by"
+    review_notes ||--o{ note_responses : "review_note_id"
+    proposal_item_versions |o--o{ note_responses : "revised_version_id"
+    permissions ||--o{ permission_role : "permission_id"
+    roles ||--o{ permission_role : "role_id"
+    proposal_item_versions ||--o{ price_sources : "item_version_id"
+    reference_documents |o--o{ price_sources : "reference_document_id"
+    users ||--o{ proposal_item_versions : "created_by"
+    item_classifications ||--o{ proposal_item_versions : "item_classification_id"
+    proposal_items ||--o{ proposal_item_versions : "proposal_item_id"
+    units ||--o{ proposal_item_versions : "unit_id"
+    proposals ||--o{ proposal_items : "proposal_id"
+    users ||--o{ proposals : "created_by"
+    organizations ||--o{ proposals : "organization_id"
+    submission_periods ||--o{ proposals : "submission_period_id"
+    users ||--o{ review_assignments : "created_by"
+    organizations ||--o{ review_assignments : "object_organization_id"
+    submission_periods ||--o{ review_assignments : "submission_period_id"
+    users ||--o{ review_notes : "created_by"
+    item_reviews |o--o{ review_notes : "item_review_id"
+    proposal_item_versions ||--o{ review_notes : "item_version_id"
+    users |o--o{ review_notes : "sent_by"
+    item_reviews ||--o{ review_results : "item_review_id"
+    review_aspects ||--o{ review_results : "review_aspect_id"
+    roles ||--o{ role_user : "role_id"
+    users ||--o{ role_user : "user_id"
+    users ||--o{ submission_periods : "created_by"
+    organizations |o--o{ users : "organization_id"
+    proposal_item_versions ||--o{ verification_results : "item_version_id"
+    users ||--o{ verification_results : "verified_by"
