@@ -19,6 +19,17 @@
 .account-app .account-table { min-width: 740px; }
 .account-table td:first-child { min-width: 200px; overflow-wrap: anywhere; }
 .account-table td:nth-child(3) { max-width: 260px; }
+.account-row-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.account-identity-email { overflow-wrap: anywhere; }
+.access-role-fieldset { border: 0; padding: 0; margin: 0 0 12px; min-width: 0; }
+.access-role-fieldset legend { font-size: 12px; font-weight: 500; }
+.access-help { color: var(--muted); font-size: 11px; margin: 4px 0 8px !important; max-width: 70ch; }
+.access-role-options { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
+.access-role-option { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0; font-size: 12px; cursor: pointer; }
+.access-role-option input { width: 16px; height: 16px; accent-color: var(--accent); flex-shrink: 0; }
+.access-reload { margin-top: 12px; }
+.account-error-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
+.account-error-content { width: 100%; max-width: 560px; }
 .password-field { position: relative; }
 .password-field input { padding-right: 110px; }
 .password-field button { position: absolute; right: 2px; top: 1px; min-height: 40px; padding: 0 12px; background: transparent; color: var(--accent); font-size: 11px; border-radius: 8px; }
@@ -46,6 +57,7 @@
     .login-form-wrap { max-width: 460px; }
 }
 @media (max-width: 720px) {
+    .access-role-options { grid-template-columns: 1fr; }
     .account-top-profile span { display: none; }
     .account-app .account-top-profile { min-width: 40px; justify-content: center; }
     .account-app .page-heading .heading-actions:empty { display: none; }

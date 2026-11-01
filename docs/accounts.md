@@ -19,8 +19,9 @@ Modul usulan/reviu belum dihubungkan ke halaman operasional pada kartu ini.
 Formulir memakai CSRF, validasi server, dan pesan Indonesia. Endpoint sesi JSON
 K-5 tetap didukung. Halaman dilindungi middleware sesi aktif dan `no-store`;
 akses langsung ke URL Admin tetap memeriksa `accounts.manage`. Tidak ada hapus
-akun atau registrasi publik. Pengelolaan peran/SKPD akun yang sudah ada mengikuti
-K-8 dan belum dinyatakan selesai oleh K-7.
+akun atau registrasi publik. Pengelolaan peran/SKPD akun yang sudah ada dibuat
+pada K-8; lihat [pengaturan akses](access-management.md) untuk perilaku dan batas
+pengujian integrasi pada modul bisnis berikutnya.
 
 Perubahan kata sandi menyimpan hash, memutar sesi/token CSRF, menghapus remember
 token, dan membuat sesi lain ditolak saat permintaan berikutnya melalui fingerprint

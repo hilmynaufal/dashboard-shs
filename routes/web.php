@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\RequireActiveSession;
-use App\Http\Controllers\{AccountController, ProfileController, WorkspaceController};
+use App\Http\Controllers\{AccountAccessController, AccountController, ProfileController, WorkspaceController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +20,8 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::get('/admin/akun/buat', [AccountController::class, 'create'])->name('accounts.create');
     Route::post('/admin/akun', [AccountController::class, 'store'])->name('accounts.store');
     Route::patch('/admin/akun/{account}/status', [AccountController::class, 'status'])->name('accounts.status');
+    Route::get('/admin/akun/{account}/akses', [AccountAccessController::class, 'edit'])->name('accounts.access.edit');
+    Route::patch('/admin/akun/{account}/akses', [AccountAccessController::class, 'update'])->name('accounts.access.update');
 });
 
 Route::get('/prototype/operator', function () {
