@@ -50,6 +50,7 @@ class ResourceAuthorizationTest extends MySqlAccessTestCase
             return response()->json(['id' => $proposal->id]);
         })->middleware(['web', RequireActiveSession::class]);
         $this->actingAs($owner)->getJson('/__test/proposals/'.$f['proposal']->id)->assertOk();
+        $this->flushSession(); // A different actor represents a separate browser session.
         $this->actingAs($other)->getJson('/__test/proposals/'.$f['proposal']->id)->assertForbidden();
     }
 

@@ -12,16 +12,28 @@ class RequireActiveSession
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->user()) {
-            return response()->json(['message' => 'Silakan masuk terlebih dahulu.'], 401);
+            return $this->denied($request, 'Silakan masuk terlebih dahulu.');
         }
-        if (! $request->user()->refresh()->isEnabled()) {
+        $user = $request->user()->refresh();
+        $fingerprint = hash('sha256', $user->getAuthPassword());
+        if (! $user->isEnabled() || ($request->session()->has('auth_password_fingerprint') && ! hash_equals($request->session()->get('auth_password_fingerprint'), $fingerprint))) {
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return response()->json(['message' => 'Sesi tidak dapat digunakan. Silakan hubungi pengelola akun.'], 401);
+            return $this->denied($request, 'Sesi tidak dapat digunakan. Silakan masuk kembali atau hubungi pengelola akun.');
+        }
+        $request->session()->put('auth_password_fingerprint', $fingerprint);
+
+        return $next($request)->header('Cache-Control', 'no-store, private');
+    }
+
+    private function denied(Request $request, string $message): Response
+    {
+        if ($request->expectsJson() || $request->is('auth/*')) {
+            return response()->json(['message' => $message], 401)->header('Cache-Control', 'no-store');
         }
 
-        return $next($request);
+        return redirect()->route('login')->withErrors(['session' => $message])->header('Cache-Control', 'no-store');
     }
 }
