@@ -29,5 +29,6 @@ browser dan pengiriman disimulasikan, tanpa persistensi bisnis.
 Motion: perubahan keadaan 160ms, drawer 180ms; tidak ada entrance halaman.
 Pengujian visual dua putaran maksimum, desktop dan mobile dalam satu batch.
 
-Revisi pengembang: Plus Jakarta Sans dan jarak compact; judul/subjudul 4px,
-heading bawah 18px desktop/16px mobile, tabel desktop 10px vertikal per sel.
+Revisi pengembang: Plus Jakarta Sans dan jarak compact; judul/subjudul 2px,
+heading bawah 12px desktop/mobile, tabel desktop 8px vertikal per sel,
+panel 16px dan antar-isian 12px. Label sidebar biasa, pilihan aktif 500.

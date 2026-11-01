@@ -171,10 +171,10 @@ untuk layar baru. Petunjuk dan galat harus tetap terbaca pada perangkat tujuan.
 Sidebar desktop tetap selebar 240px. Konten dan topbar memakai gutter desktop
 pada frontmatter, meningkat menjadi 36px mulai lebar 1600px. Editor data dan
 bukti tersusun dua kolom dengan kolom bukti 310px; pemeriksaan pengiriman
-memisahkan hasil dan tindakan. Jarak berulang memakai 8, 12, dan 16px. Jarak judul ke subjudul 4px;
-heading ke bagian berikutnya 18px desktop/16px mobile. Topbar desktop 64px
-dan mobile 56px. Padding vertikal baris tabel desktop 10px; panel form 20px
-desktop/16px mobile. Target interaksi tetap minimal 40px.
+memisahkan hasil dan tindakan. Jarak berulang memakai 4, 8, dan 12px. Jarak
+judul ke subjudul 2px; heading ke bagian berikutnya 12px desktop maupun mobile.
+Topbar 56px. Padding vertikal baris tabel desktop 8px; panel form 16px dan
+jarak antar-isian 12px. Target interaksi tetap minimal 40px.
 
 Pada lebar maksimal 1000px sidebar menjadi drawer dengan scrim dan konten tanpa
 offset. Pada maksimal 720px gutter menjadi 16px, heading dan aksi tersusun,
