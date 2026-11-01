@@ -350,7 +350,7 @@
       "refersTo": "input",
       "description": "Label tetap terlihat; tinggi isian minimal 42px.",
       "html": "<label class=\"ds-field\">Uraian item<input class=\"ds-input\" type=\"text\" value=\"Kertas HVS A4\"></label>",
-      "css": ".ds-field{display:block;color:var(--ink,#292620);font:500 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-input{display:block;width:100%;margin-top:6px;border:1px solid #ddd7cd;padding:10px 12px;border-radius:8px;background:var(--surface,#fffdfa);color:var(--ink,#292620);min-height:42px;font:400 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;caret-color:var(--accent,#c44920)}.ds-input:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-input[readonly]{background:#f5f2ec;color:#6c6558}"
+      "css": ".ds-field{display:block;color:var(--ink,#292620);font:500 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-input{display:block;width:100%;margin-top:4px;border:1px solid #ddd7cd;padding:10px 12px;border-radius:8px;background:var(--surface,#fffdfa);color:var(--ink,#292620);min-height:42px;font:400 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;caret-color:var(--accent,#c44920)}.ds-input:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-input[readonly]{background:#f5f2ec;color:#6c6558}"
     },
     {
       "name": "Navigasi aktif",
@@ -374,7 +374,7 @@
       "refersTo": "panel",
       "description": "Panel terang berbayang lembut untuk satu kelompok data.",
       "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\">Data item</h2><p class=\"ds-panel-copy\">Lengkapi data dan bukti pendukung.</p></section>",
-      "css": ".ds-panel{background:var(--surface,#fffdfa);color:var(--ink,#292620);border-radius:16px;padding:20px;box-shadow:0 5px 18px #38220c05;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-panel-title{margin:0;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}.ds-panel-copy{margin:3px 0 0;color:var(--muted,#716b61);font-size:11px;line-height:1.5}"
+      "css": ".ds-panel{background:var(--surface,#fffdfa);color:var(--ink,#292620);border-radius:16px;padding:16px;box-shadow:0 5px 18px #38220c05;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-panel-title{margin:0;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}.ds-panel-copy{margin:3px 0 0;color:var(--muted,#716b61);font-size:11px;line-height:1.5}"
     },
     {
       "name": "Kelengkapan item",

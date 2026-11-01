@@ -56,8 +56,8 @@ rounded:
   pill: "20px"
 spacing:
   compact: "8px"
-  control-gap: "12px"
-  section-gap: "16px"
+  control-gap: "8px"
+  section-gap: "12px"
   desktop-gutter: "28px"
 components:
   button-primary:
@@ -88,6 +88,7 @@ components:
   navigation-active:
     backgroundColor: "{colors.sidebar-active}"
     textColor: "#fff9ed"
+    fontWeight: 500
     rounded: "{rounded.control}"
     padding: "11px 13px"
   status-neutral:
@@ -232,7 +233,7 @@ bar terpisah dari status proses paket.
 ### Cards / Containers
 
 Panel tabel menyatukan toolbar, area gulir, dan footer/paginasi. Panel form dan
-bukti memakai ruang internal 20–26px. Editor item memakai halaman penuh;
+bukti memakai ruang internal 16px. Editor item memakai halaman penuh;
 dialog untuk paket singkat, informasi, preview bukti, dan konfirmasi.
 
 ### Import and Submission
@@ -263,3 +264,6 @@ pemuatan, dan keberhasilan memberi tindakan berikutnya yang konkret.
 Atas arahan pengembang, gunakan Plus Jakarta Sans bobot 400/500/600 serta
 jarak yang lebih rapat pada header, ringkasan, toolbar, tabel, dan formulir.
 Ukuran teks dipertahankan; kepadatan berasal dari margin, padding, dan gap.
+Label menu sidebar kembali ke bobot biasa (400), dengan pilihan aktif 500.
+Percobaan kepadatan kedua memakai gap antarseksi 12px, judul/subjudul 2px,
+dan jarak filter ke tabel 8px.
