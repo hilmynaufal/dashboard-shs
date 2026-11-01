@@ -11,5 +11,7 @@
 @case('search')<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>@break
 @case('building')<path d="M5 21V5l14-2v18M2 21h20M9 8h2m4-1h1M9 12h2m4 0h1M9 16h2m4 0h1M10 21v-2h4v2"/>@break
 @case('shield')<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/>@break
+@case('calendar')<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/>@break
+@case('catalog')<path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/>@break
 @endswitch
 </svg>

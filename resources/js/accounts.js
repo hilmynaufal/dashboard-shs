@@ -48,7 +48,8 @@ document.querySelectorAll('[data-submit-form]').forEach((form) => {
         if (submit) {
             submit.dataset.originalLabel = submit.textContent;
             submit.disabled = true;
-            submit.textContent = form.action.endsWith('/auth/login') ? 'Memeriksa…' : 'Menyimpan…';
+            submit.textContent = form.action.endsWith('/auth/login') ? 'Memeriksa…'
+                : form.querySelector('input[name="_method"]')?.value === 'DELETE' ? 'Menghapus…' : 'Menyimpan…';
         }
     });
 });

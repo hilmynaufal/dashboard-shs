@@ -15,6 +15,8 @@
     <nav>
         <a href="{{ route('workspace') }}" class="{{ request()->routeIs('workspace') ? 'active' : '' }}" @if(request()->routeIs('workspace')) aria-current="page" @endif><x-ui-icon name="home"/>Beranda</a>
         @can('accounts.manage')<a href="{{ route('accounts.index') }}" class="{{ request()->routeIs('accounts.*') ? 'active' : '' }}" @if(request()->routeIs('accounts.*')) aria-current="page" @endif><x-ui-icon name="users"/>Kelola akun</a>@endcan
+        @can('periods.manage')<a href="{{ route('periods.index') }}" class="{{ request()->routeIs('periods.*') ? 'active' : '' }}" @if(request()->routeIs('periods.*')) aria-current="page" @endif><x-ui-icon name="calendar"/>Periode pengusulan</a>@endcan
+        @can('references.manage')<a href="{{ route('references.index','barang') }}" class="{{ request()->routeIs('references.*') ? 'active' : '' }}" @if(request()->routeIs('references.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Data referensi</a>@endcan
         <a href="{{ route('profile.edit') }}" class="{{ request()->routeIs('profile.*') ? 'active' : '' }}" @if(request()->routeIs('profile.*')) aria-current="page" @endif><x-ui-icon name="user"/>Profil saya</a>
     </nav>
     <div class="sidebar-bottom">
