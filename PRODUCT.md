@@ -70,6 +70,8 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
 - Pengembang meminta keseluruhan nuansa referensi Hearth dipertahankan:
   sidebar gelap, bidang kerja krem, panel terang, aksen oranye, dan tabel rapi.
   Referensi visual ini dikonfirmasi pada 1 November 2026.
+- Revisi UI yang dikonfirmasi pengembang: font Plus Jakarta Sans, dengan jarak
+  antarelemen lebih rapat untuk pemakaian desktop dan mobile.
 - Identitas/logo instansi akan diberikan kemudian; jangan membuat atau
   menyatakan identitas resmi yang belum tersedia.
 

@@ -19,33 +19,33 @@ colors:
   info: "#6650ae"
 typography:
   headline:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "32px"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-.035em"
   headline-mobile:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "27px"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-.035em"
   title:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "18px"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "-.02em"
   body:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "14px"
     lineHeight: 1.5
   table:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
     lineHeight: 1.5
   button:
-    fontFamily: "'Instrument Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
     fontWeight: 500
     lineHeight: 1.4
@@ -57,8 +57,8 @@ rounded:
 spacing:
   compact: "8px"
   control-gap: "12px"
-  section-gap: "24px"
-  desktop-gutter: "36px"
+  section-gap: "16px"
+  desktop-gutter: "28px"
 components:
   button-primary:
     backgroundColor: "{colors.accent}"
@@ -152,7 +152,7 @@ perhatian, galat, dan reviu. Badge memiliki pasangan latar lembut tersendiri.
 
 ## Typography
 
-Instrument Sans dibundel melalui Vite untuk judul dan isi, dengan fallback
+Plus Jakarta Sans dibundel melalui Vite untuk judul dan isi, dengan fallback
 sans-serif pada frontmatter. Angka memakai `tabular-nums`.
 
 - **Headline:** judul halaman; versi mobile mengikuti `headline-mobile`.
@@ -168,12 +168,15 @@ untuk layar baru. Petunjuk dan galat harus tetap terbaca pada perangkat tujuan.
 ## Layout
 
 Sidebar desktop tetap selebar 240px. Konten dan topbar memakai gutter desktop
-pada frontmatter, meningkat menjadi 48px mulai lebar 1600px. Editor data dan
+pada frontmatter, meningkat menjadi 36px mulai lebar 1600px. Editor data dan
 bukti tersusun dua kolom dengan kolom bukti 310px; pemeriksaan pengiriman
-memisahkan hasil dan tindakan. Jarak berulang memakai 8, 12, dan 24px.
+memisahkan hasil dan tindakan. Jarak berulang memakai 8, 12, dan 16px. Jarak judul ke subjudul 4px;
+heading ke bagian berikutnya 18px desktop/16px mobile. Topbar desktop 64px
+dan mobile 56px. Padding vertikal baris tabel desktop 10px; panel form 20px
+desktop/16px mobile. Target interaksi tetap minimal 40px.
 
 Pada lebar maksimal 1000px sidebar menjadi drawer dengan scrim dan konten tanpa
-offset. Pada maksimal 720px gutter menjadi 17px, heading dan aksi tersusun,
+offset. Pada maksimal 720px gutter menjadi 16px, heading dan aksi tersusun,
 statistik dua kolom, serta editor/form/pemeriksaan satu kolom. Daftar paket
 berubah menjadi baris grid: nama paket di atas, kelengkapan dan status langsung
 terlihat di bawah; metadata sekunder disembunyikan. Tabel item dan pratinjau
@@ -254,3 +257,9 @@ pemuatan, dan keberhasilan memberi tindakan berikutnya yang konkret.
 - **Don't** menjadikan grafik dekoratif sebagai pengganti daftar kerja.
 - **Don't** menyatakan identitas resmi instansi sebelum asetnya tersedia.
 - **Don't** menyebut simulasi lokal sebagai penyimpanan server atau pengiriman nyata.
+
+## Revisi kepadatan
+
+Atas arahan pengembang, gunakan Plus Jakarta Sans bobot 400/500/600 serta
+jarak yang lebih rapat pada header, ringkasan, toolbar, tabel, dan formulir.
+Ukuran teks dipertahankan; kepadatan berasal dari margin, padding, dan gap.

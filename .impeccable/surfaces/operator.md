@@ -28,3 +28,6 @@ browser dan pengiriman disimulasikan, tanpa persistensi bisnis.
 
 Motion: perubahan keadaan 160ms, drawer 180ms; tidak ada entrance halaman.
 Pengujian visual dua putaran maksimum, desktop dan mobile dalam satu batch.
+
+Revisi pengembang: Plus Jakarta Sans dan jarak compact; judul/subjudul 4px,
+heading bawah 18px desktop/16px mobile, tabel desktop 10px vertikal per sel.

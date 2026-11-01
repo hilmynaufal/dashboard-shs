@@ -326,7 +326,7 @@
       "refersTo": "button-primary",
       "description": "Buat usulan",
       "html": "<button type=\"button\" class=\"ds-primary\">Buat usulan</button>",
-      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--accent,#c44920);color:#fff;box-shadow:0 4px 8px #7a391522;}.ds-primary:hover:not(:disabled){background:var(--accent-hover,#aa3815);box-shadow:0 5px 12px #7a39152b;}.ds-primary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-primary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--accent,#c44920);color:#fff;box-shadow:0 4px 8px #7a391522;}.ds-primary:hover:not(:disabled){background:var(--accent-hover,#aa3815);box-shadow:0 5px 12px #7a39152b;}.ds-primary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-primary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
     },
     {
       "name": "Tombol sekunder",
@@ -334,7 +334,7 @@
       "refersTo": "button-secondary",
       "description": "Impor Excel",
       "html": "<button type=\"button\" class=\"ds-secondary\">Impor Excel</button>",
-      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--surface,#fffdfa);color:var(--ink,#292620);box-shadow:inset 0 0 0 1px #ded8ce;}.ds-secondary:hover:not(:disabled){background:#ece7df;}.ds-secondary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-secondary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:var(--surface,#fffdfa);color:var(--ink,#292620);box-shadow:inset 0 0 0 1px #ded8ce;}.ds-secondary:hover:not(:disabled){background:#ece7df;}.ds-secondary:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-secondary:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
     },
     {
       "name": "Tombol ghost",
@@ -342,7 +342,7 @@
       "refersTo": "button-ghost",
       "description": "Batal",
       "html": "<button type=\"button\" class=\"ds-ghost\">Batal</button>",
-      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:transparent;color:var(--muted,#716b61);padding-right:4px;}.ds-ghost:hover:not(:disabled){color:var(--ink,#292620);}.ds-ghost:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-ghost:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-ghost{transition:none}}"
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:40px;border:0;border-radius:10px;cursor:pointer;transition:background 160ms,box-shadow 160ms;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:500;line-height:1.4;background:transparent;color:var(--muted,#716b61);padding-right:4px;}.ds-ghost:hover:not(:disabled){color:var(--ink,#292620);}.ds-ghost:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-ghost:disabled{opacity:.46;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-ghost{transition:none}}"
     },
     {
       "name": "Isian formulir",
@@ -350,7 +350,7 @@
       "refersTo": "input",
       "description": "Label tetap terlihat; tinggi isian minimal 42px.",
       "html": "<label class=\"ds-field\">Uraian item<input class=\"ds-input\" type=\"text\" value=\"Kertas HVS A4\"></label>",
-      "css": ".ds-field{display:block;color:var(--ink,#292620);font:500 12px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-input{display:block;width:100%;margin-top:8px;border:1px solid #ddd7cd;padding:10px 12px;border-radius:8px;background:var(--surface,#fffdfa);color:var(--ink,#292620);min-height:42px;font:400 12px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;caret-color:var(--accent,#c44920)}.ds-input:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-input[readonly]{background:#f5f2ec;color:#6c6558}"
+      "css": ".ds-field{display:block;color:var(--ink,#292620);font:500 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-input{display:block;width:100%;margin-top:6px;border:1px solid #ddd7cd;padding:10px 12px;border-radius:8px;background:var(--surface,#fffdfa);color:var(--ink,#292620);min-height:42px;font:400 12px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;caret-color:var(--accent,#c44920)}.ds-input:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}.ds-input[readonly]{background:#f5f2ec;color:#6c6558}"
     },
     {
       "name": "Navigasi aktif",
@@ -358,7 +358,7 @@
       "refersTo": "navigation-active",
       "description": "Pilihan aktif pada sidebar arang dengan penanda oranye.",
       "html": "<nav class=\"ds-nav\"><a href=\"#usulan\" class=\"ds-nav-active\" aria-current=\"page\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M4 4h16v16H4zM8 8h8M8 12h8M8 16h5\"/></svg>Usulan SKPD</a></nav>",
-      "css": ".ds-nav{background:var(--sidebar,#211e1a);padding:16px}.ds-nav-active{position:relative;display:flex;align-items:center;gap:12px;min-height:43px;padding:11px 13px;border-radius:10px;background:var(--sidebar-active,#353029);color:#fff9ed;text-decoration:none;font:500 13px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;transition:background 160ms,color 160ms}.ds-nav-active::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:2px;background:#f2703e}.ds-nav-active svg{color:#f28559}.ds-nav-active:hover{background:#2c2822;color:#fff}.ds-nav-active:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-nav-active{transition:none}}"
+      "css": ".ds-nav{background:var(--sidebar,#211e1a);padding:16px}.ds-nav-active{position:relative;display:flex;align-items:center;gap:12px;min-height:43px;padding:11px 13px;border-radius:10px;background:var(--sidebar-active,#353029);color:#fff9ed;text-decoration:none;font:500 13px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;transition:background 160ms,color 160ms}.ds-nav-active::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:2px;background:#f2703e}.ds-nav-active svg{color:#f28559}.ds-nav-active:hover{background:#2c2822;color:#fff}.ds-nav-active:focus-visible{outline:3px solid #bd571e;outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-nav-active{transition:none}}"
     },
     {
       "name": "Badge status",
@@ -366,7 +366,7 @@
       "refersTo": "status-neutral",
       "description": "Status teks selalu hadir bersama warna dan titik.",
       "html": "<span class=\"ds-badge\"><span class=\"ds-status-dot\" aria-hidden=\"true\"></span>Draf</span>",
-      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:20px;background:var(--surface-muted,#eeebe5);color:#696155;white-space:nowrap;font:500 10px/1.4 'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-status-dot{width:5px;height:5px;border-radius:50%;background:currentColor}"
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:20px;background:var(--surface-muted,#eeebe5);color:#696155;white-space:nowrap;font:500 10px/1.4 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-status-dot{width:5px;height:5px;border-radius:50%;background:currentColor}"
     },
     {
       "name": "Panel formulir",
@@ -374,14 +374,14 @@
       "refersTo": "panel",
       "description": "Panel terang berbayang lembut untuk satu kelompok data.",
       "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\">Data item</h2><p class=\"ds-panel-copy\">Lengkapi data dan bukti pendukung.</p></section>",
-      "css": ".ds-panel{background:var(--surface,#fffdfa);color:var(--ink,#292620);border-radius:16px;padding:26px;box-shadow:0 5px 18px #38220c05;font-family:'Instrument Sans',ui-sans-serif,system-ui,sans-serif}.ds-panel-title{margin:0;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}.ds-panel-copy{margin:3px 0 0;color:var(--muted,#716b61);font-size:11px;line-height:1.5}"
+      "css": ".ds-panel{background:var(--surface,#fffdfa);color:var(--ink,#292620);border-radius:16px;padding:20px;box-shadow:0 5px 18px #38220c05;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}.ds-panel-title{margin:0;font-size:18px;font-weight:600;line-height:1.4;letter-spacing:-.02em}.ds-panel-copy{margin:3px 0 0;color:var(--muted,#716b61);font-size:11px;line-height:1.5}"
     },
     {
       "name": "Kelengkapan item",
       "kind": "custom",
       "description": "Progress dan jumlah item lengkap terpisah dari status paket.",
       "html": "<span class=\"ds-progress\" aria-label=\"8 dari 10 item lengkap\"><span class=\"ds-track\" aria-hidden=\"true\"><span class=\"ds-fill\"></span></span>8/10</span>",
-      "css": ".ds-progress{display:inline-flex;align-items:center;gap:9px;min-width:95px;color:#4b685b;font:400 10px/1.5 'Instrument Sans',ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums}.ds-track{width:56px;height:4px;border-radius:4px;background:#eae7e0;overflow:hidden}.ds-fill{display:block;height:100%;width:80%;background:#13876d;border-radius:inherit}"
+      "css": ".ds-progress{display:inline-flex;align-items:center;gap:9px;min-width:95px;color:#4b685b;font:400 10px/1.5 'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums}.ds-track{width:56px;height:4px;border-radius:4px;background:#eae7e0;overflow:hidden}.ds-fill{display:block;height:100%;width:80%;background:#13876d;border-radius:inherit}"
     }
   ],
   "narrative": {
