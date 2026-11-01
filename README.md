@@ -76,3 +76,8 @@ membuktikan kelulusan fitur, policy akses, atau UAT.
 - Halaman awal hanya menandakan fondasi berjalan; fitur mengikuti kartu masing-masing.
 - Arahkan hosting ke public/, gunakan HTTPS dan APP_DEBUG=false saat operasional;
   CI dan staging dikerjakan pada K-6.
+
+## CI
+
+GitHub Actions menjalankan uji PHP/MySQL dan build frontend pada push/pull request.
+Lihat [rincian CI](docs/ci.md). Staging ditunda sesuai arahan pengembang.

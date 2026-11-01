@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-tests:
+    name: PHP 8.4 / MySQL 8.4
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_DATABASE: shs_new_testing
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --host=127.0.0.1 --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+    env:
+      APP_ENV: testing
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: shs_new_testing
+      DB_USERNAME: root
+      DB_PASSWORD: ''
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up PHP
+        uses: shivammathur/setup-php@d52fc211a0436f8839a587b3b5b8efddab4744ea # v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo_mysql, dom, xml, zip, bcmath
+          coverage: none
+          tools: composer:v2
+      - name: Validate dependency lock
+        run: composer validate --strict
+      - name: Prepare isolated environment
+        run: cp .env.example .env
+      - name: Install locked PHP dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Check PHP requirements
+        run: composer check-platform-reqs
+      - name: Generate temporary application key
+        run: php artisan key:generate
+      - name: Verify migrations and access definitions
+        run: |
+          php artisan migrate --force --no-interaction
+          php artisan db:seed --class=AccessControlSeeder --force --no-interaction
+      - name: Run tests against dedicated MySQL database
+        run: php artisan test --log-junit storage/app/private/ci-junit.xml
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: php-test-report
+          path: storage/app/private/ci-junit.xml
+          if-no-files-found: ignore
+          retention-days: 7
+
+  frontend-build:
+    name: Frontend build / Node 24
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked frontend dependencies
+        run: npm ci --ignore-scripts
+      - name: Build assets
+        run: npm run build
