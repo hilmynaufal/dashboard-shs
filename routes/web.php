@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -48,6 +49,11 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::post('/penugasan/{assignment}/item/{scope}/alihkan', [AssignmentController::class, 'transfer'])->whereNumber(['assignment', 'scope'])->name('assignments.transfer');
     Route::get('/penugasan/{assignment}/item/{scope}/alihkan', [AssignmentController::class, 'transferForm'])->whereNumber(['assignment', 'scope'])->name('assignments.transfer.form');
     Route::get('/pekerjaan', [AssignmentController::class, 'work'])->name('assignments.work');
+    Route::get('/penugasan/{assignment}/item/{scope}/reviu', [ReviewController::class, 'desk'])->whereNumber(['assignment', 'scope'])->name('reviews.desk');
+    Route::post('/penugasan/{assignment}/item/{scope}/reviu', [ReviewController::class, 'start'])->whereNumber(['assignment', 'scope'])->name('reviews.start');
+    Route::get('/reviu/{review}', [ReviewController::class, 'show'])->whereNumber('review')->name('reviews.show');
+    Route::post('/reviu/{review}', [ReviewController::class, 'save'])->whereNumber('review')->name('reviews.save');
+    Route::post('/reviu/{review}/catatan', [ReviewController::class, 'note'])->whereNumber('review')->name('reviews.note');
     Route::get('/verifikasi/{item}', [VerificationController::class, 'show'])->whereNumber('item')->name('verification.show');
     Route::post('/verifikasi/{item}', [VerificationController::class, 'decide'])->whereNumber('item')->name('verification.decide');
     Route::get('/usulan/buat',[ProposalController::class,'create'])->name('proposals.create');

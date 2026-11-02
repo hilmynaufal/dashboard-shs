@@ -217,6 +217,7 @@ Tidak memuat baris data, kredensial, nama database lingkungan, atau identitas ny
 | recommended_price | decimal(20,2) unsigned | Ya |  |
 | recommendation | text | Ya |  |
 | completed_at | datetime | Ya |  |
+| lock_version | int unsigned | Tidak |  |
 | created_at | timestamp | Ya |  |
 | updated_at | timestamp | Ya |  |
 
@@ -640,6 +641,7 @@ Tidak memuat baris data, kredensial, nama database lingkungan, atau identitas ny
 | result | enum('not_assessed','compliant','non_compliant','insufficient_evidence','not_applicable') | Tidak |  |
 | criterion_snapshot | json | Tidak |  |
 | reason | text | Ya |  |
+| recommendation | text | Ya |  |
 | created_at | timestamp | Ya |  |
 | updated_at | timestamp | Ya |  |
 

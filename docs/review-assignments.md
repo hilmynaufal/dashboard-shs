@@ -87,3 +87,7 @@ Verifikasi lokal 2 November 2026: seluruh 107 pengujian PHP/1.229 asersi lulus
 pada MySQL khusus `shs_new_testing`, termasuk sepuluh pengujian K-13. Build Vite
 berhasil. Pemeriksaan kode dan dokumentasi independen selesai pada lingkup
 sumber; pemeriksaan visual/keyboard terautentikasi tetap tertunda.
+
+Pembaruan K-14: tautan **Buka reviu** pada tiap baris kini membuka pencatatan
+hasil per aspek dan catatan internal, sebagaimana `docs/item-reviews.md`.
+Pengiriman catatan resmi, supervisi dan KKR belum termasuk pembaruan tersebut.

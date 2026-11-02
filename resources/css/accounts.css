@@ -43,6 +43,22 @@
 .assignment-transfer-history summary { cursor: pointer; min-height: 40px; display: list-item; align-content: center; color: var(--accent); }
 .assignment-transfer-history > div { padding: 8px 0; border-top: 1px solid var(--line); }
 .assignment-transfer-history p { margin: 4px 0; }
+.review-layout { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.5fr); gap: 12px; align-items: start; }
+.review-source { position: sticky; top: 12px; max-height: calc(100dvh - 88px); overflow: auto; }
+.review-source h2, .review-layout h3 { overflow-wrap: anywhere; }
+.review-aspect { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.review-aspect > small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; }
+.review-aspect-heading { display: flex; gap: 8px; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.review-aspect .form-grid { gap: 12px; }
+.review-aspect .form-field:last-child { margin-bottom: 0; }
+.review-readonly dt { color: var(--muted); font-size: 11px; margin-top: 8px; }
+.review-readonly dd { margin: 4px 0 0; font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.review-stored-status { font-size: 12px; margin: 12px 0; }
+.review-stored-status ul { margin: 4px 0 0; padding-left: 18px; }
+.review-note { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.review-note p { margin: 8px 0; }
+.review-note small { color: var(--muted); font-size: 11px; }
+@media (max-width: 1000px) { .review-layout { grid-template-columns: 1fr; } .review-source { position: static; max-height: none; overflow: visible; } }
 .account-error-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
 .account-error-content { width: 100%; max-width: 560px; }
 .catalog-form-panel { max-width: 820px; }

@@ -121,6 +121,7 @@ erDiagram
         decimal recommended_price
         text recommendation
         datetime completed_at
+        int lock_version
         timestamp created_at
         timestamp updated_at
     }
@@ -369,6 +370,7 @@ erDiagram
         enum result
         json criterion_snapshot
         text reason
+        text recommendation
         timestamp created_at
         timestamp updated_at
     }

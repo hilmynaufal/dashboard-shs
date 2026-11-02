@@ -51,10 +51,11 @@ Kriteria pertama dan kedua K-8 dapat ditandai terpenuhi. K-10/K-11 membuktikan
 batas SKPD pada baca/ubah usulan dan unggah/unduh bukti melalui endpoint nyata,
 termasuk ID langsung serta pembatasan item Pemeriksa. Kriteria ketiga dan
 keempat yang mencakup seluruh tindakan reviu/supervisi tetap menunggu integrasi
-K-14/K-17/K-18; policy saja tidak menggantikan endpoint bisnis tersebut.
+K-17/K-18; policy saja tidak menggantikan endpoint bisnis tersebut.
 K-13 kini membuktikan pembatasan penugasan dan akses data/bukti setelah
-pengalihan melalui endpoint nyata; penulisan reviu dan supervisi tetap menunggu
-kartu berikutnya.
+pengalihan melalui endpoint nyata. K-14 kini membuktikan penulisan hasil dan
+catatan internal oleh Pemeriksa utama serta penolakan setelah pengalihan;
+supervisi dan keluaran KKR tetap menunggu kartu berikutnya.
 K-8 tetap Berjalan dan tidak dinyatakan selesai menyeluruh.
 
 Atas arahan pengembang, belum ada Admin nyata yang diprovisikan untuk browser.

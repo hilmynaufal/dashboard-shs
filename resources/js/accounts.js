@@ -40,20 +40,35 @@ narrowNav.addEventListener('change', () => setNav(false, narrowNav.matches && si
 setNav(false);
 document.querySelectorAll('[data-submit-form]').forEach((form) => {
     form.addEventListener('submit', (event) => {
+        if (form.dataset.submitBusy === 'true') { event.preventDefault(); return; }
         if (form.dataset.statusConfirm && !window.confirm(form.dataset.statusConfirm)) {
             event.preventDefault();
             return;
         }
-        const submit = form.querySelector('button[type="submit"]');
+        const submit = event.submitter || form.querySelector('button[type="submit"]');
         if (submit) {
-            submit.dataset.originalLabel = submit.textContent;
-            submit.disabled = true;
+            // Disabling a named submitter otherwise omits its selected intent from the request.
+            if (submit.name) {
+                const intent = document.createElement('input');
+                intent.type = 'hidden'; intent.name = submit.name; intent.value = submit.value;
+                intent.dataset.submitIntent = 'true'; form.append(intent);
+            }
+            form.dataset.submitBusy = 'true';
+            form.querySelectorAll('button[type="submit"]').forEach((button) => {
+                if (button.disabled) return;
+                button.dataset.originalLabel = button.textContent;
+                button.disabled = true;
+            });
             submit.textContent = form.action.endsWith('/auth/login') ? 'Memeriksa…'
                 : form.querySelector('input[name="_method"]')?.value === 'DELETE' ? 'Menghapus…' : 'Menyimpan…';
         }
     });
 });
 window.addEventListener('pageshow', () => {
+    document.querySelectorAll('[data-submit-form]').forEach((form) => {
+        delete form.dataset.submitBusy;
+        form.querySelectorAll('[data-submit-intent]').forEach((input) => input.remove());
+    });
     document.querySelectorAll('[data-submit-form] button[type="submit"]').forEach((button) => {
         if (!Object.hasOwn(button.dataset, 'originalLabel')) return;
         button.disabled = false;

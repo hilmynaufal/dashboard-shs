@@ -1755,6 +1755,17 @@
                 "generation": null
             },
             {
+                "name": "lock_version",
+                "type_name": "int",
+                "type": "int unsigned",
+                "collation": null,
+                "nullable": false,
+                "default": "0",
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
                 "name": "created_at",
                 "type_name": "timestamp",
                 "type": "timestamp",
@@ -5285,6 +5296,17 @@
             },
             {
                 "name": "reason",
+                "type_name": "text",
+                "type": "text",
+                "collation": "utf8mb4_unicode_ci",
+                "nullable": true,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "recommendation",
                 "type_name": "text",
                 "type": "text",
                 "collation": "utf8mb4_unicode_ci",

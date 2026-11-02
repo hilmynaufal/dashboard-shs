@@ -1,7 +1,8 @@
 # Model data K-4
 
-Skema dibuat melalui empat migrasi domain dan tiga migrasi infrastruktur bawaan
-Laravel. ERD (`erd.mmd`), kamus (`schema-dictionary.md`), dan metadata
+Skema awal dibuat melalui empat migrasi domain dan tiga migrasi infrastruktur
+bawaan Laravel. K-14 menambahkan migrasi perubahan kolom dan aspek prototipe.
+ERD (`erd.mmd`), kamus (`schema-dictionary.md`), dan metadata
 (`schema-metadata.json`) diekspor dari MySQL yang telah dimigrasikan melalui:
 
 ```sh
@@ -52,6 +53,11 @@ Reviu atas versi berikutnya tetap terhubung ke item dalam cakupan yang sama.
 Hasil aspek, proses pemeriksaan, dan status catatan disimpan terpisah. Nilai
 `not_assessed` tidak sama dengan `compliant`. Catatan administratif dapat berdiri
 tanpa item_review, sedangkan catatan substansi dapat mengacu pemeriksaan terkait.
+
+K-14 menambahkan rekomendasi per aspek pada `review_results.recommendation` serta
+penanda perubahan pada `item_reviews.lock_version`. Definisi aspek dan status
+wajib disalin ke snapshot saat mulai; lima aspek `PROTO_*` merupakan definisi
+prototipe yang telah disetujui pengembang. Jumlah tabel/foreign key tidak berubah.
 Tanggapan dapat mengacu versi perbaikan tanpa menimpa catatan awal.
 
 ## KKR dan supervisi
