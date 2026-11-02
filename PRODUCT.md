@@ -68,7 +68,9 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   beberapa catatan internal, dan penyelesaian reviu tervalidasi. Lima aspek awal
   disetujui pengembang sebagai prototipe, bukan SOP final. K-15 menyediakan
   catatan resmi, tanggapan, revisi satu item, perbandingan versi dan keputusan
-  tindak lanjut beralasan; supervisi dan KKR dilanjutkan pada kartu masing-masing.
+  tindak lanjut beralasan. K-16 menyediakan urutan versi, perbandingan data/bukti
+  dan peristiwa pengiriman/tindak lanjut sesuai lingkup pengguna; supervisi dan
+  KKR dilanjutkan pada kartu masing-masing.
 
 ## Brand Commitments
 

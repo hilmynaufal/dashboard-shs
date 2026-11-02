@@ -5,6 +5,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewNoteController;
+use App\Http\Controllers\ProposalHistoryController;
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -67,6 +68,7 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::post('/usulan',[ProposalController::class,'store'])->name('proposals.store');
     Route::get('/usulan/referensi/{kind}',[ProposalController::class,'references'])->whereIn('kind',array_keys(ReferenceCatalog::TYPES))->name('proposals.references');
     Route::prefix('usulan/{proposal}')->whereNumber('proposal')->group(function():void{
+        Route::get('/item/{item}/riwayat', [ProposalHistoryController::class, 'show'])->whereNumber('item')->name('proposals.items.history');
         Route::get('/',[ProposalController::class,'show'])->name('proposals.show');
         Route::get('/item/buat',[ProposalController::class,'itemForm'])->name('proposals.items.create');
         Route::post('/item',[ProposalController::class,'saveItem'])->name('proposals.items.store');

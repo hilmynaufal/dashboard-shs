@@ -15,6 +15,16 @@ class ProposalItemPolicy
         return $this->access->item($user, $item);
     }
 
+    public function viewHistory(User $user, ProposalItem $item): bool
+    {
+        $proposal = Proposal::findOrFail($item->proposal_id);
+        return $this->view($user, $item) && (
+            ($user->hasPermission('history.own') && $user->hasPermission('proposals.view_own') && $this->access->owns($user, $proposal->organization_id))
+            || ($user->hasPermission('history.all') && $user->hasPermission('proposals.view_all'))
+            || ($user->hasPermission('history.assigned') && $user->hasPermission('proposals.view_assigned'))
+        );
+    }
+
     public function update(User $user, ProposalItem $item): bool
     {
         return $user->hasPermission('proposals.update_own') && $this->editableByOwner($user, $item);

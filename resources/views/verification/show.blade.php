@@ -1,7 +1,7 @@
 @extends('layouts.workspace')
 @section('title','Pemeriksaan item')
 @section('subtitle',$proposal->number.' · '.$organization.' · Versi terkirim '.$version->version_number)
-@section('actions')<a class="btn secondary" href="{{ route('verification.index') }}">Kembali ke antrean</a><a class="btn secondary" href="{{ route('proposals.show',$proposal) }}">Lihat paket</a>@endsection
+@section('actions')@can('viewHistory',$item)<a class="btn secondary" href="{{ route('proposals.items.history',[$proposal,$item]) }}">Riwayat item</a>@endcan <a class="btn secondary" href="{{ route('verification.index') }}">Kembali ke antrean</a><a class="btn secondary" href="{{ route('proposals.show',$proposal) }}">Lihat paket</a>@endsection
 @section('content')
 <div class="check-layout">
     <section class="form-panel">@include('verification.item-content')</section>

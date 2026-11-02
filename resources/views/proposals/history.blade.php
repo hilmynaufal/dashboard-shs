@@ -1,0 +1,22 @@
+@extends('layouts.workspace')
+@section('title','Riwayat item')
+@section('subtitle',$proposal->number.' · '.($selected?->description ?? 'Belum ada versi'))
+@section('actions')<a class="btn secondary" href="{{ route('proposals.show',$proposal) }}">Kembali ke paket</a>@endsection
+@section('content')
+<section class="table-panel"><div class="table-toolbar"><div><h2>Urutan versi</h2><p class="account-body-copy">Terbaru lebih dahulu. Rekaman riwayat hanya-baca.</p></div></div>
+@if($versions->count())<div class="table-scroll"><table class="item-table"><thead><tr><th>Versi</th><th>Disimpan oleh</th><th>Waktu simpan (WIB)</th><th>Pengiriman</th><th><span class="sr-only">Tindakan</span></th></tr></thead><tbody>
+@foreach($versions as $entry)<tr><th scope="row">{{ $entry->version_number }} @if($selected?->id===$entry->id)<span class="badge neutral">Ditampilkan</span>@endif</th><td>{{ $actors[$entry->created_by] ?? 'Pelaku tidak tercatat' }}</td><td>{{ $entry->created_at?->copy()->timezone('Asia/Jakarta')->format('d/m/Y H:i:s') ?? 'Waktu tidak tercatat' }}</td><td>{{ $entry->submitted_at?'Terkirim':'Draf privat' }}</td><td><a class="btn icon-text" href="{{ route('proposals.items.history',[$proposal,$item,'version'=>$entry->id,'page'=>request('page',1)]) }}" @if($selected?->id===$entry->id) aria-current="true" @endif>Lihat perubahan versi {{ $entry->version_number }}</a></td></tr>@endforeach
+</tbody></table></div>@else<div class="empty-state"><h3>Belum ada versi yang dapat ditampilkan</h3><p>Versi yang belum dikirim hanya dapat dilihat SKPD pemilik.</p></div>@endif
+<x-catalog-pagination :rows="$versions" noun="versi"/>
+</section>
+@if($selected)<section class="form-panel proposal-followup"><div class="section-heading"><div><h2>Perubahan versi {{ $selected->version_number }}</h2><p>{{ $previous?'Dibandingkan dengan versi '.$previous->version_number.' yang dapat Anda akses.':'Ini versi pertama yang dapat Anda akses.' }}</p></div><a class="btn secondary" href="{{ route('proposals.items.version',[$proposal,$item,$selected]) }}">Buka versi {{ $selected->version_number }}</a></div>
+<div class="table-scroll"><table class="item-table"><caption>Nilai tersimpan sebelum dan sesudah perubahan</caption><thead><tr><th>Data</th><th>Sebelum{{ $previous?' · Versi '.$previous->version_number:'' }}</th><th>Sesudah · Versi {{ $selected->version_number }}</th></tr></thead><tbody>
+@foreach(['name'=>'Uraian','spec'=>'Spesifikasi','code'=>'Kode barang','unit'=>'Kode satuan','account'=>'Rekening','price'=>'Harga usulan'] as $key=>$label)<tr><th scope="row">{{ $label }} @if($previous && $previousFields[$key]!==$fields[$key])<span class="badge neutral">Berubah</span>@endif</th><td class="verification-copy">{{ $previous?($key==='price'?\App\Support\ProposalMoney::display($previousFields[$key]):$previousFields[$key]):'Belum ada nilai sebelumnya' }}</td><td class="verification-copy">{{ $key==='price'?\App\Support\ProposalMoney::display($fields[$key]):$fields[$key] }}</td></tr>@endforeach
+<tr><th scope="row">Dokumen pendukung</th><td>@forelse($previousFiles as $file)<a class="btn icon-text" href="{{ route('evidence.download',$file->id) }}">{{ $file->original_name }}</a>@empty Tidak ada dokumen @endforelse</td><td>@forelse($files as $file)<a class="btn icon-text" href="{{ route('evidence.download',$file->id) }}">{{ $file->original_name }}</a>@empty Tidak ada dokumen @endforelse</td></tr>
+</tbody></table></div>
+</section>
+<section class="form-panel proposal-followup"><div class="section-heading"><div><h2>Peristiwa terkait versi {{ $selected->version_number }}</h2><p>Terbaru lebih dahulu; catatan ditampilkan sesuai hak akses Anda.</p></div></div>
+@forelse($events as $event)<article class="verification-history-entry"><div class="verification-history-heading"><h3>{{ $event->label }}</h3><small>{{ \Carbon\CarbonImmutable::parse($event->event_at,'UTC')->timezone('Asia/Jakarta')->format('d/m/Y H:i:s') }} WIB</small></div><p class="account-body-copy">{{ $event->actor_name ?? 'Pelaku tidak tercatat' }}</p>@if($event->reason!==null)<p class="verification-copy">{{ $event->reason }}</p>@endif @if($event->note_id)<a class="btn icon-text" href="{{ route('notes.show',$event->note_id) }}">Buka catatan terkait</a>@endif</article>@empty<p class="account-body-copy">Belum ada peristiwa dengan waktu yang tercatat untuk versi ini.</p>@endforelse
+<x-catalog-pagination :rows="$events" noun="peristiwa"/>
+</section>@endif
+@endsection

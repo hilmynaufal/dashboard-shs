@@ -102,6 +102,7 @@ class ReviewNoteController extends Controller
                     if ($file->disk !== 'local' || !Storage::disk('local')->exists($file->path)) { throw ValidationException::withMessages(['submit_revision' => 'Ada bukti yang tidak tersedia. Unggah kembali sebelum mengirim revisi.']); }
                 }
                 DB::table('proposal_item_versions')->where('id', $version->id)->whereNull('submitted_at')->update(['submitted_at' => now()]);
+                CatalogAudit::record($request->user()->id, 'proposal.item_revision_submitted', 'proposal_item_version', $version->id, null, ['item_id' => $item->id, 'note_id' => $locked->id]);
             }
             $id = DB::table('note_responses')->insertGetId(['review_note_id' => $locked->id, 'responded_by' => $request->user()->id,
                 'response' => $data['response'], 'revised_version_id' => $version->id, 'responded_at' => now(), 'created_at' => now(), 'updated_at' => now()]);
