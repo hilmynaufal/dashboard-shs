@@ -218,6 +218,16 @@ erDiagram
         varchar migration
         int batch
     }
+    note_response_decisions {
+        bigint id PK
+        bigint note_response_id FK
+        bigint decided_by FK
+        enum decision
+        text reason
+        datetime decided_at
+        timestamp created_at
+        timestamp updated_at
+    }
     note_responses {
         bigint id PK
         bigint review_note_id FK
@@ -503,3 +513,5 @@ erDiagram
     organizations |o--o{ users : "organization_id"
     proposal_item_versions ||--o{ verification_results : "item_version_id"
     users ||--o{ verification_results : "verified_by"
+    users ||--o{ note_response_decisions : "decided_by"
+    note_responses ||--o{ note_response_decisions : "note_response_id"

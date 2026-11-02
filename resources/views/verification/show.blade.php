@@ -19,4 +19,9 @@
     </aside>
 </div>
 @include('verification.history')
+<section class="form-panel proposal-followup"><h2>Catatan administrasi</h2><a class="btn secondary" href="{{ route('notes.index',['item'=>$item->id]) }}">Lihat catatan item</a>
+@can('administrative',[\App\Models\ReviewNote::class,$item])
+<p class="account-body-copy">Catatan ini dikirim resmi ke SKPD untuk item sebelum penugasan reviu. Keputusan kelengkapan tetap dicatat melalui hasil pemeriksaan.</p>
+<form method="POST" action="{{ route('notes.administrative',$item) }}" class="proposal-followup" data-submit-form>@csrf<input type="hidden" name="record_version" value="{{ \App\Support\FormInput::oldText('record_version',$recordVersion) }}"><div class="form-field"><label for="note-category">Kategori catatan</label><input id="note-category" name="category" required maxlength="100" value="{{ \App\Support\FormInput::oldText('category') }}"><x-field-error field="category"/></div><div class="form-field"><label for="note-description">Kelengkapan yang diperlukan</label><textarea id="note-description" name="description" rows="3" required maxlength="10000">{{ \App\Support\FormInput::oldText('description') }}</textarea><x-field-error field="description"/></div><div class="form-field"><label for="note-recommendation">Rekomendasi</label><textarea id="note-recommendation" name="recommendation" rows="3" maxlength="10000">{{ \App\Support\FormInput::oldText('recommendation') }}</textarea><x-field-error field="recommendation"/></div><div class="form-actionbar"><button class="btn primary" type="submit">Kirim catatan administrasi</button></div></form>
+@endcan</section>
 @endsection

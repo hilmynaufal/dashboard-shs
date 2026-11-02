@@ -134,24 +134,36 @@ class ResourceAccess
                 ->where('assignment.status', 'active')->where('actor.role', 'examiner')->exists();
     }
 
+    public function visibleNoteIds(User $user): Builder
+    {
+        $query = DB::table('review_notes as n')->join('proposal_item_versions as v', 'v.id', '=', 'n.item_version_id')
+            ->join('proposal_items as i', 'i.id', '=', 'v.proposal_item_id')->join('proposals as p', 'p.id', '=', 'i.proposal_id')
+            ->leftJoin('item_reviews as r', 'r.id', '=', 'n.item_review_id')->select('n.id')
+            ->where(function (Builder $q): void {
+                $q->where('n.type', 'administrative')->orWhere(fn ($q) => $q->where('n.type', 'substantive')->whereColumn('r.item_version_id', 'n.item_version_id'));
+            });
+        if ($user->hasPermission('notes.respond_own')) {
+            return $query->where('p.organization_id', $user->organization_id ?? 0)->whereIn('n.status', ['sent', 'responded', 'resolved', 'open_at_final']);
+        }
+        return $query->whereNotNull('v.submitted_at')->where('p.status', '!=', 'draft')->where(function (Builder $q) use ($user): void {
+            $q->whereRaw('1 = 0');
+            if ($user->hasPermission('notes.administrative') && $user->hasPermission('proposals.view_all')) {
+                $q->orWhere('n.type', 'administrative');
+            }
+            if ($user->hasPermission('proposals.view_assigned')) {
+                $q->orWhere(function (Builder $assigned) use ($user): void {
+                    $assigned->whereIn('i.id', $this->scopeQuery($user)->select('scope.proposal_item_id'))
+                        ->where(function (Builder $kind) use ($user): void {
+                            $kind->where('n.type', 'administrative')->orWhereIn('r.assignment_item_id', $this->scopeQuery($user)->select('scope.id'));
+                        });
+                });
+            }
+        });
+    }
+
     public function note(User $user, ReviewNote $note): bool
     {
-        $review = $note->item_review_id ? ItemReview::find($note->item_review_id) : null;
-        if ($note->type === 'substantive' && ($review === null || (int) $review->item_version_id !== (int) $note->item_version_id)) {
-            return false;
-        }
-        if ($note->type === 'administrative' && $user->hasPermission('notes.administrative')) {
-            return $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
-        }
-        if ($user->hasPermission('notes.respond_own')) {
-            return in_array($note->status, ['sent', 'responded', 'resolved', 'open_at_final'], true) &&
-                $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
-        }
-        if ($note->type === 'substantive') {
-            return $review !== null && $this->review($user, $review);
-        }
-
-        return $this->version($user, ProposalItemVersion::findOrFail($note->item_version_id));
+        return $this->visibleNoteIds($user)->where('n.id', $note->id)->exists();
     }
 
     public function assignment(User $user, ReviewAssignment $assignment, string $role): bool

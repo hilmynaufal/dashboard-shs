@@ -98,6 +98,7 @@ class ReviewController extends Controller
             $locked->comparison_price = $comparison; $locked->recommended_price = $recommended; $locked->recommendation = $data['recommendation'] ?? null;
             if ($data['intent'] === 'complete') {
                 $problems = ReviewWork::problems($locked->id);
+                if (\App\Support\NoteWork::forItem($item->id)->whereIn('note.status', ['sent', 'responded'])->exists()) { $problems[] = 'Masih ada catatan resmi yang belum selesai ditindaklanjuti.'; }
                 if ($problems) { throw ValidationException::withMessages(['completion' => $problems]); }
                 $locked->status = 'completed'; $locked->completed_at = now(); $item->status = 'reviewed';
             }

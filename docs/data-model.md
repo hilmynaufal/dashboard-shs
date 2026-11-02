@@ -2,6 +2,9 @@
 
 Skema awal dibuat melalui empat migrasi domain dan tiga migrasi infrastruktur
 bawaan Laravel. K-14 menambahkan migrasi perubahan kolom dan aspek prototipe.
+K-15 menambahkan tabel `note_response_decisions` dari migrasi yang telah diterapkan.
+Tambahan dokumentasi K-15 diselaraskan dari kode migrasi; metadata lama tidak
+diekspor ulang seluruhnya. Jumlah kini 45 tabel dan 68 foreign key.
 ERD (`erd.mmd`), kamus (`schema-dictionary.md`), dan metadata
 (`schema-metadata.json`) diekspor dari MySQL yang telah dimigrasikan melalui:
 
@@ -23,7 +26,7 @@ dengan tabel dan foreign key metadata. Nama database lingkungan tidak diekspor.
 | Bukti | price_sources, evidence_files, item_version_evidence, verification_results |
 | Impor | import_batches, import_rows |
 | Penugasan | review_assignments, assignment_members, assignment_items, assignment_transfers |
-| Reviu | review_aspects, item_reviews, review_results, review_notes, note_responses |
+| Reviu | review_aspects, item_reviews, review_results, review_notes, note_responses, note_response_decisions |
 | KKR | kkr_documents, kkr_versions, kkr_entries, kkr_approvals, kkr_exports |
 | Aktivitas | activity_logs |
 
@@ -58,7 +61,9 @@ K-14 menambahkan rekomendasi per aspek pada `review_results.recommendation` sert
 penanda perubahan pada `item_reviews.lock_version`. Definisi aspek dan status
 wajib disalin ke snapshot saat mulai; lima aspek `PROTO_*` merupakan definisi
 prototipe yang telah disetujui pengembang. Jumlah tabel/foreign key tidak berubah.
-Tanggapan dapat mengacu versi perbaikan tanpa menimpa catatan awal.
+Tanggapan mengacu versi terkirim per item tanpa menimpa catatan awal. K-15
+menyimpan keputusan beralasan pada `note_response_decisions`, satu per tanggapan;
+putaran perbaikan berikutnya membuat tanggapan baru. Lihat `review-notes.md`.
 
 ## KKR dan supervisi
 

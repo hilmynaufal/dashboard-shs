@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Authorization\ResourceAccess;
 use App\Models\{Proposal, ProposalItem, User};
+use App\Support\NoteWork;
 
 class ProposalItemPolicy
 {
@@ -45,7 +46,8 @@ class ProposalItemPolicy
 
         return $this->access->owns($user, $proposal->organization_id) && (
             ($proposal->status === 'draft' && $item->status === 'draft') ||
-            (in_array($proposal->status, ['submitted', 'verification', 'review'], true) && $item->status === 'needs_completion')
+            (in_array($proposal->status, ['submitted', 'verification', 'review'], true) && ($item->status === 'needs_completion'
+                || ($item->status === 'awaiting_response' && $user->hasPermission('notes.respond_own') && NoteWork::revisionAllowed($item->id))))
         );
     }
 }

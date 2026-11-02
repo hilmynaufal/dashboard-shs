@@ -2,6 +2,8 @@
 
 Dihasilkan oleh `php artisan app:document-schema` dari metadata skema yang benar-benar dimigrasikan.
 
+Tambahan K-15 diselaraskan dari migrasi `2026_11_02_000700` yang telah diterapkan; dokumentasi ini mencatat definisi migrasi, bukan ekspor ulang metadata seluruh database.
+
 Tidak memuat baris data, kredensial, nama database lingkungan, atau identitas nyata.
 
 ## account_codes
@@ -390,6 +392,24 @@ Tidak memuat baris data, kredensial, nama database lingkungan, atau identitas ny
 | batch | int | Tidak |  |
 
 - Unik: `id`.
+
+## note_response_decisions
+
+| Kolom | Tipe MySQL | Boleh kosong | Kunci |
+| --- | --- | --- | --- |
+| id | bigint unsigned | Tidak | PK |
+| note_response_id | bigint unsigned | Tidak | FK |
+| decided_by | bigint unsigned | Tidak | FK |
+| decision | enum('resolved','needs_revision') | Tidak |  |
+| reason | text | Tidak |  |
+| decided_at | datetime | Tidak |  |
+| created_at | timestamp | Ya |  |
+| updated_at | timestamp | Ya |  |
+
+- Unik: `id`.
+- Unik: `note_response_id`.
+- Relasi `decided_by` → `users(id)`, hapus: restrict.
+- Relasi `note_response_id` → `note_responses(id)`, hapus: restrict.
 
 ## note_responses
 

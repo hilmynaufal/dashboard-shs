@@ -3190,6 +3190,153 @@
         ],
         "foreign_keys": []
     },
+    "note_response_decisions": {
+        "columns": [
+            {
+                "name": "id",
+                "type_name": "bigint",
+                "type": "bigint unsigned",
+                "collation": null,
+                "nullable": false,
+                "default": null,
+                "auto_increment": true,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "note_response_id",
+                "type_name": "bigint",
+                "type": "bigint unsigned",
+                "collation": null,
+                "nullable": false,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "decided_by",
+                "type_name": "bigint",
+                "type": "bigint unsigned",
+                "collation": null,
+                "nullable": false,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "decision",
+                "type_name": "enum",
+                "type": "enum('resolved','needs_revision')",
+                "collation": "utf8mb4_unicode_ci",
+                "nullable": false,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "reason",
+                "type_name": "text",
+                "type": "text",
+                "collation": "utf8mb4_unicode_ci",
+                "nullable": false,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "decided_at",
+                "type_name": "datetime",
+                "type": "datetime",
+                "collation": null,
+                "nullable": false,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "created_at",
+                "type_name": "timestamp",
+                "type": "timestamp",
+                "collation": null,
+                "nullable": true,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            },
+            {
+                "name": "updated_at",
+                "type_name": "timestamp",
+                "type": "timestamp",
+                "collation": null,
+                "nullable": true,
+                "default": null,
+                "auto_increment": false,
+                "comment": null,
+                "generation": null
+            }
+        ],
+        "indexes": [
+            {
+                "name": "note_response_decisions_decided_by_foreign",
+                "columns": [
+                    "decided_by"
+                ],
+                "type": "btree",
+                "unique": false,
+                "primary": false
+            },
+            {
+                "name": "note_response_decisions_note_response_id_unique",
+                "columns": [
+                    "note_response_id"
+                ],
+                "type": "btree",
+                "unique": true,
+                "primary": false
+            },
+            {
+                "name": "primary",
+                "columns": [
+                    "id"
+                ],
+                "type": "btree",
+                "unique": true,
+                "primary": true
+            }
+        ],
+        "foreign_keys": [
+            {
+                "name": "note_response_decisions_decided_by_foreign",
+                "columns": [
+                    "decided_by"
+                ],
+                "foreign_table": "users",
+                "foreign_columns": [
+                    "id"
+                ],
+                "on_update": "no action",
+                "on_delete": "restrict"
+            },
+            {
+                "name": "note_response_decisions_note_response_id_foreign",
+                "columns": [
+                    "note_response_id"
+                ],
+                "foreign_table": "note_responses",
+                "foreign_columns": [
+                    "id"
+                ],
+                "on_update": "no action",
+                "on_delete": "restrict"
+            }
+        ]
+    },
     "note_responses": {
         "columns": [
             {

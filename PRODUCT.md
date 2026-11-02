@@ -66,8 +66,9 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   berversi; K-13 menyediakan tim, penugasan item, daftar Pemeriksa dan pengalihan
   utama dengan riwayat. K-14 menyediakan hasil aspek, harga/rekomendasi terpisah,
   beberapa catatan internal, dan penyelesaian reviu tervalidasi. Lima aspek awal
-  disetujui pengembang sebagai prototipe, bukan SOP final. Tanggapan resmi,
-  supervisi dan KKR dilanjutkan serta diuji pada kartu masing-masing.
+  disetujui pengembang sebagai prototipe, bukan SOP final. K-15 menyediakan
+  catatan resmi, tanggapan, revisi satu item, perbandingan versi dan keputusan
+  tindak lanjut beralasan; supervisi dan KKR dilanjutkan pada kartu masing-masing.
 
 ## Brand Commitments
 
