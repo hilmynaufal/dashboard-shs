@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -38,6 +39,15 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     });
     Route::get('/usulan',[ProposalController::class,'index'])->name('proposals.index');
     Route::get('/verifikasi', [VerificationController::class, 'index'])->name('verification.index');
+    Route::get('/penugasan', [AssignmentController::class, 'index'])->name('assignments.index');
+    Route::get('/penugasan/buat', [AssignmentController::class, 'create'])->name('assignments.create');
+    Route::post('/penugasan', [AssignmentController::class, 'store'])->name('assignments.store');
+    Route::get('/penugasan/{assignment}', [AssignmentController::class, 'show'])->whereNumber('assignment')->name('assignments.show');
+    Route::get('/penugasan/{assignment}/pilih-item', [AssignmentController::class, 'candidates'])->whereNumber('assignment')->name('assignments.candidates');
+    Route::post('/penugasan/{assignment}/item', [AssignmentController::class, 'allocate'])->whereNumber('assignment')->name('assignments.allocate');
+    Route::post('/penugasan/{assignment}/item/{scope}/alihkan', [AssignmentController::class, 'transfer'])->whereNumber(['assignment', 'scope'])->name('assignments.transfer');
+    Route::get('/penugasan/{assignment}/item/{scope}/alihkan', [AssignmentController::class, 'transferForm'])->whereNumber(['assignment', 'scope'])->name('assignments.transfer.form');
+    Route::get('/pekerjaan', [AssignmentController::class, 'work'])->name('assignments.work');
     Route::get('/verifikasi/{item}', [VerificationController::class, 'show'])->whereNumber('item')->name('verification.show');
     Route::post('/verifikasi/{item}', [VerificationController::class, 'decide'])->whereNumber('item')->name('verification.decide');
     Route::get('/usulan/buat',[ProposalController::class,'create'])->name('proposals.create');

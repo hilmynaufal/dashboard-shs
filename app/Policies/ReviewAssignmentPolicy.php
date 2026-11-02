@@ -11,7 +11,8 @@ class ReviewAssignmentPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasPermission('assignments.manage');
+        return $user->hasPermission('assignments.manage') && $user->hasRole('team_lead')
+            && $user->hasPermission('proposals.view_assigned');
     }
 
     public function view(User $user, ReviewAssignment $assignment): bool

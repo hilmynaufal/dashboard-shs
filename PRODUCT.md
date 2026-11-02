@@ -63,8 +63,9 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
 - Hosting disiapkan pengembang. Staging ditunda atas arahan pengembang.
 - Backend sesi, pengaturan akun/akses, periode/referensi, usulan dan bukti sudah
   tersedia. K-12 menyediakan verifikasi BKAD dan kelengkapan ulang per item
-  berversi; penugasan aktual, reviu substantif, tanggapan resmi, supervisi,
-  dan KKR dilanjutkan serta diuji pada kartu masing-masing.
+  berversi; K-13 menyediakan tim, penugasan item, daftar Pemeriksa dan pengalihan
+  utama dengan riwayat. Reviu substantif, tanggapan resmi, supervisi, dan KKR
+  dilanjutkan serta diuji pada kartu masing-masing.
 
 ## Brand Commitments
 

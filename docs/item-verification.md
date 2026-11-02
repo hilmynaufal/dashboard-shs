@@ -65,11 +65,11 @@ status Siap direviu, versi terakhir yang sudah dikirim, dan keputusan siap
 untuk versi tersebut. Item yang dikembalikan dalam paket sama tidak menjadi
 syarat penghalang. Pengujian MySQL membuktikan hasil query ini.
 
-Endpoint dan layar penugasan aktual belum dibuat pada K-12. K-13 harus memakai
-seleksi tersebut dan memeriksa kembali keadaan item di dalam transaksi
-penugasan. Kriteria 1–3 K-12 dibuktikan endpoint nyata; kriteria 4 tetap menunggu
-pengujian penugasan nyata K-13. Kartu tetap **Berjalan**, tanpa klaim selesai
-atau kelulusan UAT.
+K-13 kini memakai seleksi tersebut dan memeriksa kembali keadaan item di dalam
+transaksi penugasan. Pengujian nyata Operator → BKAD → Ketua Tim → daftar
+Pemeriksa membuktikan item siap dapat ditugaskan meskipun item saudara masih
+perlu dilengkapi. Keempat kriteria K-12 kini terbukti melalui endpoint nyata;
+kartu dapat dibawa ke **Tinjau** dengan bukti, tanpa klaim kelulusan UAT.
 
 UI memperluas workspace Hearth dengan Plus Jakarta Sans dan jarak compact yang
 disetujui. Pemeriksaan visual/keyboard menggunakan sesi BKAD dan Operator masih

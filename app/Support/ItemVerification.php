@@ -56,6 +56,10 @@ final class ItemVerification
                     $q->selectRaw('MAX(latest.id)')->from('proposal_item_versions as latest')->whereColumn('latest.proposal_item_id', 'item.id');
                 });
             })->where('item.status', 'ready')->whereNotNull('version.submitted_at')
+            ->whereNotExists(function ($q): void {
+                $q->from('assignment_items as allocated')->join('review_assignments as assignment', 'assignment.id', '=', 'allocated.review_assignment_id')
+                    ->whereColumn('allocated.proposal_item_id', 'item.id')->where('assignment.status', 'active');
+            })
             ->whereIn('proposal.status', ['submitted', 'verification', 'review'])
             ->whereExists(function ($q): void {
                 $q->from('verification_results as result')->whereColumn('result.item_version_id', 'version.id')->where('result.result', 'ready')
