@@ -171,15 +171,34 @@ class ResourceAccess
         return $this->membership($user, $assignment->id, $role);
     }
 
+    public function visibleKkrIds(User $user): Builder
+    {
+        $query = DB::table('kkr_documents as d')->select('d.id');
+        if (!$user->hasPermission('kkr.view')) { return $query->whereRaw('1 = 0'); }
+        return $query->where(function (Builder $q) use ($user): void {
+            $q->whereRaw('1 = 0');
+            foreach (['team_lead','technical_controller','examiner'] as $role) {
+                if (!$user->hasRole($role)) { continue; }
+                $q->orWhere(function (Builder $part) use ($user, $role): void {
+                    $part->whereExists(fn ($member) => $member->selectRaw('1')->from('assignment_members as actor')
+                        ->whereColumn('actor.review_assignment_id','d.review_assignment_id')->where('actor.user_id',$user->id)->where('actor.role',$role)->where('actor.is_active',true));
+                    if ($role === 'examiner') {
+                        $part->where('d.prepared_by',$user->id)->whereNotExists(function ($entries) use ($user): void {
+                            $entries->selectRaw('1')->from('kkr_entries as entry')->join('kkr_versions as version','version.id','=','entry.kkr_version_id')
+                                ->join('item_reviews as review','review.id','=','entry.item_review_id')->join('assignment_items as scope','scope.id','=','review.assignment_item_id')
+                                ->join('assignment_members as current','current.id','=','scope.examiner_member_id')
+                                ->whereColumn('version.kkr_document_id','d.id')->where(fn($bad)=>$bad->where('current.user_id','!=',$user->id)->orWhere('current.is_active',false)
+                                    ->orWhere('current.role','!=','examiner')->orWhereColumn('scope.review_assignment_id','!=','d.review_assignment_id'));
+                        });
+                    }
+                });
+            }
+        });
+    }
+
     public function kkr(User $user, KkrDocument $document): bool
     {
-        if (! $user->hasPermission('kkr.view')) {
-            return false;
-        }
-
-        return $this->membership($user, $document->review_assignment_id, 'team_lead') ||
-            $this->membership($user, $document->review_assignment_id, 'technical_controller') ||
-            ($document->prepared_by === $user->id && $this->membership($user, $document->review_assignment_id, 'examiner'));
+        return $this->visibleKkrIds($user)->where('d.id',$document->id)->exists();
     }
 
     public function approve(User $user, KkrVersion $version, string $role): bool
@@ -190,12 +209,14 @@ class ResourceAccess
         if (! $user->hasPermission($permission) || $document->prepared_by === $user->id ||
             $document->status !== $status || $version->submitted_at === null || $version->finalized_at !== null ||
             ! $this->membership($user, $document->review_assignment_id, $role) ||
+            ! ReviewAssignment::whereKey($document->review_assignment_id)->where('status','active')->exists() ||
+            DB::table('kkr_approvals')->where('kkr_version_id',$version->id)->where('level',$role)->exists() ||
             (int) $version->version_number !== (int) KkrVersion::where('kkr_document_id', $document->id)->max('version_number')) {
             return false;
         }
         if ($role === 'technical_controller') {
             return DB::table('kkr_approvals')->where('kkr_version_id', $version->id)
-                ->where('level', 'team_lead')->where('decision', 'approved')->exists();
+                ->where('level', 'team_lead')->where('decision', 'approved')->where('decided_by','!=',$user->id)->exists();
         }
 
         return true;

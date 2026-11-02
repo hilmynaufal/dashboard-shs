@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Authorization\ResourceAccess;
-use App\Models\{KkrDocument, User};
+use App\Models\{KkrDocument, ReviewAssignment, User};
 
 class KkrDocumentPolicy
 {
@@ -12,6 +12,18 @@ class KkrDocumentPolicy
     public function view(User $user, KkrDocument $document): bool
     {
         return $this->access->kkr($user, $document);
+    }
+
+    public function create(User $user, ReviewAssignment $assignment): bool
+    {
+        return $assignment->status === 'active' && $user->hasPermission('kkr.draft') && $user->hasPermission('kkr.view')
+            && $user->hasPermission('proposals.view_assigned') && $this->access->membership($user, $assignment->id, 'examiner');
+    }
+
+    public function update(User $user, KkrDocument $document): bool
+    {
+        return (int)$document->prepared_by === (int)$user->id && in_array($document->status, ['draft','returned'], true)
+            && $this->create($user, ReviewAssignment::findOrFail($document->review_assignment_id)) && $this->view($user, $document);
     }
 
     public function download(User $user, KkrDocument $document): bool

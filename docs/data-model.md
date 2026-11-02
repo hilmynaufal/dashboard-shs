@@ -73,6 +73,13 @@ berkas ekspor disimpan terpisah. Persetujuan terikat pada versi KKR, dengan satu
 keputusan per tingkat pada versi tersebut; revisi baru memerlukan keputusan baru.
 Relasi yang telah dipakai tidak dapat dihapus melalui penghapusan induk biasa.
 
+K-17 menggunakan tabel KKR yang sudah ada tanpa perubahan skema. Snapshot
+`supervision-v1` dan entri dibuat server, di-hash secara kanonik dan dibandingkan
+dengan sumber sebelum pengajuan/persetujuan. Pengembalian mewajibkan penyusun menyiapkan versi baru;
+persetujuan teknis setelah Ketua Tim mengunci final. Catatan terbuka disertakan
+serta diakui pada pengajuan dan tiap persetujuan. Lihat `kkr-supervision.md`.
+Format template/unduhan Word dilanjutkan pada K-18.
+
 ## Batas tanggung jawab skema
 
 Foreign key, keunikan, tipe desimal, dan enum menjaga integritas struktural. Skema

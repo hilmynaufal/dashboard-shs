@@ -49,13 +49,17 @@ Regresi policy K-5 tetap dijalankan untuk item, bukti, catatan, penugasan, dan K
 
 Kriteria pertama dan kedua K-8 dapat ditandai terpenuhi. K-10/K-11 membuktikan
 batas SKPD pada baca/ubah usulan dan unggah/unduh bukti melalui endpoint nyata,
-termasuk ID langsung serta pembatasan item Pemeriksa. Kriteria ketiga dan
-keempat yang mencakup seluruh tindakan reviu/supervisi tetap menunggu integrasi
-K-17/K-18; policy saja tidak menggantikan endpoint bisnis tersebut.
+termasuk ID langsung serta pembatasan item Pemeriksa. K-17 melengkapi bukti
+kriteria ketiga: keputusan supervisi nyata menolak pelaku di luar penugasan,
+tingkat yang belum berhak, anggota nonaktif dan penyusun sendiri. Kriteria
+keempat masih menunggu keluaran/unduhan Word K-18; policy saja tidak menggantikan
+endpoint bisnis tersebut.
 K-13 kini membuktikan pembatasan penugasan dan akses data/bukti setelah
 pengalihan melalui endpoint nyata. K-14 kini membuktikan penulisan hasil dan
 catatan internal oleh Pemeriksa utama serta penolakan setelah pengalihan;
-supervisi dan keluaran KKR tetap menunggu kartu berikutnya.
+K-15/K-16 membuktikan catatan dan riwayat sesuai lingkup. K-17 membuktikan daftar,
+baca dan keputusan KKR sesuai penugasan serta penguncian final. Keluaran Word
+KKR tetap menunggu K-18.
 K-8 tetap Berjalan dan tidak dinyatakan selesai menyeluruh.
 
 Atas arahan pengembang, belum ada Admin nyata yang diprovisikan untuk browser.

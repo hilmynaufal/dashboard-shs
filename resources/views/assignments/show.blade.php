@@ -1,7 +1,9 @@
 @extends('layouts.workspace')
 @section('title',$assignment->number)
 @section('subtitle',$assignment->title.' · '.$organization)
-@section('actions')<a class="btn secondary" href="{{ route('assignments.index') }}">Daftar penugasan</a>@can('manage',$assignment)@if($assignment->status==='active')<a class="btn primary" href="{{ route('assignments.candidates',$assignment) }}"><x-ui-icon name="plus"/>Tambah item siap reviu</a>@endif @endcan @endsection
+@section('actions')
+@can('create',[\App\Models\KkrDocument::class,$assignment])<a class="btn secondary" href="{{ route('kkr.create',$assignment) }}">Siapkan KKR</a>@endcan
+<a class="btn secondary" href="{{ route('assignments.index') }}">Daftar penugasan</a>@can('manage',$assignment)@if($assignment->status==='active')<a class="btn primary" href="{{ route('assignments.candidates',$assignment) }}"><x-ui-icon name="plus"/>Tambah item siap reviu</a>@endif @endcan @endsection
 @section('content')
 <div class="package-summary"><div><span class="summary-label">Status penugasan</span><strong>{{ $statuses[$assignment->status] }}</strong></div><div><span class="summary-label">Item terlihat</span><strong>{{ $items->total() }} item</strong></div><div><span class="summary-label">Dasar penugasan</span><strong class="verification-copy">{{ $assignment->task_basis ?: 'Belum dicatat' }}</strong></div><div><span class="summary-label">Ruang lingkup</span><strong class="verification-copy">{{ $assignment->scope_description ?: 'Sesuai item yang ditugaskan' }}</strong></div></div>
 <section class="table-panel">@include('assignments.filters',['allowAssignmentSort'=>true])
