@@ -1,0 +1,460 @@
+code,name,parent_code
+1.1.12,Persediaan,
+1.3.02,Peralatan dan Mesin,
+1.3.05,Aset Tetap Lainnya,
+8.1.01,Beban Pegawai,
+8.1.02,Beban Barang dan Jasa,
+1.1.12.01,Barang Pakai Habis,1.1.12
+1.1.12.02,Barang Tak Habis Pakai,1.1.12
+1.3.02.01,Alat Besar,1.3.02
+1.3.02.02,Alat Angkutan,1.3.02
+1.3.02.03,Alat Bengkel dan Alat Ukur,1.3.02
+1.3.02.04,Alat Pertanian,1.3.02
+1.3.02.05,Alat Kantor dan Rumah Tangga,1.3.02
+1.3.02.06,"Alat Studio, Komunikasi, dan Pemancar",1.3.02
+1.3.02.07,Alat Kedokteran dan Kesehatan,1.3.02
+1.3.02.08,Alat Laboratorium,1.3.02
+1.3.02.09,Alat Persenjataan,1.3.02
+1.3.02.10,Komputer,1.3.02
+1.3.02.15,Alat Keselamatan Kerja,1.3.02
+1.3.02.16,Alat Peraga,1.3.02
+1.3.02.18,Rambu-rambu,1.3.02
+1.3.02.19,Peralatan Olahraga,1.3.02
+1.3.05.01,Bahan Perpustakaan,1.3.05
+1.3.05.02,Barang Bercorak Kesenian/Kebudayaan/ Olahraga,1.3.05
+8.1.01.03,Beban Tambahan Penghasilan berdasarkan Pertimbangan Objektif Lainnya ASN,8.1.01
+8.1.01.04,Beban Gaji dan Tunjangan DPRD,8.1.01
+8.1.02.01,Beban Barang,8.1.02
+8.1.02.02,Beban Jasa,8.1.02
+8.1.02.03,Beban Pemeliharaan,8.1.02
+8.1.02.04,Beban Perjalanan Dinas,8.1.02
+8.1.02.05,Beban Uang dan/atau Jasa untuk Diberikan kepada Pihak Ketiga/Pihak Lain/Masyarakat,8.1.02
+1.1.12.01.01,Bahan,1.1.12.01
+1.1.12.01.02,Suku Cadang,1.1.12.01
+1.1.12.01.03,Alat/Bahan Untuk Kegiatan Kantor,1.1.12.01
+1.1.12.01.04,Obat-obatan,1.1.12.01
+1.1.12.01.05,Persediaan untuk Dijual/Diserahkan,1.1.12.01
+1.1.12.01.07,Natura dan Pakan,1.1.12.01
+1.1.12.02.01,Komponen,1.1.12.02
+1.1.12.02.02,Pipa,1.1.12.02
+1.3.02.01.01,Alat Besar Darat,1.3.02.01
+1.3.02.01.03,Alat Bantu,1.3.02.01
+1.3.02.02.01,Alat Angkutan Darat Bermotor,1.3.02.02
+1.3.02.02.02,Alat Angkutan Darat Tak Bermotor,1.3.02.02
+1.3.02.03.01,Alat Bengkel Bermesin,1.3.02.03
+1.3.02.03.02,Alat Bengkel Tak Bermesin,1.3.02.03
+1.3.02.03.03,Alat Ukur,1.3.02.03
+1.3.02.04.01,Alat Pengolahan,1.3.02.04
+1.3.02.05.01,Alat Kantor,1.3.02.05
+1.3.02.05.02,Alat Rumah Tangga,1.3.02.05
+1.3.02.05.03,Meja dan Kursi Kerja/Rapat Pejabat,1.3.02.05
+1.3.02.06.01,Alat Studio,1.3.02.06
+1.3.02.06.02,Alat Komunikasi,1.3.02.06
+1.3.02.06.03,Peralatan Pemancar,1.3.02.06
+1.3.02.07.01,Alat Kedokteran,1.3.02.07
+1.3.02.07.02,Alat Kesehatan Umum,1.3.02.07
+1.3.02.08.01,Unit Alat Laboratorium,1.3.02.08
+1.3.02.08.02,Unit Alat Laboratorium Kimia Nuklir,1.3.02.08
+1.3.02.08.03,Alat Peraga Praktik Sekolah,1.3.02.08
+1.3.02.08.07,Alat Laboratorium Lingkungan Hidup,1.3.02.08
+1.3.02.08.09,Alat Laboratorium Standarisasi Kalibrasi dan Instrumentasi,1.3.02.08
+1.3.02.09.02,Persenjataan Non Senjata Api,1.3.02.09
+1.3.02.10.01,Komputer Unit,1.3.02.10
+1.3.02.10.02,Peralatan Komputer,1.3.02.10
+1.3.02.15.02,Alat Pelindung,1.3.02.15
+1.3.02.15.03,Alat SAR,1.3.02.15
+1.3.02.16.01,Alat Peraga Pelatihan dan Percontohan,1.3.02.16
+1.3.02.18.01,Rambu-rambu Lalu Lintas Darat,1.3.02.18
+1.3.02.19.01,Peralatan Olahraga,1.3.02.19
+1.3.05.01.01,Bahan Perpustakaan Tercetak,1.3.05.01
+1.3.05.02.01,Barang Bercorak Kesenian,1.3.05.02
+1.3.05.02.02,Alat Bercorak Kebudayaan,1.3.05.02
+1.3.05.02.03,Tanda Penghargaan,1.3.05.02
+8.1.01.03.06,Beban Jasa Pelayanan Kesehatan bagi ASN,8.1.01.03
+8.1.01.04.13,Beban Tunjangan Transportasi DPRD,8.1.01.04
+8.1.02.01.01,Beban Barang Pakai Habis,8.1.02.01
+8.1.02.02.01,Beban Jasa Kantor,8.1.02.02
+8.1.02.02.02,Beban Iuran Jaminan/Asuransi,8.1.02.02
+8.1.02.02.03,Beban Sewa Tanah,8.1.02.02
+8.1.02.02.04,Beban Sewa Peralatan dan Mesin,8.1.02.02
+8.1.02.02.05,Beban Sewa Gedung dan Bangunan,8.1.02.02
+8.1.02.02.07,Beban Sewa Aset Tetap Lainnya,8.1.02.02
+8.1.02.02.08,Beban Sewa Aset Tidak Berwujud,8.1.02.02
+8.1.02.02.09,Beban Jasa Konsultansi Konstruksi,8.1.02.02
+8.1.02.02.10,Beban Jasa Konsultansi Non Konstruksi,8.1.02.02
+8.1.02.02.12,Beban Beasiswa Pendidikan PNS,8.1.02.02
+8.1.02.02.13,"Beban Kursus/Pelatihan, Sosialisasi, Bimbingan Teknis serta Pendidikan dan Pelatihan",8.1.02.02
+8.1.02.03.01,Beban Pemeliharaan Tanah,8.1.02.03
+8.1.02.03.02,Beban Pemeliharaan Peralatan dan Mesin,8.1.02.03
+8.1.02.03.03,Beban Pemeliharaan Gedung dan Bangunan,8.1.02.03
+8.1.02.03.05,Beban Pemeliharaan Aset Tetap Lainnya,8.1.02.03
+8.1.02.03.06,Beban Pemeliharaan Aset Tidak Berwujud,8.1.02.03
+8.1.02.04.01,Beban Perjalanan Dinas Dalam Daerah,8.1.02.04
+8.1.02.05.01,Beban Uang yang Diberikan kepada Pihak Ketiga/Pihak Lain/Masyarakat,8.1.02.05
+8.1.02.05.02,Beban Jasa yang Diberikan kepada Pihak Ketiga/Pihak Lain/Masyarakat,8.1.02.05
+1.1.12.01.01.0001,Asbes,1.1.12.01.01
+1.1.12.01.01.0002,Bahan Kimia Cair,1.1.12.01.01
+1.1.12.01.01.0004,Bahan Bakar Dan Pelumas Lainnya,1.1.12.01.01
+1.1.12.01.01.0008,Bahan/Bibit Tanaman,1.1.12.01.01
+1.1.12.01.01.0009,Isi Tabung Pemadam Kebakaran Lainnya,1.1.12.01.01
+1.1.12.01.01.0010,Isi Tabung Gas Elpiji,1.1.12.01.01
+1.1.12.01.01.0011,Bahan/Bibit Ikan,1.1.12.01.01
+1.1.12.01.01.0012,Alat Kesehatan,1.1.12.01.01
+1.1.12.01.02.0001,Suku Cadang Alat Angkutan,1.1.12.01.02
+1.1.12.01.02.0002,Suku Cadang Alat Besar,1.1.12.01.02
+1.1.12.01.02.0003,Suku Cadang Alat Kedokteran,1.1.12.01.02
+1.1.12.01.02.0004,Suku Cadang Alat Laboratorium,1.1.12.01.02
+1.1.12.01.02.0008,Suku Cadang Alat Bengkel,1.1.12.01.02
+1.1.12.01.02.0011,Suku Cadang Lainnya,1.1.12.01.02
+1.1.12.01.03.0001,Alat Perekat,1.1.12.01.03
+1.1.12.01.03.0002,Amplop,1.1.12.01.03
+1.1.12.01.03.0003,Bahan Cetak Lainnya,1.1.12.01.03
+1.1.12.01.03.0006,Bahan Komputer Lainnya,1.1.12.01.03
+1.1.12.01.03.0007,Alat Memasak,1.1.12.01.03
+1.1.12.01.03.0008,Accu,1.1.12.01.03
+1.1.12.01.03.0009,Bahan Baku Pakaian,1.1.12.01.03
+1.1.12.01.03.0011,Bola Basket,1.1.12.01.03
+1.1.12.01.03.0012,Plakat,1.1.12.01.03
+1.1.12.01.03.0013,Alat / Bahan Untuk Kegiatan Kantor Lainnya,1.1.12.01.03
+1.1.12.01.04.0001,Obat,1.1.12.01.04
+1.1.12.01.04.0002,Obat- Obatan Lainnya,1.1.12.01.04
+1.1.12.01.05.0001,Barang Persediaan,1.1.12.01.05
+1.1.12.01.07.0001,Bumbu,1.1.12.01.07
+1.1.12.01.07.0002,Pakan Hewan,1.1.12.01.07
+1.1.12.02.01.0004,Komponen Rambu-Rambu Darat,1.1.12.02.01
+1.1.12.02.01.0006,Komponen Lainnya,1.1.12.02.01
+1.1.12.02.02.0003,Pipa Baja Lainnya,1.1.12.02.02
+1.1.12.02.02.0004,Pipa Beton Pratekan,1.1.12.02.02
+1.1.12.02.02.0006,Pipa Plastik Pvc,1.1.12.02.02
+1.1.12.02.02.0007,Pipa Lainnya,1.1.12.02.02
+1.3.02.01.01.0003,Excavator Lainnya,1.3.02.01.01
+1.3.02.01.01.0009,Steer Loader,1.3.02.01.01
+1.3.02.01.01.0011,Mesin Briket Sampah menjadi Briket Biomassa,1.3.02.01.01
+1.3.02.01.03.0004,Portable Generating Set,1.3.02.01.03
+1.3.02.01.03.0005,Pompa Air,1.3.02.01.03
+1.3.02.01.03.0006,Mesin Bor Tanah,1.3.02.01.03
+1.3.02.01.03.0008,Alat Pengolahan Air Kotor,1.3.02.01.03
+1.3.02.01.03.0013,Pelampung Life Jacket,1.3.02.01.03
+1.3.02.01.03.0016,Alat Bantu Lainnya,1.3.02.01.03
+1.3.02.02.01.0001,Kendaraan Dinas Pejabat,1.3.02.02.01
+1.3.02.02.01.0003,Tronton,1.3.02.02.01
+1.3.02.02.01.0005,Cator,1.3.02.02.01
+1.3.02.02.01.0006,Kendaraan Bermotor Khusus Lainnya,1.3.02.02.01
+1.3.02.02.02.0001,Gerobak Dorong,1.3.02.02.02
+1.3.02.02.02.0004,Alat Angkutan Darat Tak Bermotor Lainnya,1.3.02.02.02
+1.3.02.03.01.0002,Mesin Bor Tangan,1.3.02.03.01
+1.3.02.03.01.0006,Gergaji Chain Saw,1.3.02.03.01
+1.3.02.03.01.0008,Peralatan Las Lainnya,1.3.02.03.01
+1.3.02.03.02.0005,Crimping Tolls,1.3.02.03.02
+1.3.02.03.02.0007,Bor,1.3.02.03.02
+1.3.02.03.02.0008,Drei Biasa (Obeng),1.3.02.03.02
+1.3.02.03.02.0009,Peralatan Tukang Kayu Lainnya,1.3.02.03.02
+1.3.02.03.02.0011,Rol Meter,1.3.02.03.02
+1.3.02.03.02.0012,Tang Buaya,1.3.02.03.02
+1.3.02.03.03.0001,Alat Ukur Universal Lainnya,1.3.02.03.03
+1.3.02.03.03.0008,Termometer Standar,1.3.02.03.03
+1.3.02.03.03.0009,Alat Ukur Lain-Lain,1.3.02.03.03
+1.3.02.03.03.0010,Alat Timbangan/Biara Lainnya,1.3.02.03.03
+1.3.02.03.03.0011,Anak Timbangan Dari Besi,1.3.02.03.03
+1.3.02.03.03.0014,Labu Takar (Volumetrik) Berbagai Capasitas,1.3.02.03.03
+1.3.02.03.03.0018,Anemometer (Alat Pengukur Keadaan Alam),1.3.02.03.03
+1.3.02.03.03.0021,Alat Ukur Lainnya,1.3.02.03.03
+1.3.02.04.01.0001,Garpu Pacul,1.3.02.04.01
+1.3.02.04.01.0002,Penyemprot Mesin (Power Sprayer),1.3.02.04.01
+1.3.02.04.01.0003,Alat Panen Lainnya,1.3.02.04.01
+1.3.02.04.01.0005,Electrode Ph Meter,1.3.02.04.01
+1.3.02.04.01.0006,Alat Prosesing Lainnya,1.3.02.04.01
+1.3.02.04.01.0007,Alat Pencacah Hijauan,1.3.02.04.01
+1.3.02.04.01.0008,Alat Produksi Perikanan Lainnya,1.3.02.04.01
+1.3.02.04.01.0009,Alat-Alat Peternakan Lainnya,1.3.02.04.01
+1.3.02.05.01.0003,Mesin Fotocopy Lainnya,1.3.02.05.01
+1.3.02.05.01.0004,Alat Penyimpan Perlengkapan Kantor Lainnya,1.3.02.05.01
+1.3.02.05.01.0005,Alat Kantor Lainnya,1.3.02.05.01
+1.3.02.05.02.0001,Backdrop,1.3.02.05.02
+1.3.02.05.02.0002,Jam Dinding,1.3.02.05.02
+1.3.02.05.02.0003,Alat Pembersih Lainnya,1.3.02.05.02
+1.3.02.05.02.0004,A.C. Cassete,1.3.02.05.02
+1.3.02.05.02.0005,Alat Cetakan Makanan,1.3.02.05.02
+1.3.02.05.02.0006,Alat Rumah Tangga Lainnya (Home Use) Lainnya,1.3.02.05.02
+1.3.02.05.02.0007,Alat Pemadam Kebakaran Lainnya,1.3.02.05.02
+1.3.02.05.03.0001,Meja Kerja Pejabat Eselon I/Wakil Gubernur/Wakil Bupati/Wakil Walikota,1.3.02.05.03
+1.3.02.05.03.0003,Kursi Kerja,1.3.02.05.03
+1.3.02.05.03.0004,Kursi Rapat,1.3.02.05.03
+1.3.02.05.03.0007,Lemari Dan Arsip Pejabat Lainnya,1.3.02.05.03
+1.3.02.06.01.0001,Audio Amplifier,1.3.02.06.01
+1.3.02.06.01.0002,Camera Conference,1.3.02.06.01
+1.3.02.06.01.0004,Mesin Cetak,1.3.02.06.01
+1.3.02.06.01.0006,Alat Studio Lainnya,1.3.02.06.01
+1.3.02.06.02.0001,Handy Talky (Ht),1.3.02.06.02
+1.3.02.06.02.0004,Alat Komunikasi Radio Vhf Lainnya,1.3.02.06.02
+1.3.02.06.02.0005,Alat Komunikasi Radio Uhf Lainnya,1.3.02.06.02
+1.3.02.06.02.0011,Alat Komunikasi Lainnya,1.3.02.06.02
+1.3.02.06.03.0022,Dehumidifier (Humidity Control),1.3.02.06.03
+1.3.02.07.01.0001,Alat Kedokteran Umum Lainnya,1.3.02.07.01
+1.3.02.07.01.0002,Alat Kedokteran Gigi Lainnya,1.3.02.07.01
+1.3.02.07.01.0004,Alat Kedokteran Bedah Lainnya,1.3.02.07.01
+1.3.02.07.01.0005,Alat Kesehatan Kebidanan Dan Penyakit Kandungan Lainnya,1.3.02.07.01
+1.3.02.07.01.0006,Laryngoscope,1.3.02.07.01
+1.3.02.07.01.0007,Biometri A Scan/USG Mata,1.3.02.07.01
+1.3.02.07.01.0008,Eswl,1.3.02.07.01
+1.3.02.07.01.0009,Alat Kedokteran Kamar Jenasah/Mortuary Lainnya,1.3.02.07.01
+1.3.02.07.01.0010,Alat Kedokteran Anak Lainnya,1.3.02.07.01
+1.3.02.07.01.0012,Parafin Bath,1.3.02.07.01
+1.3.02.07.01.0013,Patient Monitor,1.3.02.07.01
+1.3.02.07.01.0014,Echo Cardiograph System,1.3.02.07.01
+1.3.02.07.01.0015,Alat Kedokteran Radiodiagnostic Lainnya,1.3.02.07.01
+1.3.02.07.01.0019,Cone Beam Computed Tomography (CBCT),1.3.02.07.01
+1.3.02.07.01.0021,Alat Kedokteran Gawat Darurat Lainnya,1.3.02.07.01
+1.3.02.07.01.0024,Bed ICU,1.3.02.07.01
+1.3.02.07.01.0028,Alat Kedokteran Anestesi Lainnya,1.3.02.07.01
+1.3.02.07.02.0005,Alat Kesehatan Umum Lainnya,1.3.02.07.02
+1.3.02.08.01.0001,Alat Pengukur Kelembaban,1.3.02.08.01
+1.3.02.08.01.0007,Mantel Destilasi,1.3.02.08.01
+1.3.02.08.01.0010,Drying Oven,1.3.02.08.01
+1.3.02.08.01.0011,Alat Laboratorium Umum Lainnya,1.3.02.08.01
+1.3.02.08.01.0012,Millipore Filter,1.3.02.08.01
+1.3.02.08.01.0013,Atomic Absorption Spectofotometer,1.3.02.08.01
+1.3.02.08.01.0014,Camera Mikroskop,1.3.02.08.01
+1.3.02.08.01.0016,Alat Laboratorium Hematologi Lainnya,1.3.02.08.01
+1.3.02.08.01.0017,Lemari Asam,1.3.02.08.01
+1.3.02.08.01.0018,Alat Penyangray Kopi,1.3.02.08.01
+1.3.02.08.01.0019,Alat Laboratorium Farmasi Lainnya,1.3.02.08.01
+1.3.02.08.01.0041,Magnetic Stirer (Alat Laboratorium Pertanian),1.3.02.08.01
+1.3.02.08.01.0046,Atomic Absorption Spectrophotometer (Aas) (Alat Lab. L. Perairan),1.3.02.08.01
+1.3.02.08.01.0053,Laboratory Emergency Shower/Eyewash,1.3.02.08.01
+1.3.02.08.01.0054,Cawan Porselin,1.3.02.08.01
+1.3.02.08.01.0055,Chemistry Analyzer,1.3.02.08.01
+1.3.02.08.01.0056,Alat Laboratorium Lain Lainnya,1.3.02.08.01
+1.3.02.08.01.0059,Thermocouple,1.3.02.08.01
+1.3.02.08.02.0002,Ph Meter/Indicator And Lon Meter,1.3.02.08.02
+1.3.02.08.02.0004,Pipetter Epperdort,1.3.02.08.02
+1.3.02.08.02.0005,Laboratory Safety Equipment Lainnya,1.3.02.08.02
+1.3.02.08.03.0003,Gelas Kimia,1.3.02.08.03
+1.3.02.08.03.0004,Cawan Patri,1.3.02.08.03
+1.3.02.08.03.0005,Alat Peraga Praktek Sekolah Bidang Studi : Ipa Menengah Lainnya,1.3.02.08.03
+1.3.02.08.03.0006,Sikat Tabung Reaksi Besar Kecil,1.3.02.08.03
+1.3.02.08.03.0013,"Alat Peraga Luar Biasa (Tuna Netra, Terapi Fisik, Tuna Daksa, Tuna Rungu) Lainnya",1.3.02.08.03
+1.3.02.08.03.0015,Alat Peraga Paud/Tk Lainnya,1.3.02.08.03
+1.3.02.08.07.0001,Alat Laboratorium Kwalitas Air Dan Tanah Lainnya,1.3.02.08.07
+1.3.02.08.09.0005,Thermometer Analog / Digital,1.3.02.08.09
+1.3.02.09.02.0004,Alat Destilasi,1.3.02.09.02
+1.3.02.10.01.0001,Komputer Jaringan Lainnya,1.3.02.10.01
+1.3.02.10.01.0002,Lap Top,1.3.02.10.01
+1.3.02.10.01.0003,Komputer Unit Lainnya,1.3.02.10.01
+1.3.02.10.02.0001,Card Reader (Peralatan Mainframe),1.3.02.10.02
+1.3.02.10.02.0002,Speaker Computer,1.3.02.10.02
+1.3.02.10.02.0003,External/ Portable Hardisk,1.3.02.10.02
+1.3.02.10.02.0004,Acces Point,1.3.02.10.02
+1.3.02.10.02.0005,Peralatan Komputer Lainnya,1.3.02.10.02
+1.3.02.15.02.0001,Baju Pengaman Lainnya,1.3.02.15.02
+1.3.02.15.02.0002,Masker Gas,1.3.02.15.02
+1.3.02.15.02.0003,Helmet,1.3.02.15.02
+1.3.02.15.02.0004,Sabuk Pengaman Lainnya,1.3.02.15.02
+1.3.02.15.02.0005,Sepatu Boot,1.3.02.15.02
+1.3.02.15.02.0006,Alat Pelindung Lainnya,1.3.02.15.02
+1.3.02.15.03.0001,Tandu,1.3.02.15.03
+1.3.02.15.03.0004,Alat Sar Lainnya,1.3.02.15.03
+1.3.02.16.01.0001,Alat Peraga Pelatihan Lainnya,1.3.02.16.01
+1.3.02.16.01.0002,Miniatur,1.3.02.16.01
+1.3.02.18.01.0001,Rambu Bersuar Lainnya,1.3.02.18.01
+1.3.02.18.01.0003,Rambu-Rambu Lalu Lintas Darat Lainnya,1.3.02.18.01
+1.3.02.19.01.0002,Alat Badminton,1.3.02.19.01
+1.3.02.19.01.0006,Peralatan Olahraga Lainnya,1.3.02.19.01
+1.3.05.01.01.0001,Ilmu Pengetahuan Umum,1.3.05.01.01
+1.3.05.01.01.0005,Buku Ilmu Bahasa Lainnya,1.3.05.01.01
+1.3.05.01.01.0007,Buku Ilmu Pengetahuan Praktis Lainnya,1.3.05.01.01
+1.3.05.01.01.0008,"Buku Arsitektur, Kesenian, dan Olahraga Lainnya",1.3.05.01.01
+1.3.05.01.01.0010,Majalah,1.3.05.01.01
+1.3.05.02.01.0001,Alat Musik Tradisional/Daerah,1.3.05.02.01
+1.3.05.02.01.0003,Alat Peraga Kesenian Lainnya,1.3.05.02.01
+1.3.05.02.01.0004,Barang Bercorak Kesenian Lainnya,1.3.05.02.01
+1.3.05.02.02.0002,Maket/Miniatur/Replika,1.3.05.02.02
+1.3.05.02.02.0004,Alat Bercorak Kebudayaan Lainnya,1.3.05.02.02
+1.3.05.02.03.0001,Medali,1.3.05.02.03
+1.3.05.02.03.0002,Piala,1.3.05.02.03
+8.1.01.03.06.0001,Jasa Pelayanan Kesehatan bagi ASN,8.1.01.03.06
+8.1.01.04.12.0004,Tunjangan Perumahan DPRD,8.1.01.04
+8.1.01.04.13.0001,Tunjangan Transportasi DPRD,8.1.01.04.13
+8.1.02.01.01.0052,Kudapan/Snack,8.1.02.01.01
+8.1.02.01.01.0053,Kudapan/Snack,8.1.02.01.01
+8.1.02.01.01.0058,Kudapan/Snack,8.1.02.01.01
+8.1.02.01.01.0059,Pakaian Dinas KDH dan WKDH,8.1.02.01.01
+8.1.02.01.01.0060,Pakaian Dinas dan Atribut Pimpinan dan Anggota DPRD,8.1.02.01.01
+8.1.02.01.01.0061,Pakaian Sipil Harian (PSH),8.1.02.01.01
+8.1.02.01.01.0062,Pakaian Sipil Lengkap (PSL),8.1.02.01.01
+8.1.02.01.01.0063,Pakaian Dinas Harian (PDH),8.1.02.01.01
+8.1.02.01.01.0064,Pakaian Dinas Lapangan (PDL),8.1.02.01.01
+8.1.02.01.01.0065,Pakaian Sipil Resmi (PSR),8.1.02.01.01
+8.1.02.01.01.0070,Pakaian Pelatihan Kerja,8.1.02.01.01
+8.1.02.01.01.0072,Pakaian Kerja Bengkel,8.1.02.01.01
+8.1.02.01.01.0073,Pakaian KORPRI,8.1.02.01.01
+8.1.02.01.01.0074,Pakaian Adat Daerah,8.1.02.01.01
+8.1.02.01.01.0075,Pakaian Batik Tradisional,8.1.02.01.01
+8.1.02.01.01.0076,Pakaian Olahraga,8.1.02.01.01
+8.1.02.01.01.0077,Pakaian Paskibraka,8.1.02.01.01
+8.1.02.01.01.0078,Pakaian Jas/Safari,8.1.02.01.01
+8.1.02.02.01.0003,Honorarium Moderator,8.1.02.02.01
+8.1.02.02.01.0004,Honorarium Tim Pelaksana Kegiatan,8.1.02.02.01
+8.1.02.02.01.0005,Honorarium Beracara,8.1.02.02.01
+8.1.02.02.01.0006,Honorarium Penyuluhan atau Pendampingan,8.1.02.02.01
+8.1.02.02.01.0007,Honorarium Rohaniwan,8.1.02.02.01
+8.1.02.02.01.0011,Honorarium Penceramah,8.1.02.02.01
+8.1.02.02.01.0012,Honorarium Tim Anggaran Pemerintah Daerah,8.1.02.02.01
+8.1.02.02.01.0013,Jasa Tenaga Pendidikan,8.1.02.02.01
+8.1.02.02.01.0014,Jasa Tenaga Kesehatan,8.1.02.02.01
+8.1.02.02.01.0015,Jasa Tenaga Laboratorium,8.1.02.02.01
+8.1.02.02.01.0016,Jasa Tenaga Penanganan Prasarana dan Sarana Umum,8.1.02.02.01
+8.1.02.02.01.0022,Jasa Tenaga Perhubungan,8.1.02.02.01
+8.1.02.02.01.0025,Jasa Tenaga Kesenian dan Kebudayaan,8.1.02.02.01
+8.1.02.02.01.0026,Jasa Tenaga Administrasi,8.1.02.02.01
+8.1.02.02.01.0027,Jasa Tenaga Operator Komputer,8.1.02.02.01
+8.1.02.02.01.0028,Jasa Tenaga Pelayanan Umum,8.1.02.02.01
+8.1.02.02.01.0029,Jasa Tenaga Ahli,8.1.02.02.01
+8.1.02.02.01.0030,Jasa Tenaga Kebersihan,8.1.02.02.01
+8.1.02.02.01.0031,Jasa Tenaga Keamanan,8.1.02.02.01
+8.1.02.02.01.0033,Jasa Tenaga Supir,8.1.02.02.01
+8.1.02.02.01.0034,Jasa Tenaga Juru Masak,8.1.02.02.01
+8.1.02.02.01.0035,Jasa Tenaga Teknisi Mekanik dan Listrik,8.1.02.02.01
+8.1.02.02.01.0037,Jasa Juri Perlombaan/Pertandingan,8.1.02.02.01
+8.1.02.02.01.0038,Jasa Tata Rias,8.1.02.02.01
+8.1.02.02.01.0039,Jasa Tenaga Informasi dan Teknologi,8.1.02.02.01
+8.1.02.02.01.0041,"Jasa Pemasangan Instalasi Telepon, Air, dan Listrik",8.1.02.02.01
+8.1.02.02.01.0043,Jasa Penulisan dan Penerjemahan,8.1.02.02.01
+8.1.02.02.01.0044,Jasa Pelayanan Perpustakaan,8.1.02.02.01
+8.1.02.02.01.0045,Jasa Pelayanan Kearsipan,8.1.02.02.01
+8.1.02.02.01.0047,Jasa Penyelenggaraan Acara,8.1.02.02.01
+8.1.02.02.01.0048,Jasa Kontribusi Asosiasi,8.1.02.02.01
+8.1.02.02.01.0050,Jasa Kalibrasi,8.1.02.02.01
+8.1.02.02.01.0051,Jasa Pengolahan Sampah,8.1.02.02.01
+8.1.02.02.01.0052,"Jasa Pembersihan, Pengendalian Hama, dan Fumigasi",8.1.02.02.01
+8.1.02.02.01.0053,Jasa Pengukuran Tanah,8.1.02.02.01
+8.1.02.02.01.0054,Jasa Jalan/Tol,8.1.02.02.01
+8.1.02.02.01.0055,"Jasa Iklan/Reklame, Film, dan Pemotretan",8.1.02.02.01
+8.1.02.02.01.0059,Tagihan Telepon,8.1.02.02.01
+8.1.02.02.01.0060,Tagihan Air,8.1.02.02.01
+8.1.02.02.01.0061,Tagihan Listrik,8.1.02.02.01
+8.1.02.02.01.0062,Langganan Jurnal/Surat Kabar/Majalah,8.1.02.02.01
+8.1.02.02.01.0063,Kawat/Faksimili/Internet/TV Berlangganan,8.1.02.02.01
+8.1.02.02.01.0064,Paket/Pengiriman,8.1.02.02.01
+8.1.02.02.01.0065,Penambahan Daya,8.1.02.02.01
+8.1.02.02.01.0067,"Pembayaran Pajak, Bea, dan Perizinan",8.1.02.02.01
+8.1.02.02.01.0071,Lembur,8.1.02.02.01
+8.1.02.02.01.0073,Medical Check Up,8.1.02.02.01
+8.1.02.02.01.0074,Insentif Tenaga Kesehatan Vaksinator,8.1.02.02.01
+8.1.02.02.01.0075,Insentif Tenaga Kesehatan Penanganan COVID-19,8.1.02.02.01
+8.1.02.02.01.0077,Jasa Pelayanan Kesehatan bagi Non ASN,8.1.02.02.01
+8.1.02.02.02.0001,Iuran Jaminan Kesehatan bagi Kepala Desa dan Perangkat Desa,8.1.02.02.02
+8.1.02.02.02.0002,Kontribusi Jaminan Kesehatan bagi PBI,8.1.02.02.02
+8.1.02.02.02.0003,Iuran Jaminan Kesehatan bagi Peserta PBPU dan BP Kelas 3,8.1.02.02.02
+8.1.02.02.02.0004,Bantuan Iuran Jaminan Kesehatan bagi Peserta PBPU dan BP Kelas 3,8.1.02.02.02
+8.1.02.02.02.0005,Iuran Jaminan Kesehatan bagi Non ASN,8.1.02.02.02
+8.1.02.02.02.0006,Iuran Jaminan Kecelakaan Kerja bagi Non ASN,8.1.02.02.02
+8.1.02.02.02.0007,Iuran Jaminan Kematian bagi Non ASN,8.1.02.02.02
+8.1.02.02.02.0009,Pembayaran Pelayanan Kesehatan di luar Cakupan Layanan BPJS,8.1.02.02.02
+8.1.02.02.02.0010,Iuran Jaminan Hari Tua bagi Non ASN,8.1.02.02.02
+8.1.02.02.02.0012,Iuran Jaminan Kecelakaan Kerja bagi Pekerja Rentan,8.1.02.02.02
+8.1.02.02.02.0013,Iuran Jaminan Kematian bagi Pekerja Rentan,8.1.02.02.02
+8.1.02.02.03.0002,Sewa Tanah untuk Bangunan Gedung Perdagangan/Perusahaan,8.1.02.02.03
+8.1.02.02.03.0004,Sewa Tanah untuk Bangunan Tempat Kerja,8.1.02.02.03
+8.1.02.02.04.0003,Sewa Excavator,8.1.02.02.04
+8.1.02.02.04.0006,Sewa Asphalt Equipment,8.1.02.02.04
+8.1.02.02.04.0008,Sewa Aggregate and Concrete Equipment,8.1.02.02.04
+8.1.02.02.04.0010,Sewa Alat Pengangkat,8.1.02.02.04
+8.1.02.02.04.0012,Sewa Alat Besar Darat Lainnya,8.1.02.02.04
+8.1.02.02.04.0021,Sewa Compressor,8.1.02.02.04
+8.1.02.02.04.0022,Sewa Electric Generating Set,8.1.02.02.04
+8.1.02.02.04.0023,Sewa Pompa,8.1.02.02.04
+8.1.02.02.04.0024,Sewa Mesin Bor,8.1.02.02.04
+8.1.02.02.04.0025,Sewa Unit Pemeliharaan Lapangan,8.1.02.02.04
+8.1.02.02.04.0034,Sewa Alat Bantu Lainnya,8.1.02.02.04
+8.1.02.02.04.0035,Sewa Kendaraan Dinas Bermotor Perorangan,8.1.02.02.04
+8.1.02.02.04.0036,Sewa Kendaraan Bermotor Penumpang,8.1.02.02.04
+8.1.02.02.04.0037,Sewa kendaraan angkutan sampah,8.1.02.02.04
+8.1.02.02.04.0040,Sewa Kendaraan Bermotor Khusus,8.1.02.02.04
+8.1.02.02.04.0059,Sewa Perkakas Konstruksi Logam Terpasang pada Fondasi,8.1.02.02.04
+8.1.02.02.04.0064,Sewa Perkakas Bengkel Kayu,8.1.02.02.04
+8.1.02.02.04.0066,Sewa Peralatan Las,8.1.02.02.04
+8.1.02.02.04.0073,Sewa Perkakas Standard (Standard Tools),8.1.02.02.04
+8.1.02.02.04.0075,Sewa Perkakas Bengkel Kerja,8.1.02.02.04
+8.1.02.02.04.0102,Sewa Alat Ukur Lainnya,8.1.02.02.04
+8.1.02.02.04.0103,Sewa Alat Pengolahan Tanah dan Tanaman,8.1.02.02.04
+8.1.02.02.04.0117,Sewa Alat Kantor Lainnya,8.1.02.02.04
+8.1.02.02.04.0118,Sewa Mebel,8.1.02.02.04
+8.1.02.02.04.0123,Sewa Alat Rumah Tangga Lainnya (Home Use),8.1.02.02.04
+8.1.02.02.04.0132,Sewa Peralatan Studio Audio,8.1.02.02.04
+8.1.02.02.04.0133,Sewa Peralatan Studio Video dan Film,8.1.02.02.04
+8.1.02.02.04.0354,Sewa Overhead Cranes,8.1.02.02.04
+8.1.02.02.04.0404,Sewa Komputer Jaringan,8.1.02.02.04
+8.1.02.02.05.0001,Sewa Bangunan Gedung Kantor,8.1.02.02.05
+8.1.02.02.05.0002,Sewa Bangunan Gudang,8.1.02.02.05
+8.1.02.02.05.0009,Sewa Bangunan Gedung Tempat Pertemuan,8.1.02.02.05
+8.1.02.02.05.0011,Sewa Bangunan Gedung Tempat Olahraga,8.1.02.02.05
+8.1.02.02.05.0013,Sewa Bangunan Gedung untuk Pos Jaga,8.1.02.02.05
+8.1.02.02.05.0030,Sewa Bangunan Gedung Tempat Kerja Lainnya,8.1.02.02.05
+8.1.02.02.05.0032,Sewa Bangunan Fasilitas Umum,8.1.02.02.05
+8.1.02.02.05.0041,Sewa Mess/Wisma/Bungalow/Tempat Peristirahatan,8.1.02.02.05
+8.1.02.02.05.0042,Sewa Asrama,8.1.02.02.05
+8.1.02.02.07.0028,Sewa Alat Musik,8.1.02.02.07
+8.1.02.02.08.0002,Sewa Lisensi dan Franchise,8.1.02.02.08
+8.1.02.02.09.0002,Jasa Konsultansi Perencanaan Arsitektur-Jasa Desain Arsitektural,8.1.02.02.09
+8.1.02.02.09.0003,Jasa Konsultansi Perencanaan Arsitektur-Jasa Penilai Perawatan dan Kelayakan Bangunan Gedung,8.1.02.02.09
+8.1.02.02.09.0007,Jasa Konsultansi Perencanaan Rekayasa-Jasa Desain Rekayasa untuk Konstruksi Pondasi serta Struktur Bangunan,8.1.02.02.09
+8.1.02.02.09.0008,Jasa Konsultansi Perencanaan Rekayasa-Jasa Desain Rekayasa untuk Pekerjaan Teknik Sipil Air,8.1.02.02.09
+8.1.02.02.09.0009,Jasa Konsultansi Perencanaan Rekayasa-Jasa Desain Rekayasa untuk Pekerjaan Teknik Sipil Transportasi,8.1.02.02.09
+8.1.02.02.09.0014,Jasa Konsultansi Perencanaan Penataan Ruang-jasa Perencanaan dan Perancangan Perkotaan,8.1.02.02.09
+8.1.02.02.09.0015,Jasa Konsultansi Perencanaan Penataan Ruang-Jasa Perencanaan Wilayah,8.1.02.02.09
+8.1.02.02.09.0016,Jasa Konsultansi Perencanaan Penataan Ruang-Jasa Perencanaan dan Perancangan Lingkungan Bangunan dan Landscape,8.1.02.02.09
+8.1.02.02.09.0017,Jasa Konsultansi Perencanaan Penataan Ruang-Pengembangan Pemanfaatan Ruang,8.1.02.02.09
+8.1.02.02.09.0019,Jasa Konsultansi Pengawasan Rekayasa-Jasa Pengawas Pekerjaan Konstruksi Bangunan Gedung,8.1.02.02.09
+8.1.02.02.09.0020,Jasa Konsultansi Pengawasan Rekayasa-Jasa Pengawas Pekerjaan Konstruksi Teknik Sipil Transportasi,8.1.02.02.09
+8.1.02.02.09.0021,Jasa Konsultansi Pengawasan Rekayasa-Jasa Pengawas Pekerjaan Konstruksi Teknik Sipil Air,8.1.02.02.09
+8.1.02.02.09.0023,Jasa Konsultansi Pengawasan Penataan Ruang,8.1.02.02.09
+8.1.02.02.09.0027,Jasa Konsultansi Spesialis-Jasa Pembuatan Peta,8.1.02.02.09
+8.1.02.02.09.0032,Jasa Konsultansi Lainnya-Jasa Konsultansi Lingkungan,8.1.02.02.09
+8.1.02.02.09.0033,Jasa Konsultansi Lainnya-Jasa Konsultansi Estimasi Nilai Lahan dan Bangunan,8.1.02.02.09
+8.1.02.02.09.0034,Jasa Konsultansi Lainnya-Jasa Manajemen Proyek Terkait Konstruksi Bangunan,8.1.02.02.09
+8.1.02.02.10.0003,Jasa Konsultansi Berorientasi Bidang-Telematika,8.1.02.02.10
+8.1.02.02.10.0004,Jasa Konsultansi Berorientasi Bidang-Perindustrian dan Perdagangan,8.1.02.02.10
+8.1.02.02.10.0011,Jasa Konsultansi Berorientasi Layanan-Jasa Survei,8.1.02.02.10
+8.1.02.02.10.0012,Jasa Konsultansi Berorientasi Layanan-Jasa Studi Penelitian dan Bantuan Teknik,8.1.02.02.10
+8.1.02.02.10.0013,Jasa Konsultansi Berorientasi Layanan-Jasa Konsultansi Manajemen,8.1.02.02.10
+8.1.02.02.10.0014,Jasa Konsultansi Berorientasi Layanan-Jasa Khusus,8.1.02.02.10
+8.1.02.02.12.0001,Beasiswa Tugas Belajar S1,8.1.02.02.12
+8.1.02.02.12.0002,Beasiswa Tugas Belajar S2,8.1.02.02.12
+8.1.02.02.12.0003,Beasiswa Tugas Belajar S3,8.1.02.02.12
+8.1.02.02.13.0001,Kursus Singkat/Pelatihan,8.1.02.02.13
+8.1.02.03.01.0013,Pemeliharaan Alang/Rumput,8.1.02.03.01
+8.1.02.03.02.0010,Pemeliharaan Alat Pengangkat,8.1.02.03.02
+8.1.02.03.02.0011,Pemeliharaan Mesin Proses,8.1.02.03.02
+8.1.02.03.02.0022,Pemeliharaan Electric Generating Set,8.1.02.03.02
+8.1.02.03.02.0035,Pemeliharaan Kendaraan Dinas Bermotor Perorangan,8.1.02.03.02
+8.1.02.03.02.0036,Pemeliharaan Kendaraan Bermotor Penumpang,8.1.02.03.02
+8.1.02.03.02.0037,Pemeliharaan Kendaraan Bermotor Angkutan Barang,8.1.02.03.02
+8.1.02.03.02.0038,Pemeliharaan Kendaraan Bermotor Beroda Dua,8.1.02.03.02
+8.1.02.03.02.0039,Pemeliharaan Kendaraan Bermotor Beroda Tiga,8.1.02.03.02
+8.1.02.03.02.0043,Pemeliharaan Alat Angkutan Darat Bermotor Lainnya,8.1.02.03.02
+8.1.02.03.02.0049,Pemeliharaan Alat Angkutan Apung Bermotor untuk Penumpang,8.1.02.03.02
+8.1.02.03.02.0108,Pemeliharaan Alat Processing,8.1.02.03.02
+8.1.02.03.02.0117,Pemeliharaan Alat Kantor Lainnya,8.1.02.03.02
+8.1.02.03.02.0121,Pemeliharaan Alat Pendingin,8.1.02.03.02
+8.1.02.03.02.0123,Pemeliharaan Alat Rumah Tangga Lainnya (Home Use),8.1.02.03.02
+8.1.02.03.02.0125,Pemeliharaan Meja Kerja Pejabat,8.1.02.03.02
+8.1.02.03.02.0135,Pemeliharaan Peralatan Cetak,8.1.02.03.02
+8.1.02.03.02.0404,Pemeliharaan Komputer Jaringan,8.1.02.03.02
+8.1.02.03.02.0405,Pemeliharaan Personal Computer,8.1.02.03.02
+8.1.02.03.02.0409,Pemeliharaan Peralatan Personal Computer,8.1.02.03.02
+8.1.02.03.02.0410,Pemeliharaan Peralatan Jaringan,8.1.02.03.02
+8.1.02.03.02.0492,Pemeliharaan Rambu Bersuar,8.1.02.03.02
+8.1.02.03.03.0001,Pemeliharaan Bangunan Gedung Kantor,8.1.02.03.03
+8.1.02.03.05.0028,Pemeliharaan Alat Musik,8.1.02.03.05
+8.1.02.03.06.0005,Pemeliharaan Software,8.1.02.03.06
+8.1.02.04.01.0001,Biaya Penginapan,8.1.02.04.01
+8.1.02.04.01.0003,Uang Harian Perjalanan Dinas,8.1.02.04.01
+8.1.02.04.01.0004,Biaya Kegiatan Rapat Hotel Atau Pertemuan Di Luar Kantor,8.1.02.04.01
+8.1.02.04.01.0005,Biaya Kegiatan Rapat Hotel Atau Pertemuan Di Luar Kantor,8.1.02.04.01
+8.1.02.05.01.0001,Hadiah yang Bersifat Perlombaan,8.1.02.05.01
+8.1.02.05.01.0002,Penghargaan atas Suatu Prestasi,8.1.02.05.01
+8.1.02.05.01.0003,Beasiswa,8.1.02.05.01
+8.1.02.05.01.0004,Penanganan Dampak Sosial Kemasyarakatan,8.1.02.05.01
+8.1.02.05.01.0012,Uang yang Diberikan kepada Posyandu,8.1.02.05.01
+8.1.02.05.02.0002,Jasa yang Diberikan kepada Masyarakat,8.1.02.05.02
