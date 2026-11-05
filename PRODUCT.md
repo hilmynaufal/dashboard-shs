@@ -71,8 +71,15 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   tindak lanjut beralasan. K-16 menyediakan urutan versi, perbandingan data/bukti
   dan peristiwa pengiriman/tindak lanjut sesuai lingkup pengguna. K-17 menambah
   versi untuk supervisi, antrean berjenjang, pengembalian beralasan, persetujuan
-  ulang dan penguncian final dengan catatan terbuka tercantum. Tata letak serta
-  unduhan Word KKR dilanjutkan pada K-18.
+  ulang dan penguncian final dengan catatan terbuka tercantum. K-18 menyediakan
+  preview dan unduhan Word untuk versi KKR yang dipilih, dengan isi presentasi
+  serta berkas final disimpan bersama pada storage privat dan tidak ditimpa.
+  Pembagian halaman pada Word desktop masih menunggu pemeriksaan. K-19
+  menyediakan /pemantauan untuk jumlah dan rincian paket, item, catatan terlihat,
+  serta KKR sesuai lingkup akses. Angka dihitung ulang ketika halaman dimuat;
+  reviu selesai, hasil sesuai, dan catatan terbuka merupakan indikator terpisah.
+  Pemeriksaan visual dan keyboard dengan akun nyata serta UAT pemohon untuk
+  kedua fitur tetap belum dilakukan.
 
 ## Brand Commitments
 

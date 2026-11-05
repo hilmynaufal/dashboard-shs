@@ -120,10 +120,10 @@ final class KkrWork
     public static function append(User $actor, KkrDocument $document, ReviewAssignment $assignment, array $data): KkrVersion
     {
         $source=self::source($actor,$assignment,$data['reviews']);$previous=self::latest($document);
-        $snapshot=['format'=>'supervision-v1','number'=>$document->number,'title'=>$data['title'],'conclusion'=>$data['conclusion'],'recommendation'=>$data['recommendation'],'source'=>$source,'source_hash'=>self::hash($source)];
+        $snapshot=['format'=>'supervision-v1','template'=>KkrPrint::TEMPLATE,'purpose'=>$data['purpose']??'Belum dicatat','work_steps'=>$data['work_steps']??'Belum dicatat','number'=>$document->number,'title'=>$data['title'],'conclusion'=>$data['conclusion'],'recommendation'=>$data['recommendation'],'source'=>$source,'source_hash'=>self::hash($source)];
         $json=json_encode($snapshot,JSON_THROW_ON_ERROR);
         if(strlen($json)>4*1024*1024){throw ValidationException::withMessages(['reviews'=>'Isi KKR terlalu besar. Bagi hasil reviu ke beberapa KKR.']);}
-        $version=new KkrVersion;$version->kkr_document_id=$document->id;$version->version_number=($previous?->version_number??0)+1;$version->template_version='supervision-v1';
+        $version=new KkrVersion;$version->kkr_document_id=$document->id;$version->version_number=($previous?->version_number??0)+1;$version->template_version=KkrPrint::TEMPLATE;
         $version->snapshot=$snapshot;$version->snapshot_sha256=self::hash($snapshot);$version->created_by=$actor->id;$version->supersedes_version_id=$previous?->id;$version->change_reason=$data['change_reason']??null;$version->save();
         foreach($source['entries'] as $position=>$entry){DB::table('kkr_entries')->insert(['kkr_version_id'=>$version->id,'item_review_id'=>$entry['review_id'],'display_order'=>$position+1,'has_open_notes'=>$entry['has_open_notes'],'snapshot'=>json_encode($entry,JSON_THROW_ON_ERROR)]);}
         $document->title=$data['title'];$document->status='draft';$document->lock_version++;$document->save();

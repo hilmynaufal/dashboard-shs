@@ -1,7 +1,7 @@
 @extends('layouts.workspace')
 @section('title',$version->snapshot['title']??$document->title)
 @section('subtitle',$document->number.' · Versi '.$version->version_number.' · '.($version->finalized_at?'Final':($version->id===$latest->id?\App\Models\KkrDocument::LABELS[$document->status]:'Riwayat versi')))
-@section('actions')<a class="btn secondary" href="{{ route('kkr.index') }}">Daftar KKR</a>@can('update',$document)<a class="btn secondary" href="{{ route('kkr.edit',$document) }}">Siapkan versi baru</a>@endcan @endsection
+@section('actions')<a class="btn secondary" href="{{ route('kkr.index') }}">Daftar KKR</a><a class="btn secondary" href="{{ route('kkr.preview',[$document,$version]) }}">Preview Word</a>@can('download',$document)<a class="btn primary" href="{{ route('kkr.word',[$document,$version]) }}">Unduh Word</a>@endcan @can('update',$document)<a class="btn secondary" href="{{ route('kkr.edit',$document) }}">Siapkan versi baru</a>@endcan @endsection
 @section('content')
 @php
     $snapshot=$version->snapshot;$source=$snapshot['source']??[];$assignment=$source['assignment']??[];

@@ -6,7 +6,7 @@
     <title>@yield('title') · SHS/SBU</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="operator-app account-app {{ request()->routeIs('proposals.*','verification.*') ? 'proposal-workspace' : '' }}">
+<body class="operator-app account-app {{ request()->routeIs('proposals.*','verification.*') ? 'proposal-workspace' : '' }} {{ request()->routeIs('kkr.*') ? 'kkr-workspace' : '' }}">
 <a class="skip-link" href="#main-content">Lewati navigasi</a>
 <aside class="sidebar" id="workspace-sidebar" aria-label="Navigasi utama">
     <a class="brand" href="{{ route('workspace') }}"><span class="brand-mark"><x-ui-icon name="building"/></span><span><strong>SHS <span class="brand-slash">/</span> SBU</strong><small>Ruang kerja</small></span></a>
@@ -14,6 +14,7 @@
     <p class="nav-section">RUANG KERJA</p>
     <nav>
         <a href="{{ route('workspace') }}" class="{{ request()->routeIs('workspace') ? 'active' : '' }}" @if(request()->routeIs('workspace')) aria-current="page" @endif><x-ui-icon name="home"/>Beranda</a>
+        @if(array_intersect(auth()->user()->permissionCodes(),['monitoring.own','monitoring.all','monitoring.assigned']))<a href="{{ route('progress.index') }}" class="{{ request()->routeIs('progress.*') ? 'active' : '' }}" @if(request()->routeIs('progress.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Pemantauan</a>@endif
         @if(array_intersect(auth()->user()->permissionCodes(),['proposals.view_own','proposals.view_all','proposals.view_assigned']))<a href="{{ route('proposals.index') }}" class="{{ request()->routeIs('proposals.*') ? 'active' : '' }}" @if(request()->routeIs('proposals.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Usulan</a>@endif
         @can('verification.perform')@can('proposals.view_all')<a href="{{ route('verification.index') }}" class="{{ request()->routeIs('verification.*') ? 'active' : '' }}" @if(request()->routeIs('verification.*')) aria-current="page" @endif><x-ui-icon name="shield"/>Verifikasi kelengkapan</a>@endcan @endcan
         @if(auth()->user()->hasPermission('proposals.view_assigned') && (auth()->user()->hasRole('team_lead') || auth()->user()->hasRole('technical_controller') || auth()->user()->hasRole('examiner')))<a href="{{ route('assignments.index') }}" class="{{ request()->routeIs('assignments.*') && !request()->routeIs('assignments.work') ? 'active' : '' }}" @if(request()->routeIs('assignments.*') && !request()->routeIs('assignments.work')) aria-current="page" @endif><x-ui-icon name="users"/>Penugasan reviu</a>@endif

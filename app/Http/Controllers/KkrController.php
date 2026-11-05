@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Authorization\ResourceAccess;
 use App\Models\{KkrDocument,KkrVersion,ReviewAssignment};
-use App\Support\{AccountValidation,CatalogAudit,KkrWork};
+use App\Support\{AccountValidation,CatalogAudit,KkrWork,KkrPrint,KkrExport,KkrWord};
 use Illuminate\Database\QueryException;
 use Illuminate\Http\{JsonResponse,RedirectResponse,Request};
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -98,6 +98,24 @@ class KkrController extends Controller
         return $this->done($request,$document,'KKR diajukan ke antrean Ketua Tim.');
     }
 
+    public function preview(Request $request,KkrDocument $document,KkrVersion $version): View
+    {
+        Gate::authorize('view',$document);abort_unless((int)$version->kkr_document_id===(int)$document->id,404);
+        $presentation=KkrExport::presentation($version,$request->user());
+        return view('kkr.preview',['document'=>$document,'version'=>$version,'print'=>$presentation['model']]);
+    }
+
+    public function download(Request $request,KkrDocument $document,KkrVersion $version): \Symfony\Component\HttpFoundation\Response
+    {
+        Gate::authorize('download',$document);abort_unless((int)$version->kkr_document_id===(int)$document->id,404);
+        $presentation=KkrExport::presentation($version,$request->user());
+        $bytes=$presentation['bytes']??KkrWord::bytes($presentation['model']);
+        CatalogAudit::record($request->user()->id,'kkr.word_downloaded','kkr_version',$version->id,null,['sha256'=>hash('sha256',$bytes)]);
+        return response($bytes,200,['Content-Type'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-Disposition'=>'attachment; filename="KKR-'.$document->id.'-v'.$version->version_number.'.docx"',
+            'Cache-Control'=>'private, no-store','X-Content-Type-Options'=>'nosniff']);
+    }
+
     public function decide(Request $request,KkrDocument $document,KkrVersion $version): JsonResponse|RedirectResponse
     {
         abort_unless((int)$version->kkr_document_id===(int)$document->id,404);
@@ -114,6 +132,7 @@ class KkrController extends Controller
             else{
                 // Both decisions belong to this same immutable version; technical approval seals it.
                 $saved->finalized_at=now();$saved->save();$locked->status='final';
+                KkrExport::presentation($saved,$request->user());
                 CatalogAudit::record($request->user()->id,'kkr.finalized','kkr_version',$saved->id,null,['snapshot_sha256'=>$saved->snapshot_sha256,'open_notes'=>KkrWork::openCount($saved)]);
             }
             $locked->lock_version++;$locked->save();
@@ -132,6 +151,7 @@ class KkrController extends Controller
     private function formRules(): array
     {
         return $this->tokenRules()+['title'=>['required','string','max:255'],'conclusion'=>['required','string','max:10000'],'recommendation'=>['required','string','max:10000'],
+            'template'=>['sometimes',Rule::in([KkrPrint::TEMPLATE])],'purpose'=>['sometimes','required','string','max:10000'],'work_steps'=>['sometimes','required','string','max:10000'],
             'reviews'=>['required','array','min:1','max:200'],'reviews.*'=>['required','integer','distinct'],'snapshot'=>['prohibited'],'status'=>['prohibited'],'prepared_by'=>['prohibited'],'finalized_at'=>['prohibited']];
     }
     private function done(Request $request,KkrDocument $document,string $message): JsonResponse|RedirectResponse

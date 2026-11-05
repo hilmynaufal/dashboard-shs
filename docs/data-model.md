@@ -4,7 +4,10 @@ Skema awal dibuat melalui empat migrasi domain dan tiga migrasi infrastruktur
 bawaan Laravel. K-14 menambahkan migrasi perubahan kolom dan aspek prototipe.
 K-15 menambahkan tabel `note_response_decisions` dari migrasi yang telah diterapkan.
 Tambahan dokumentasi K-15 diselaraskan dari kode migrasi; metadata lama tidak
-diekspor ulang seluruhnya. Jumlah kini 45 tabel dan 68 foreign key.
+diekspor ulang seluruhnya. K-18 menambah kolom dan keunikan pada tabel ekspor
+yang sudah ada; K-19 memakai skema yang sudah ada tanpa migrasi. Jumlah tabel
+dan foreign key tetap 45 tabel dan 68 foreign key. Angka ini tidak menyatakan
+bahwa metadata/ERD telah diekspor ulang setelah K-18.
 ERD (`erd.mmd`), kamus (`schema-dictionary.md`), dan metadata
 (`schema-metadata.json`) diekspor dari MySQL yang telah dimigrasikan melalui:
 
@@ -78,7 +81,22 @@ K-17 menggunakan tabel KKR yang sudah ada tanpa perubahan skema. Snapshot
 dengan sumber sebelum pengajuan/persetujuan. Pengembalian mewajibkan penyusun menyiapkan versi baru;
 persetujuan teknis setelah Ketua Tim mengunci final. Catatan terbuka disertakan
 serta diakui pada pengajuan dan tiap persetujuan. Lihat `kkr-supervision.md`.
-Format template/unduhan Word dilanjutkan pada K-18.
+K-18 menyimpan template `instansi-shs-v1`, tujuan, dan langkah kerja bersama
+snapshot versi. Preview dan Word menggunakan model presentasi yang sama.
+Migrasi `2026_11_05_000800_freeze_kkr_word_presentations` menambah
+`kkr_exports.render_snapshot` (JSON nullable), `render_sha256` (CHAR(64) nullable),
+dan unique pada `kkr_version_id`, tanpa tabel atau foreign key baru. Ketika
+persetujuan teknis mengunci final, model presentasi beserta hash dan berkas DOCX
+disimpan bersama. Berkas memakai disk privat `local`; byte size dan SHA-256
+diverifikasi saat dibaca. Arsip yang hilang atau rusak ditolak tanpa dibuat
+ulang atau ditimpa. Final lama tanpa arsip memperoleh satu arsip melalui kunci
+versi saat akses pertama yang berwenang. Lihat `kkr-word-export.md`.
+
+K-19 menghitung paket/item/catatan/KKR dari tabel yang sama pada tiap pemuatan
+halaman, dengan query ringkasan dan rincian dalam satu transaksi. Tidak ada
+tabel penghitung, cache agregat, atau perubahan status bisnis oleh pemantauan.
+Reviu selesai memakai reviu terlihat terbaru per item; hasil sesuai dan catatan
+terbuka dihitung terpisah. Lihat `progress-monitoring.md`.
 
 ## Batas tanggung jawab skema
 

@@ -34,6 +34,30 @@ class ResourceAccess
         return $user->isEnabled() && $user->organization_id !== null && (int) $user->organization_id === $organizationId;
     }
 
+    /** Monitoring action and resource scope must both be granted, in the same scope. */
+    public function monitoredItemIds(User $user): Builder
+    {
+        return DB::table('proposal_items as item')->join('proposals as proposal','proposal.id','=','item.proposal_id')
+            ->whereIn('item.id',$this->visibleItemIds($user))->select('item.id')->where(function(Builder $q)use($user): void {
+                $q->whereRaw('1 = 0');
+                if ($user->hasPermission('monitoring.own') && $user->hasPermission('proposals.view_own') && $user->organization_id!==null) {
+                    $q->orWhere('proposal.organization_id',$user->organization_id);
+                }
+                if ($user->hasPermission('monitoring.all') && $user->hasPermission('proposals.view_all')) { $q->orWhere('proposal.status','!=','draft'); }
+                if ($user->hasPermission('monitoring.assigned') && $user->hasPermission('proposals.view_assigned')) {
+                    $q->orWhere(fn($part)=>$part->where('proposal.status','!=','draft')->whereIn('item.id',$this->scopeQuery($user)->select('scope.proposal_item_id')));
+                }
+            });
+    }
+
+    public function visibleReviewIds(User $user): Builder
+    {
+        $query=DB::table('item_reviews as review')->join('proposal_item_versions as reviewed','reviewed.id','=','review.item_version_id')
+            ->select('review.id')->whereNotNull('reviewed.submitted_at');
+        if (!$user->hasPermission('proposals.view_assigned')) { return $query->whereRaw('1 = 0'); }
+        return $query->whereIn('review.assignment_item_id',$this->scopeQuery($user)->select('scope.id'));
+    }
+
     private function scopeQuery(User $user): Builder
     {
         $roles = array_values(array_filter(['examiner', 'team_lead', 'technical_controller'], fn ($role) => $user->hasRole($role)));

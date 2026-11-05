@@ -102,6 +102,23 @@
 .login-form-wrap h1 { font-size: 28px; }
 .login-form-wrap .page-heading { margin-bottom: 20px; }
 .login-help { color: var(--muted); font-size: 12px; line-height: 1.7; margin-top: 16px !important; }
+.kkr-print { margin-top: 12px; }
+.progress-tabs, .progress-statuses { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.progress-tabs .btn, .progress-statuses .btn { white-space: normal; text-align: left; }
+.progress-tabs .btn span { font-variant-numeric: tabular-nums; }
+.progress-indicators { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.progress-indicator { display: flex; align-items: center; gap: 12px; min-height: 40px; padding: 8px 12px; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
+.progress-indicator.is-current { background: var(--accent-soft); border-color: var(--accent); }
+.progress-indicator strong { font-variant-numeric: tabular-nums; }
+.progress-results { margin-top: 12px; }
+.progress-table { min-width: 680px; width: 100%; }
+.kkr-workspace .heading-actions { flex-wrap: wrap; max-width: 100%; }
+.kkr-print > header { margin-bottom: 12px; }
+.kkr-print > header h2, .kkr-print > header h3, .kkr-print > header p { margin: 2px 0; }
+.kkr-print-table { min-width: 1100px; width: 100%; }
+.kkr-print-table caption { text-align: left; padding: 8px 0; color: var(--muted); }
+.kkr-print-table td { vertical-align: top; overflow-wrap: anywhere; }
+.kkr-print-table td:last-child { min-width: 260px; }
 @media (max-width: 850px) {
     .account-profile-grid { grid-template-columns: 1fr; }
     .login-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }

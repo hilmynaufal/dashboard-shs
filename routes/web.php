@@ -7,6 +7,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewNoteController;
 use App\Http\Controllers\ProposalHistoryController;
 use App\Http\Controllers\KkrController;
+use App\Http\Controllers\ProgressController;
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -19,6 +20,7 @@ Route::get('/masuk', [SessionController::class, 'create'])->name('login')->middl
 
 Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::get('/aplikasi', [WorkspaceController::class, 'show'])->name('workspace');
+    Route::get('/pemantauan',[ProgressController::class,'index'])->name('progress.index');
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profil/kata-sandi', [ProfileController::class, 'password'])->middleware('throttle:6,1')->name('profile.password');
@@ -47,6 +49,8 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::post('/penugasan/{assignment}/kkr',[KkrController::class,'store'])->whereNumber('assignment')->name('kkr.store');
     Route::get('/kkr/{document}',[KkrController::class,'show'])->whereNumber('document')->name('kkr.show');
     Route::get('/kkr/{document}/ubah',[KkrController::class,'edit'])->whereNumber('document')->name('kkr.edit');
+    Route::get('/kkr/{document}/versi/{version}/preview',[KkrController::class,'preview'])->whereNumber(['document','version'])->name('kkr.preview');
+    Route::get('/kkr/{document}/versi/{version}/word',[KkrController::class,'download'])->whereNumber(['document','version'])->name('kkr.word');
     Route::post('/kkr/{document}/versi',[KkrController::class,'revise'])->whereNumber('document')->name('kkr.revise');
     Route::post('/kkr/{document}/ajukan',[KkrController::class,'submit'])->whereNumber('document')->name('kkr.submit');
     Route::post('/kkr/{document}/versi/{version}/keputusan',[KkrController::class,'decide'])->whereNumber(['document','version'])->name('kkr.decide');
