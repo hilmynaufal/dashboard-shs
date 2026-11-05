@@ -6,7 +6,7 @@
     <title>@yield('title') · SHS/SBU</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="operator-app account-app {{ request()->routeIs('proposals.*','verification.*') ? 'proposal-workspace' : '' }} {{ request()->routeIs('kkr.*') ? 'kkr-workspace' : '' }}">
+<body class="operator-app account-app {{ request()->routeIs('proposals.*','verification.*') ? 'proposal-workspace' : '' }} {{ request()->routeIs('kkr.*','archives.*') ? 'kkr-workspace' : '' }}">
 <a class="skip-link" href="#main-content">Lewati navigasi</a>
 <aside class="sidebar" id="workspace-sidebar" aria-label="Navigasi utama">
     <a class="brand" href="{{ route('workspace') }}"><span class="brand-mark"><x-ui-icon name="building"/></span><span><strong>SHS <span class="brand-slash">/</span> SBU</strong><small>Ruang kerja</small></span></a>
@@ -22,6 +22,8 @@
         @if(auth()->user()->hasRole('examiner') && auth()->user()->hasPermission('proposals.view_assigned'))<a href="{{ route('assignments.work') }}" class="{{ request()->routeIs('assignments.work') ? 'active' : '' }}" @if(request()->routeIs('assignments.work')) aria-current="page" @endif><x-ui-icon name="catalog"/>Pekerjaan pemeriksa</a>@endif
         @if(array_intersect(auth()->user()->permissionCodes(),['notes.respond_own','notes.administrative','proposals.view_assigned']))<a href="{{ route('notes.index') }}" class="{{ request()->routeIs('notes.*') ? 'active' : '' }}" @if(request()->routeIs('notes.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Catatan &amp; tanggapan</a>@endif
         @can('kkr.view')<a href="{{ route('kkr.index') }}" class="{{ request()->routeIs('kkr.*') ? 'active' : '' }}" @if(request()->routeIs('kkr.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>KKR &amp; supervisi</a>@endcan
+        @can('archives.assigned')<a href="{{ route('archives.index') }}" class="{{ request()->routeIs('archives.*') ? 'active' : '' }}" @if(request()->routeIs('archives.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Arsip KKR</a>@endcan
+        @if(array_intersect(auth()->user()->permissionCodes(),['audit.technical','audit.assigned']))<a href="{{ route('activity.index') }}" class="{{ request()->routeIs('activity.*') ? 'active' : '' }}" @if(request()->routeIs('activity.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Riwayat aktivitas</a>@endif
         @can('accounts.manage')<a href="{{ route('accounts.index') }}" class="{{ request()->routeIs('accounts.*') ? 'active' : '' }}" @if(request()->routeIs('accounts.*')) aria-current="page" @endif><x-ui-icon name="users"/>Kelola akun</a>@endcan
         @can('periods.manage')<a href="{{ route('periods.index') }}" class="{{ request()->routeIs('periods.*') ? 'active' : '' }}" @if(request()->routeIs('periods.*')) aria-current="page" @endif><x-ui-icon name="calendar"/>Periode pengusulan</a>@endcan
         @can('references.manage')<a href="{{ route('references.index','barang') }}" class="{{ request()->routeIs('references.*') ? 'active' : '' }}" @if(request()->routeIs('references.*')) aria-current="page" @endif><x-ui-icon name="catalog"/>Data referensi</a>@endcan

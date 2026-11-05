@@ -68,6 +68,26 @@ class ResourceAccess
         return $query->whereIn('review.assignment_item_id',$this->scopeQuery($user)->select('scope.id'));
     }
 
+    public function assignedItemIds(User $user): Builder
+    {
+        $query=$this->scopeQuery($user)->join('proposal_items as scoped_item','scoped_item.id','=','scope.proposal_item_id')->join('proposals as scoped_proposal','scoped_proposal.id','=','scoped_item.proposal_id')
+            ->where('scoped_proposal.status','!=','draft')->select('scope.proposal_item_id');
+        return $user->hasPermission('proposals.view_assigned')?$query:$query->whereRaw('1 = 0');
+    }
+
+    public function assignedAssignmentIds(User $user): Builder
+    {
+        $roles=array_values(array_filter(['examiner','team_lead','technical_controller'],fn($role)=>$user->hasRole($role)));
+        $query=DB::table('assignment_members')->select('review_assignment_id')->where('user_id',$user->id)->where('is_active',true)->whereIn('role',$roles);
+        return $user->hasPermission('proposals.view_assigned')?$query:$query->whereRaw('1 = 0');
+    }
+
+    public function assignedScopeIds(User $user): Builder
+    {
+        $query=$this->scopeQuery($user)->select('scope.id');
+        return $user->hasPermission('proposals.view_assigned')?$query:$query->whereRaw('1 = 0');
+    }
+
     private function scopeQuery(User $user): Builder
     {
         $roles = array_values(array_filter(['examiner', 'team_lead', 'technical_controller'], fn ($role) => $user->hasRole($role)));

@@ -1,0 +1,12 @@
+@extends('layouts.workspace')
+@section('title',$print['subject'])
+@section('subtitle',$print['facts'][0][1].' · Arsip final versi '.$version->version_number)
+@section('actions')<a class="btn secondary" href="{{ route('archives.index') }}">Daftar arsip</a><a class="btn secondary" href="{{ route('kkr.preview',[$document,$version]) }}">Preview versi {{ $version->version_number }}</a>@can('download',$document)<a class="btn primary" href="{{ route('kkr.word',[$document,$version]) }}">Unduh Word</a>@endcan @endsection
+@section('content')
+@if((int)$version->version_number<$latestFinal)<p class="account-message">Versi ini sudah digantikan oleh final versi {{ $latestFinal }}. Isi arsip ini tetap dipertahankan.</p>@elseif($document->status!=='final')<p class="account-message">Koreksi sedang diproses. Arsip ini tetap menjadi final yang berlaku sampai versi pengganti disetujui.</p>@else<p class="account-message success">Versi final yang berlaku. Isi arsip hanya-baca.</p>@endif
+<section class="form-panel"><h2>Identitas arsip</h2><dl class="proposal-version-facts"><div><dt>Versi</dt><dd>{{ $version->version_number }}</dd></div><div><dt>Finalisasi</dt><dd>{{ $version->finalized_at->copy()->timezone('Asia/Jakarta')->format('d/m/Y H:i') }} WIB</dd></div>@foreach($print['facts'] as [$label,$value])<div><dt>{{ $label }}</dt><dd class="verification-copy">{{ $value }}</dd></div>@endforeach</dl>
+@if($version->change_reason)<h3 class="proposal-followup">Alasan versi pengganti</h3><p class="verification-copy">{{ $version->change_reason }}</p>@endif
+@if($version->supersedes_version_id)<a class="btn icon-text" href="{{ route('kkr.show',[$document,'version'=>$version->supersedes_version_id]) }}">Buka versi sebelumnya</a>@endif
+<h3 class="proposal-followup">Persetujuan versi ini</h3>@forelse($print['supervision'] as $decision)<article class="verification-history-entry"><h4>{{ $decision['level'] }}</h4><p class="verification-copy">{{ $decision['text'] }}</p></article>@empty<p class="account-message">Identitas keputusan tidak tercatat pada arsip ini.</p>@endforelse
+<div class="form-actionbar"><a class="btn secondary" href="{{ route('kkr.show',[$document,'version'=>$version->id]) }}">Lihat isi dan riwayat versi</a>@if((int)$version->version_number===$latestFinal) @can('correct',$document)<a class="btn primary" href="{{ route('kkr.correction',$document) }}">Siapkan koreksi narasi</a>@endcan @endif</div></section>
+@endsection

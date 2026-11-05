@@ -5,7 +5,7 @@ bawaan Laravel. K-14 menambahkan migrasi perubahan kolom dan aspek prototipe.
 K-15 menambahkan tabel `note_response_decisions` dari migrasi yang telah diterapkan.
 Tambahan dokumentasi K-15 diselaraskan dari kode migrasi; metadata lama tidak
 diekspor ulang seluruhnya. K-18 menambah kolom dan keunikan pada tabel ekspor
-yang sudah ada; K-19 memakai skema yang sudah ada tanpa migrasi. Jumlah tabel
+yang sudah ada; K-19 dan K-21 memakai skema yang sudah ada tanpa migrasi. Jumlah tabel
 dan foreign key tetap 45 tabel dan 68 foreign key. Angka ini tidak menyatakan
 bahwa metadata/ERD telah diekspor ulang setelah K-18.
 ERD (`erd.mmd`), kamus (`schema-dictionary.md`), dan metadata
@@ -97,6 +97,22 @@ halaman, dengan query ringkasan dan rincian dalam satu transaksi. Tidak ada
 tabel penghitung, cache agregat, atau perubahan status bisnis oleh pemantauan.
 Reviu selesai memakai reviu terlihat terbaru per item; hasil sesuai dan catatan
 terbuka dihitung terpisah. Lihat `progress-monitoring.md`.
+
+K-21 membaca seluruh `kkr_versions` yang memiliki `finalized_at`, bukan hanya
+versi terbaru dokumen. Final berlaku ditentukan oleh nomor versi final tertinggi;
+versi draf/dikembalikan tidak menggantikannya. Koreksi narasi menggunakan
+`supersedes_version_id`, `change_reason` dan snapshot/entri pada tabel yang sama.
+ID reviu harus sama dengan final terakhir; data hasil reviu selesai tidak diubah
+melalui koreksi ini. Setiap pengganti yang difinalisasi memiliki keputusan dan
+arsip ekspor sendiri, tanpa mewariskan persetujuan atau menimpa final lama.
+
+`ActivityTrail` memproyeksikan `activity_logs` menjadi ID peristiwa, identitas
+pelaku, waktu, tindakan dan identitas objek bertipe yang dikenali; kode keputusan
+terbatas/status verifikasi hanya memperjelas label. JSON before/after, narasi
+dan lokasi berkas tidak dikirim ke halaman aktivitas. Pembatasan teknis dan
+penugasan diterapkan pada query aplikasi dan tidak menambahkan tabel, kolom,
+foreign key atau izin baru. Metadata/ERD tidak diekspor ulang untuk K-21.
+Lihat `archive-activity.md`.
 
 ## Batas tanggung jawab skema
 

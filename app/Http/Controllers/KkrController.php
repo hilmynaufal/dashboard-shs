@@ -53,7 +53,28 @@ class KkrController extends Controller
     public function edit(Request $request,KkrDocument $document): View
     {
         Gate::authorize('update',$document);$assignment=ReviewAssignment::findOrFail($document->review_assignment_id);
-        return view('kkr.form',['assignment'=>$assignment,'document'=>$document,'version'=>KkrWork::latest($document),'candidates'=>KkrWork::candidates($request->user(),$assignment)->limit(200)->get(),'recordVersion'=>KkrWork::token($document)]);
+        return view('kkr.form',['assignment'=>$assignment,'document'=>$document,'version'=>KkrWork::latest($document),'candidates'=>KkrWork::candidates($request->user(),$assignment,$document)->limit(200)->get(),'recordVersion'=>KkrWork::token($document),'fixedScope'=>KkrWork::latestFinal($document)!==null]);
+    }
+
+    public function correction(Request $request,KkrDocument $document): View
+    {
+        Gate::authorize('correct',$document);$assignment=ReviewAssignment::findOrFail($document->review_assignment_id);
+        return view('kkr.form',['assignment'=>$assignment,'document'=>$document,'version'=>KkrWork::latestFinal($document),
+            'candidates'=>KkrWork::candidates($request->user(),$assignment,$document)->limit(200)->get(),
+            'recordVersion'=>KkrWork::token($document),'correction'=>true,'fixedScope'=>true]);
+    }
+
+    public function correct(Request $request,KkrDocument $document): JsonResponse|RedirectResponse
+    {
+        Gate::authorize('correct',$document);
+        $data=$request->validate($this->formRules()+['change_reason'=>['required','string','max:10000']],AccountValidation::MESSAGES);
+        DB::transaction(function()use($request,$document,$data):void {
+            [$locked,$assignment]=KkrWork::lockDocument($request->user(),$document,$data['record_version']);Gate::forUser($request->user())->authorize('correct',$locked);
+            $previous=KkrWork::latestFinal($locked);KkrExport::presentation($previous,$request->user());
+            $version=KkrWork::append($request->user(),$locked,$assignment,$data);
+            CatalogAudit::record($request->user()->id,'kkr.final_correction_prepared','kkr_version',$version->id,['previous_final_version_id'=>$previous->id],['change_reason'=>$data['change_reason']]);
+        },3);
+        return $this->done($request,$document,'Draf koreksi tersimpan. Arsip final sebelumnya tetap berlaku sampai versi pengganti disetujui berjenjang.');
     }
 
     public function revise(Request $request,KkrDocument $document): JsonResponse|RedirectResponse
@@ -78,7 +99,7 @@ class KkrController extends Controller
         $integrity=KkrWork::integrity($version);$current=$version->finalized_at!==null?null:($integrity && KkrWork::current($document,$version));
         return view('kkr.show',['document'=>$document,'version'=>$version,'latest'=>$latest,'entries'=>$rows,'integrity'=>$integrity,'current'=>$current,
             'activeAssignment'=>ReviewAssignment::whereKey($document->review_assignment_id)->where('status','active')->exists(),
-            'openCount'=>KkrWork::openCount($version),'recordVersion'=>KkrWork::token($document),
+            'openCount'=>KkrWork::openCount($version),'recordVersion'=>KkrWork::token($document),'lastFinalVersion'=>KkrWork::latestFinal($document),
             'versions'=>KkrVersion::where('kkr_document_id',$document->id)->orderByDesc('version_number')->paginate(20,['*'],'version_page')->withQueryString(),
             'approvals'=>DB::table('kkr_approvals')->where('kkr_version_id',$version->id)->orderBy('id')->get()]);
     }

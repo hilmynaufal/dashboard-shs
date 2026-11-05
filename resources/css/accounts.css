@@ -111,6 +111,10 @@
 .progress-indicator.is-current { background: var(--accent-soft); border-color: var(--accent); }
 .progress-indicator strong { font-variant-numeric: tabular-nums; }
 .progress-results { margin-top: 12px; }
+.archive-results { margin-top: 12px; }
+.archive-table { min-width: 880px; width: 100%; }
+.activity-table { min-width: 680px; width: 100%; }
+.activity-filter-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .report-filters { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 12px; align-items: end; }
 .report-filters .form-field { min-width: 0; }
 .report-filters select, .report-filters input { width: 100%; min-width: 0; }

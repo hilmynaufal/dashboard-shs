@@ -20,9 +20,10 @@ final class KkrWork
         return array_map(self::canonical(...), $value);
     }
 
-    public static function candidates(User $author, ReviewAssignment $assignment)
+    public static function candidates(User $author, ReviewAssignment $assignment, ?KkrDocument $document=null)
     {
-        return DB::table('item_reviews as review')->join('assignment_items as scope','scope.id','=','review.assignment_item_id')
+        $final=$document?self::latestFinal($document):null;
+        $query=DB::table('item_reviews as review')->join('assignment_items as scope','scope.id','=','review.assignment_item_id')
             ->join('assignment_members as member','member.id','=','scope.examiner_member_id')->join('proposal_items as item','item.id','=','review.proposal_item_id')
             ->join('proposal_item_versions as version','version.id','=','review.item_version_id')->join('proposals as proposal','proposal.id','=','item.proposal_id')
             ->where('scope.review_assignment_id',$assignment->id)->where('member.review_assignment_id',$assignment->id)->where('member.role','examiner')
@@ -30,10 +31,13 @@ final class KkrWork
             ->where('proposal.organization_id',$assignment->object_organization_id)->where('proposal.submission_period_id',$assignment->submission_period_id)
             ->whereIn('proposal.status',['review','submitted','verification'])->where('review.id',function($q):void{
                 $q->from('item_reviews as latest')->selectRaw('MAX(latest.id)')->whereColumn('latest.assignment_item_id','scope.id');
-            })->whereNotExists(function($q):void{
+            })->whereNotExists(function($q)use($document):void{
                 $q->from('kkr_entries as final_entry')->join('kkr_versions as final_version','final_version.id','=','final_entry.kkr_version_id')
                     ->join('item_reviews as final_review','final_review.id','=','final_entry.item_review_id')->whereNotNull('final_version.finalized_at')->whereColumn('final_review.proposal_item_id','item.id');
+                if($document){$q->where('final_version.kkr_document_id','!=',$document->id);}
             })->select('review.id','review.lock_version','item.lock_version as item_lock','scope.id as scope_id','version.description','version.version_number','proposal.number')->orderBy('review.id');
+        if($final){$query->whereIn('review.id',array_column($final->snapshot['source']['entries']??[],'review_id'));}
+        return $query;
     }
 
     public static function createToken(User $author, ReviewAssignment $assignment): string
@@ -50,6 +54,7 @@ final class KkrWork
     }
 
     public static function latest(KkrDocument $document): ?KkrVersion { return KkrVersion::where('kkr_document_id',$document->id)->orderByDesc('version_number')->first(); }
+    public static function latestFinal(KkrDocument $document): ?KkrVersion { return KkrVersion::where('kkr_document_id',$document->id)->whereNotNull('finalized_at')->orderByDesc('version_number')->first(); }
 
     /** Serialize with review writes/transfers/notes, then owner revisions, then document. */
     public static function lockAssignment(User $actor, int $id): ReviewAssignment
@@ -72,11 +77,20 @@ final class KkrWork
         return [$locked,$assignment];
     }
 
-    public static function source(User $author, ReviewAssignment $assignment, array $reviewIds): array
+    public static function source(User $author, ReviewAssignment $assignment, array $reviewIds, ?KkrDocument $document=null): array
     {
         Gate::forUser($author)->authorize('create',[KkrDocument::class,$assignment]);
         $ids=array_map('intval',$reviewIds);sort($ids);
-        $available=self::candidates($author,$assignment)->whereIn('review.id',$ids)->pluck('review.id')->map(fn($id)=>(int)$id)->all();sort($available);
+        if($document){
+            abort_unless((int)$document->prepared_by===(int)$author->id && (int)$document->review_assignment_id===(int)$assignment->id,403);
+            if($final=self::latestFinal($document)){
+                Gate::forUser($author)->authorize('archives.assigned');
+                if(!self::integrity($final)){throw ValidationException::withMessages(['kkr'=>'Sumber arsip koreksi tidak dapat digunakan.'])->status(409);}
+                $fixed=array_map('intval',array_column($final->snapshot['source']['entries'],'review_id'));sort($fixed);
+                if($ids!==$fixed){throw ValidationException::withMessages(['reviews'=>'Koreksi narasi mempertahankan seluruh item dari arsip final.']);}
+            }
+        }
+        $available=self::candidates($author,$assignment,$document)->whereIn('review.id',$ids)->pluck('review.id')->map(fn($id)=>(int)$id)->all();sort($available);
         if (!$ids || $ids!==$available || count($ids)!==count(array_unique($ids))) { throw ValidationException::withMessages(['reviews'=>'Pilih hasil reviu selesai milik pemeriksa dalam penugasan ini yang belum masuk KKR final.']); }
         $organization=DB::table('organizations')->where('id',$assignment->object_organization_id)->first(['id','code','name']);
         $period=DB::table('submission_periods')->where('id',$assignment->submission_period_id)->first(['budget_year','name']);
@@ -119,7 +133,7 @@ final class KkrWork
 
     public static function append(User $actor, KkrDocument $document, ReviewAssignment $assignment, array $data): KkrVersion
     {
-        $source=self::source($actor,$assignment,$data['reviews']);$previous=self::latest($document);
+        $source=self::source($actor,$assignment,$data['reviews'],$document);$previous=self::latest($document);
         $snapshot=['format'=>'supervision-v1','template'=>KkrPrint::TEMPLATE,'purpose'=>$data['purpose']??'Belum dicatat','work_steps'=>$data['work_steps']??'Belum dicatat','number'=>$document->number,'title'=>$data['title'],'conclusion'=>$data['conclusion'],'recommendation'=>$data['recommendation'],'source'=>$source,'source_hash'=>self::hash($source)];
         $json=json_encode($snapshot,JSON_THROW_ON_ERROR);
         if(strlen($json)>4*1024*1024){throw ValidationException::withMessages(['reviews'=>'Isi KKR terlalu besar. Bagi hasil reviu ke beberapa KKR.']);}
@@ -144,7 +158,7 @@ final class KkrWork
     public static function current(KkrDocument $document, KkrVersion $version): bool
     {
         try {
-            $source=self::source(User::findOrFail($document->prepared_by),ReviewAssignment::findOrFail($document->review_assignment_id),array_column($version->snapshot['source']['entries']??[],'review_id'));
+            $source=self::source(User::findOrFail($document->prepared_by),ReviewAssignment::findOrFail($document->review_assignment_id),array_column($version->snapshot['source']['entries']??[],'review_id'),$document);
             return self::integrity($version) && hash_equals($version->snapshot['source_hash']??'',self::hash($source));
         } catch(\Illuminate\Auth\Access\AuthorizationException|ValidationException $error){return false;}
     }

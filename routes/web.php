@@ -9,6 +9,7 @@ use App\Http\Controllers\ProposalHistoryController;
 use App\Http\Controllers\KkrController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\ItemReportController;
+use App\Http\Controllers\{KkrArchiveController,ActivityController};
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -24,6 +25,9 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::get('/pemantauan',[ProgressController::class,'index'])->name('progress.index');
     Route::get('/rekap',[ItemReportController::class,'index'])->name('reports.index');
     Route::get('/rekap/excel',[ItemReportController::class,'export'])->name('reports.export');
+    Route::get('/arsip-kkr',[KkrArchiveController::class,'index'])->name('archives.index');
+    Route::get('/arsip-kkr/{version}',[KkrArchiveController::class,'show'])->whereNumber('version')->name('archives.show');
+    Route::get('/aktivitas',[ActivityController::class,'index'])->name('activity.index');
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profil/kata-sandi', [ProfileController::class, 'password'])->middleware('throttle:6,1')->name('profile.password');
@@ -52,6 +56,8 @@ Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::post('/penugasan/{assignment}/kkr',[KkrController::class,'store'])->whereNumber('assignment')->name('kkr.store');
     Route::get('/kkr/{document}',[KkrController::class,'show'])->whereNumber('document')->name('kkr.show');
     Route::get('/kkr/{document}/ubah',[KkrController::class,'edit'])->whereNumber('document')->name('kkr.edit');
+    Route::get('/kkr/{document}/koreksi',[KkrController::class,'correction'])->whereNumber('document')->name('kkr.correction');
+    Route::post('/kkr/{document}/koreksi',[KkrController::class,'correct'])->whereNumber('document')->name('kkr.correct');
     Route::get('/kkr/{document}/versi/{version}/preview',[KkrController::class,'preview'])->whereNumber(['document','version'])->name('kkr.preview');
     Route::get('/kkr/{document}/versi/{version}/word',[KkrController::class,'download'])->whereNumber(['document','version'])->name('kkr.word');
     Route::post('/kkr/{document}/versi',[KkrController::class,'revise'])->whereNumber('document')->name('kkr.revise');

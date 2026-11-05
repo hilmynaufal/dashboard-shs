@@ -7,8 +7,8 @@ supervisi K-17; tata letak Word/template instansi dan unduhan tetap lingkup K-18
 
 ## Transisi dan versi
 
-1. Penyusun memilih maksimal 200 hasil selesai yang masih menjadi tugasnya dan
-   belum dimuat dalam KKR final, serta mengisi nomor kerja, judul, kesimpulan dan
+1. Pada penyusunan awal, penyusun memilih maksimal 200 hasil selesai yang masih
+   menjadi tugasnya dan belum dimuat dalam KKR final, serta mengisi nomor kerja, judul, kesimpulan dan
    rekomendasi. Daftar persiapan menampilkan maksimal 200 hasil siap pertama.
 2. Menyimpan selalu menambah `kkr_versions` dan `kkr_entries`, tidak memperbarui
    isi versi sebelumnya. Versi menyimpan lingkup/tim, hasil/aspek/harga, versi item
@@ -66,6 +66,29 @@ token hasil siap. Keunikan versi dan keputusan tetap dijaga database. Narasi ata
 sumber tidak diubah saat persetujuan; hanya waktu pengajuan/finalisasi serta
 status dokumen yang bergerak. Snapshot dibatasi 4 MiB, dengan pesan pembagian
 KKR bila terlalu besar. Tidak ada tabel, dependensi, izin global atau skema baru.
+
+## Koreksi setelah final — K-21
+
+Versi final tetap hanya-baca. Penyusun awal dapat menyiapkan koreksi narasi
+sebagai versi baru pada dokumen yang sama bila penugasan aktif, masih menjadi
+pemeriksa utama untuk seluruh item, serta memiliki izin menyusun, melihat,
+membaca usulan penugasan dan arsip. Alasan wajib, token dokumen dan pengecekan
+ulang izin melindungi permintaan usang. Integritas sumber dan arsip Word final
+diperiksa sebelum versi koreksi pertama ditambahkan.
+
+Koreksi hanya mengisi judul, tujuan, langkah kerja, kesimpulan dan rekomendasi
+KKR. Daftar ID reviu harus tepat sama dengan versi final terakhir; hasil reviu
+selesai tidak dibuka ulang dan cakupan tidak dapat ditambah/dikurangi. Pemeriksaan
+sumber tetap berlaku. Versi baru menyimpan snapshot sumber saat disiapkan,
+`change_reason` dan `supersedes_version_id` ke versi sebelumnya; snapshot final
+lama, keputusan dan berkas tetap tersimpan. Pengembalian koreksi memerlukan
+versi baru berikutnya sebelum pengajuan ulang. Kedua tingkat wajib memutuskan
+ulang pada versi yang sama; keputusan lama tidak diwariskan.
+
+Final dengan nomor versi tertinggi berlaku sampai koreksi mendapatkan kedua
+persetujuan dan menjadi final baru. Seluruh versi final tetap dapat dibuka
+dalam lingkup akses, meskipun status dokumen saat ini draf atau dikembalikan.
+Lihat `archive-activity.md`; K-21 tidak menambahkan migrasi atau izin baru.
 
 ## Bukti dan batas
 

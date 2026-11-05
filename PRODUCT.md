@@ -92,6 +92,21 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   spreadsheet, serta UAT pemohon belum dilakukan. Implementasi ini tidak
   mencakup rekap hasil reviu atau isi KKR.
 
+- K-21 menyediakan `/arsip-kkr` untuk seluruh versi KKR final yang diizinkan,
+  termasuk final lama yang sudah digantikan. Final bernomor tertinggi tetap
+  berlaku selama koreksi belum final. Penyusun awal yang masih berwenang dan
+  aktif ditugaskan dapat membuat koreksi narasi beralasan dengan cakupan hasil
+  reviu final yang sama; simpan menambah versi dan kedua tingkat persetujuan
+  dimulai ulang, tanpa menimpa sumber, keputusan, atau Word final sebelumnya.
+  `/aktivitas` menampilkan metadata peristiwa yang diizinkan: pelaku, waktu,
+  tindakan, dan identitas objek. Admin teknis hanya memperoleh aktivitas
+  akun/periode/referensi; audit penugasan tetap mengikuti lingkup sumbernya.
+  Tidak ada pengubahan/penghapusan arsip atau aktivitas melalui endpoint biasa.
+  K-21 memakai skema dan izin yang sudah ada. Kesesuaian UI baru diperiksa dari
+  sumber; desktop/mobile berakun nyata, keyboard, tata letak Word, dan UAT
+  pemohon masih tertunda. Saat PSE tidak tersedia, pekerjaan mengikuti konteks
+  tersimpan yang sudah diizinkan tanpa mengubah status langsung di PSE.
+
 ## Brand Commitments
 
 - Nama kerja: Sistem Informasi SHS New; instansi: Inspektorat Daerah.

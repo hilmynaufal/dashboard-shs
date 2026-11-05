@@ -1,12 +1,13 @@
 @extends('layouts.workspace')
 @section('title',$version->snapshot['title']??$document->title)
 @section('subtitle',$document->number.' · Versi '.$version->version_number.' · '.($version->finalized_at?'Final':($version->id===$latest->id?\App\Models\KkrDocument::LABELS[$document->status]:'Riwayat versi')))
-@section('actions')<a class="btn secondary" href="{{ route('kkr.index') }}">Daftar KKR</a><a class="btn secondary" href="{{ route('kkr.preview',[$document,$version]) }}">Preview Word</a>@can('download',$document)<a class="btn primary" href="{{ route('kkr.word',[$document,$version]) }}">Unduh Word</a>@endcan @can('update',$document)<a class="btn secondary" href="{{ route('kkr.edit',$document) }}">Siapkan versi baru</a>@endcan @endsection
+@section('actions')<a class="btn secondary" href="{{ route('kkr.index') }}">Daftar KKR</a><a class="btn secondary" href="{{ route('kkr.preview',[$document,$version]) }}">Preview Word</a>@can('download',$document)<a class="btn primary" href="{{ route('kkr.word',[$document,$version]) }}">Unduh Word</a>@endcan @if($version->id===$latest->id) @can('correct',$document)<a class="btn secondary" href="{{ route('kkr.correction',$document) }}">Siapkan koreksi</a>@endcan @endif @can('update',$document)<a class="btn secondary" href="{{ route('kkr.edit',$document) }}">Siapkan versi baru</a>@endcan @endsection
 @section('content')
 @php
     $snapshot=$version->snapshot;$source=$snapshot['source']??[];$assignment=$source['assignment']??[];
     $latestSelected=$version->id===$latest->id;
 @endphp
+@if($lastFinalVersion && $latestSelected && !$version->finalized_at)<p class="account-message">Versi koreksi ini belum final. <a href="{{ route('kkr.show',[$document,'version'=>$lastFinalVersion->id]) }}">Final versi {{ $lastFinalVersion->version_number }}</a> tetap berlaku sampai versi pengganti disetujui.</p>@endif
 @if(!$activeAssignment)<p class="account-message">Penugasan ditutup; KKR hanya-baca.</p>@endif
 @if(!$integrity)<p class="account-message error" role="alert">Rekaman KKR tidak dapat diverifikasi. Supervisi tidak dapat dilanjutkan; hubungi pengelola.</p>@elseif($current===false && $latestSelected && $activeAssignment)<p class="account-message error" role="status">Sumber hasil, catatan atau identitas tim berubah. Pemeriksa perlu menyiapkan versi baru; supervisor tetap dapat mengembalikan versi ini dengan alasan.</p>@endif
 @if($version->finalized_at)<p class="account-message success">Versi final dikunci {{ $version->finalized_at->copy()->timezone('Asia/Jakarta')->format('d/m/Y H:i') }} WIB. Isi dan keputusan versi ini hanya-baca.</p>@endif

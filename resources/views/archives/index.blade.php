@@ -1,0 +1,9 @@
+@extends('layouts.workspace')
+@section('title','Arsip KKR')
+@section('subtitle','Versi final dan versi penggantinya sesuai penugasan Anda.')
+@section('content')
+<p class="account-body-copy">Arsip final tetap tersimpan saat koreksi disusun. Versi final terbaru berlaku setelah memperoleh persetujuan berjenjang.</p>
+<section class="table-panel archive-results"><div class="table-scroll" tabindex="0" role="region" aria-label="Daftar arsip KKR"><table class="item-table archive-table"><thead><tr><th scope="col">Nomor &amp; judul KKR</th><th scope="col">Penugasan</th><th scope="col">Versi</th><th scope="col">Finalisasi</th><th scope="col">Kedudukan versi</th><th scope="col">Tindakan</th></tr></thead><tbody>
+@forelse($versions as $version)@php($s=$version->snapshot)<tr><td><strong>{{ $s['number']??'Nomor tidak tercatat' }}</strong><small class="cell-detail">{{ $s['title']??'Judul tidak tercatat' }}</small></td><td>{{ $s['source']['assignment']['number']??'Tidak tercatat' }}<small class="cell-detail">{{ $s['source']['assignment']['organization']['name']??'' }}</small></td><td>{{ $version->version_number }}</td><td>{{ $version->finalized_at->copy()->timezone('Asia/Jakarta')->format('d/m/Y H:i') }} WIB</td><td><span class="badge {{ (int)$version->version_number===(int)$version->latest_final_number?'green':'neutral' }}">{{ (int)$version->version_number===(int)$version->latest_final_number?'Final berlaku':'Digantikan versi '.$version->latest_final_number }}</span></td><td><a class="btn icon-text" href="{{ route('archives.show',$version) }}">Buka arsip versi {{ $version->version_number }}</a></td></tr>@empty<tr><td colspan="6">Belum ada arsip KKR final yang dapat Anda lihat dalam penugasan Anda.</td></tr>@endforelse
+</tbody></table></div><x-catalog-pagination :rows="$versions" noun="versi final"/></section>
+@endsection
