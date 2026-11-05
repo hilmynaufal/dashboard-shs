@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewNoteController;
 use App\Http\Controllers\ProposalHistoryController;
 use App\Http\Controllers\KkrController;
 use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ItemReportController;
 use App\Http\Middleware\RequireActiveSession;
 use App\Http\Controllers\{AccountAccessController, AccountController, PeriodController, ProfileController, ProposalController, ProposalEvidenceController, ProposalImportController, ReferenceController, VerificationController, WorkspaceController};
 use App\Support\ReferenceCatalog;
@@ -21,6 +22,8 @@ Route::get('/masuk', [SessionController::class, 'create'])->name('login')->middl
 Route::middleware(RequireActiveSession::class)->group(function (): void {
     Route::get('/aplikasi', [WorkspaceController::class, 'show'])->name('workspace');
     Route::get('/pemantauan',[ProgressController::class,'index'])->name('progress.index');
+    Route::get('/rekap',[ItemReportController::class,'index'])->name('reports.index');
+    Route::get('/rekap/excel',[ItemReportController::class,'export'])->name('reports.export');
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profil/kata-sandi', [ProfileController::class, 'password'])->middleware('throttle:6,1')->name('profile.password');

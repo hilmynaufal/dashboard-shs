@@ -80,6 +80,17 @@ berdasarkan usulan, item, dokumen, versi, pelaku, dan keputusan.
   reviu selesai, hasil sesuai, dan catatan terbuka merupakan indikator terpisah.
   Pemeriksaan visual dan keyboard dengan akun nyata serta UAT pemohon untuk
   kedua fitur tetap belum dilakukan.
+- K-20 menyediakan `/rekap` untuk pencarian dan filter item menurut tahun,
+  SHS/SBU, status, serta SKPD yang diizinkan; `/rekap/excel` mengunduh seluruh
+  hasil filter dengan lingkup dan versi yang sama. Satu item menjadi satu baris,
+  termasuk seluruh rekening dari snapshot referensinya. Akses draf privat
+  memerlukan `reports.own` dan `proposals.view_own` pada SKPD sendiri;
+  kewenangan rekap penugasan/lintas SKPD saja memakai versi terkirim terbaru.
+  Seluruh sel Excel berupa teks untuk menjaga nol awal dan presisi harga,
+  sehingga harga tidak langsung menjadi sel angka untuk perhitungan.
+  Pemeriksaan desktop/mobile, keyboard, pembukaan dan tata letak di aplikasi
+  spreadsheet, serta UAT pemohon belum dilakukan. Implementasi ini tidak
+  mencakup rekap hasil reviu atau isi KKR.
 
 ## Brand Commitments
 

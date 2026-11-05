@@ -37,14 +37,24 @@ class ResourceAccess
     /** Monitoring action and resource scope must both be granted, in the same scope. */
     public function monitoredItemIds(User $user): Builder
     {
+        return $this->actionItemIds($user,'monitoring');
+    }
+
+    public function reportedItemIds(User $user): Builder
+    {
+        return $this->actionItemIds($user,'reports');
+    }
+
+    private function actionItemIds(User $user,string $action): Builder
+    {
         return DB::table('proposal_items as item')->join('proposals as proposal','proposal.id','=','item.proposal_id')
-            ->whereIn('item.id',$this->visibleItemIds($user))->select('item.id')->where(function(Builder $q)use($user): void {
+            ->whereIn('item.id',$this->visibleItemIds($user))->select('item.id')->where(function(Builder $q)use($user,$action): void {
                 $q->whereRaw('1 = 0');
-                if ($user->hasPermission('monitoring.own') && $user->hasPermission('proposals.view_own') && $user->organization_id!==null) {
+                if ($user->hasPermission($action.'.own') && $user->hasPermission('proposals.view_own') && $user->organization_id!==null) {
                     $q->orWhere('proposal.organization_id',$user->organization_id);
                 }
-                if ($user->hasPermission('monitoring.all') && $user->hasPermission('proposals.view_all')) { $q->orWhere('proposal.status','!=','draft'); }
-                if ($user->hasPermission('monitoring.assigned') && $user->hasPermission('proposals.view_assigned')) {
+                if ($user->hasPermission($action.'.all') && $user->hasPermission('proposals.view_all')) { $q->orWhere('proposal.status','!=','draft'); }
+                if ($user->hasPermission($action.'.assigned') && $user->hasPermission('proposals.view_assigned')) {
                     $q->orWhere(fn($part)=>$part->where('proposal.status','!=','draft')->whereIn('item.id',$this->scopeQuery($user)->select('scope.proposal_item_id')));
                 }
             });

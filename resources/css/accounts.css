@@ -111,6 +111,16 @@
 .progress-indicator.is-current { background: var(--accent-soft); border-color: var(--accent); }
 .progress-indicator strong { font-variant-numeric: tabular-nums; }
 .progress-results { margin-top: 12px; }
+.report-filters { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 12px; align-items: end; }
+.report-filters .form-field { min-width: 0; }
+.report-filters select, .report-filters input { width: 100%; min-width: 0; }
+.report-org { grid-column: span 2; }
+.report-filter-actions { display: flex; flex-wrap: wrap; gap: 8px; grid-column: span 2; }
+.report-explanation { margin: 12px 0; }
+.report-table { min-width: 1150px; width: 100%; }
+.report-table td { vertical-align: top; overflow-wrap: anywhere; }
+@media (max-width: 1000px) { .report-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } .report-search { grid-column: span 2; } }
+@media (max-width: 540px) { .report-filters { grid-template-columns: minmax(0, 1fr); } .report-search, .report-org, .report-filter-actions { grid-column: auto; } }
 .progress-table { min-width: 680px; width: 100%; }
 .kkr-workspace .heading-actions { flex-wrap: wrap; max-width: 100%; }
 .kkr-print > header { margin-bottom: 12px; }
