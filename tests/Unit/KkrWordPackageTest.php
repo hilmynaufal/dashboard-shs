@@ -20,7 +20,17 @@ class KkrWordPackageTest extends TestCase
             $this->assertTrue($zip->open($path));
             for($i=0;$i<$zip->numFiles;$i++){$xml=$zip->getFromIndex($i);$dom=new \DOMDocument;$this->assertTrue($dom->loadXML($xml,LIBXML_NONET));$this->assertStringNotContainsString('TargetMode="External"',$xml);}
             $document=$zip->getFromName('word/document.xml');$dom=new \DOMDocument;$dom->loadXML($document);$x=new \DOMXPath($dom);$x->registerNamespace('w','http://schemas.openxmlformats.org/wordprocessingml/2006/main');
-            $this->assertSame(4,$x->query('//w:tbl')->length);
+            // Identitas + tujuan + langkah + pita HASIL REVIU satu kotak menyambung (6 kolom), lalu temuan dan penutup.
+            $this->assertSame(3,$x->query('//w:tbl')->length);
+            $form='//w:tbl[count(w:tblGrid/w:gridCol)=6]';
+            $this->assertSame(1,$x->query($form)->length);
+            $this->assertSame(10205,(int)$x->evaluate('sum('.$form.'/w:tblGrid/w:gridCol/@w:w)'));
+            $this->assertSame(1,$x->query($form.'/w:tr[w:tc/w:p/w:r/w:t="TUJUAN"]')->length);
+            $this->assertSame(1,$x->query($form.'/w:tr[w:tc/w:p/w:r/w:t="HASIL REVIU"]')->length);
+            $this->assertSame(0,$x->query($form.'/w:tblPr/w:tblBorders/w:insideH[@w:val="single"]|'.$form.'/w:tblPr/w:tblBorders/w:insideV[@w:val="single"]')->length);
+            // Judul bagian bernomor huruf A.–E. lewat penomoran Word asli, bukan teks ketikan.
+            $this->assertSame(5,$x->query('//w:p[w:pPr/w:numPr/w:numId/@w:val="1"]')->length);
+            $this->assertStringContainsString('upperLetter',$zip->getFromName('word/numbering.xml'));
             $findings = '//w:tbl[count(w:tblGrid/w:gridCol)=8]';
             $this->assertSame(4,$x->query($findings.'/w:tr')->length);
             $this->assertSame(8,$x->query($findings.'/w:tr[1]/w:tc/w:tcPr/w:shd[@w:fill="C5E0B3"]')->length);

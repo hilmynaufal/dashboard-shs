@@ -14,7 +14,13 @@ The review table has these eight columns, in order: No., Kode, Uraian,
 Spesifikasi, Satuan, Harga, Pengusul, Catatan Hasil Reviu. The implemented
 A4 portrait geometry is 11907 × 16839 twips; margins top 964, left/right/bottom 851 and
 header/footer distances 709. The proportional eight-column grid is fitted to
-the 10205-twip usable width. The Word layout follows Form. 5 with a ruled form heading, a paired identity block,
+the 10205-twip usable width. Identity (label, colon, value in two halves), TUJUAN,
+LANGKAH-LANGKAH KERJA and the HASIL REVIU band form one continuous six-column
+box with only the outer border plus a divider between the identity halves, so no
+borders break between those blocks. Sections after it are lettered A., B., C., …
+(Dasar pemeriksaan, Ruang lingkup, Kertas Kerja Reviu, Kesimpulan, Rekomendasi)
+with real Word numbering (`word/numbering.xml`, upper-letter, bold) and indented,
+justified body text. The Word layout follows Form. 5 with a ruled form heading,
 gray section bands, a light green repeating header and three team signature columns.
 The form uses Arial 11pt. The findings table uses Calibri 11pt with an 8pt header
 and row numbers. Legal basis, scope, narratives and names come from the selected
