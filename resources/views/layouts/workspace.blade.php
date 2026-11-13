@@ -26,6 +26,7 @@
             ['Penilaian ZI', 'zi.index', [], request()->routeIs('zi.*'), 'clipboard', $any(['zi.manage', 'zi.template', 'zi.write', 'zi.submit', 'zi.review', 'zi.return', 'zi.finalize'])],
         ],
         'Reviu' => [
+            ['Impor Inspektorat', 'inspectorate.imports.index', [], request()->routeIs('inspectorate.imports.*'), 'upload', $me->can('inspectorate.import')],
             ['Verifikasi kelengkapan', 'verification.index', [], request()->routeIs('verification.*'), 'shield', $me->can('verification.perform') && $me->can('proposals.view_all')],
             ['Penugasan reviu', 'assignments.index', [], request()->routeIs('assignments.*') && ! request()->routeIs('assignments.work'), 'user-check', $reviewer && ($me->hasRole('team_lead') || $me->hasRole('technical_controller') || $me->hasRole('examiner'))],
             ['Pekerjaan pemeriksa', 'assignments.work', [], request()->routeIs('assignments.work'), 'clipboard', $reviewer && $me->hasRole('examiner')],

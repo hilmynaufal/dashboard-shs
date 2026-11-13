@@ -22,6 +22,7 @@ Route::get('/masuk', [SessionController::class, 'create'])->name('login')->middl
 
 Route::middleware(RequireActiveSession::class)->group(function (): void {
     require __DIR__.'/zi.php';
+    require __DIR__.'/inspectorate.php';
     Route::get('/aplikasi', [WorkspaceController::class, 'show'])->name('workspace');
     Route::get('/pemantauan',[ProgressController::class,'index'])->name('progress.index');
     Route::get('/rekap',[ItemReportController::class,'index'])->name('reports.index');
