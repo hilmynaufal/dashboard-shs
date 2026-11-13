@@ -22,6 +22,7 @@ class ReviewController extends Controller
         return view('reviews.start', $this->source($version) + [
             'assignment' => $assignment, 'scope' => $record, 'recordVersion' => AssignmentWork::token($assignment),
             'aspects' => DB::table('review_aspects')->where('is_active', true)->orderBy('id')->get(),
+            'nav' => $this->neighbors($request, $assignment, $scope),
         ]);
     }
 
@@ -68,6 +69,7 @@ class ReviewController extends Controller
             'review' => $review, 'assignment' => $assignment, 'results' => $results = ReviewWork::results($review->id), 'overall' => ReviewWork::overall($results),
             'notes' => $notes, 'recordVersion' => Gate::allows('update', $review) ? ReviewWork::token($review) : null,
             'problems' => ReviewWork::problems($review->id),
+            'nav' => $this->neighbors($request, $assignment, (int)$review->assignment_item_id),
         ]);
     }
 
@@ -78,7 +80,7 @@ class ReviewController extends Controller
         $request->mergeIfMissing(['result_mode' => $review->result_mode ?? 'per_aspect']);
         $single = $request->input('result_mode') === 'single';
         $data = $request->validate([
-            'record_version' => ['required', 'string', 'regex:/\A[a-f0-9]{64}\z/'], 'intent' => ['required', Rule::in(['save', 'complete'])],
+            'record_version' => ['required', 'string', 'regex:/\A[a-f0-9]{64}\z/'], 'intent' => ['required', Rule::in(['save', 'complete', 'complete_next'])],
             'result_mode' => ['required', Rule::in(array_keys(ItemReview::MODES))],
             'comparison_price' => ['nullable'], 'recommended_price' => ['nullable'], 'recommendation' => ['nullable', 'string', 'max:10000'],
         ] + ($single ? [
@@ -89,6 +91,9 @@ class ReviewController extends Controller
             'results.*.result' => ['required', Rule::in(array_keys(ItemReview::RESULTS))],
             'results.*.reason' => ['nullable', 'string', 'max:10000'], 'results.*.recommendation' => ['nullable', 'string', 'max:10000'],
         ]), AccountValidation::MESSAGES);
+        // "Selesai & lanjut" menyimpan persis seperti "selesai"; bedanya hanya tujuan setelah tersimpan.
+        $continue = $data['intent'] === 'complete_next';
+        if ($continue) { $data['intent'] = 'complete'; }
         $comparison = ReviewWork::money($data['comparison_price'] ?? null, 'comparison_price');
         $recommended = ReviewWork::money($data['recommended_price'] ?? null, 'recommended_price');
         DB::transaction(function () use ($request, $review, $data, $comparison, $recommended): void {
@@ -130,6 +135,18 @@ class ReviewController extends Controller
         }, 3);
         $message = $data['intent'] === 'complete' ? 'Reviu item selesai diperiksa; supervisi dan KKR mengikuti tahap berikutnya.' : 'Draf hasil reviu tersimpan.';
 
+        if ($continue) {
+            $scope = (int)$review->assignment_item_id;
+            $assignmentId = (int)DB::table('assignment_items')->where('id', $scope)->value('review_assignment_id');
+            $todo = $this->neighbors($request, ReviewAssignment::findOrFail($assignmentId), $scope)['todo'];
+            $next = $todo ? route('reviews.desk', [$assignmentId, $todo]) : null;
+            $message = $todo ? 'Reviu item sebelumnya selesai diperiksa. Ini item berikutnya yang perlu Anda kerjakan.'
+                : 'Reviu item selesai diperiksa. Tidak ada item lain yang perlu Anda kerjakan pada penugasan ini.';
+            if ($request->expectsJson()) { return response()->json(['message' => $message, 'next' => $next]); }
+
+            return redirect()->to($next ?? route('reviews.show', $review))->with('status', $message);
+        }
+
         return $request->expectsJson() ? response()->json(['message' => $message]) : redirect()->route('reviews.show', $review)->with('status', $message);
     }
 
@@ -152,6 +169,28 @@ class ReviewController extends Controller
 
         return $request->expectsJson() ? response()->json(['id' => $id, 'message' => 'Catatan internal ditambahkan.'], 201)
             : redirect()->route('reviews.show', $review)->with('status', 'Catatan internal ditambahkan tanpa menimpa catatan sebelumnya.');
+    }
+
+    /**
+     * Posisi item di antara item penugasan yang boleh dilihat pengguna (urut pembagian tugas),
+     * beserta item berikutnya milik pengguna yang reviunya belum selesai.
+     */
+    private function neighbors(Request $request, ReviewAssignment $assignment, int $scope): array
+    {
+        $user = $request->user();
+        $rows = AssignmentWork::items($user, $assignment)->addSelect('member.user_id as examiner_user_id')->orderBy('scope.id')->get();
+        $ids = $rows->pluck('id')->map(fn ($id) => (int)$id)->values();
+        $index = $ids->search($scope);
+        $pending = $rows->filter(fn ($row) => (int)$row->id !== $scope && (int)$row->examiner_user_id === (int)$user->id && (int)$row->completed_reviews === 0)
+            ->pluck('id')->map(fn ($id) => (int)$id)->values();
+
+        return [
+            'assignment' => $assignment->id, 'total' => $ids->count(), 'position' => $index === false ? null : $index + 1,
+            'prev' => $index === false || $index === 0 ? null : $ids[$index - 1],
+            'next' => $index === false || $index === $ids->count() - 1 ? null : $ids[$index + 1],
+            // Utamakan item setelah item ini; bila habis, kembali ke yang terlewat di depannya.
+            'todo' => $pending->first(fn ($id) => $id > $scope) ?? $pending->first(),
+        ];
     }
 
     private function source(ProposalItemVersion $version): array

@@ -1,7 +1,7 @@
 @extends('layouts.workspace')
 @section('title','Mulai reviu item')
 @section('subtitle',$assignment->number.' · '.$assignment->title)
-@section('actions')<a class="btn secondary" href="{{ route('assignments.show',$assignment) }}">Kembali ke penugasan</a>@endsection
+@section('actions')@include('reviews.nav')<a class="btn secondary" href="{{ route('assignments.show',$assignment) }}">Kembali ke penugasan</a>@endsection
 @section('content')
 <div class="review-layout"><section class="form-panel review-source">@include('reviews.source')</section><section class="form-panel"><h2>Aspek pemeriksaan</h2>
 @if($aspects->contains(fn($aspect)=>str_starts_with($aspect->code,'PROTO_')))<p class="account-message">Aspek prototipe yang disetujui pengembang; belum menjadi SOP final instansi.</p>@endif

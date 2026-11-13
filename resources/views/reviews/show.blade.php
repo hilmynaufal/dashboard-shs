@@ -1,7 +1,7 @@
 @extends('layouts.workspace')
 @section('title','Hasil reviu item')
 @section('subtitle',$assignment->number.' · Versi item '.$version->version_number.' · '.\App\Models\ItemReview::STATUSES[$review->status])
-@section('actions')<a class="btn secondary" href="{{ route('assignments.show',$assignment) }}">Kembali ke penugasan</a>@endsection
+@section('actions')@include('reviews.nav')<a class="btn secondary" href="{{ route('assignments.show',$assignment) }}">Kembali ke penugasan</a>@endsection
 @section('content')
 @php($editable=auth()->user()->can('update',$review))
 @php($mode=\App\Support\FormInput::oldText('result_mode',$review->result_mode ?? 'per_aspect'))
@@ -31,7 +31,7 @@
 @if($problems)<div class="review-stored-status"><strong>Draf tersimpan belum lengkap</strong><ul>@foreach($problems as $problem)<li>{{ $problem }}</li>@endforeach</ul></div>@endif
 <p class="form-bottom-note">Simpan &amp; selesai memeriksa isian di formulir ini. Aspek wajib harus dinilai; Tidak berlaku memerlukan alasan. Selesai diperiksa belum berarti disetujui supervisor atau KKR final.</p>
 @if($errors->has('record_version'))<a class="btn secondary access-reload" href="{{ route('reviews.show',$review) }}">Muat ulang reviu</a>@endif
-<div class="form-actionbar"><button class="btn secondary" type="submit" name="intent" value="save">Simpan draf</button><button class="btn primary" type="submit" name="intent" value="complete">Simpan &amp; selesai</button></div></form>
+<div class="form-actionbar"><button class="btn secondary" type="submit" name="intent" value="save">Simpan draf</button><button class="btn primary" type="submit" name="intent" value="complete">Simpan &amp; selesai</button>@if($nav['todo'])<button class="btn primary" type="submit" name="intent" value="complete_next">Simpan &amp; lanjut berikutnya &rsaquo;</button>@endif</div></form>
 @else<dl class="proposal-version-facts"><div><dt>Harga pembanding</dt><dd>{{ $review->comparison_price===null?'Belum diisi':\App\Support\ProposalMoney::display($review->comparison_price) }}</dd></div><div><dt>Rekomendasi harga</dt><dd>{{ $review->recommended_price===null?'Belum diisi':\App\Support\ProposalMoney::display($review->recommended_price) }}</dd></div></dl><h3>Rekomendasi item</h3><p class="verification-copy">{{ $review->recommendation ?? 'Belum diisi' }}</p>@if($review->completed_at)<p class="account-body-copy">Selesai diperiksa {{ \Carbon\CarbonImmutable::parse($review->completed_at,'UTC')->timezone('Asia/Jakarta')->format('d/m/Y H:i') }} WIB. Rekaman ini hanya-baca.</p>@endif @endif
 </section></div>
 <section class="form-panel proposal-followup"><div class="section-heading"><div><h2>Catatan masalah</h2><p>Draf tetap internal sampai Ketua Tim mengirimkannya resmi.</p></div></div>

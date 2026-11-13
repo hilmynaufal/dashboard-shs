@@ -164,6 +164,41 @@ class ReviewWorkflowTest extends MySqlAccessTestCase
         $this->get('/reviu/'.$id)->assertOk()->assertSee('Hasil pemeriksaan')->assertSee('Seluruh aspek sesuai')->assertDontSee('name="intent"',false);
     }
 
+    private function extraScope(): int
+    {
+        $source=$this->submissionData['version'];
+        $item=DB::table('proposal_items')->insertGetId(['proposal_id'=>$this->submissionData['proposal']->id,'public_id'=>Str::uuid()->toString(),'status'=>'assigned']);
+        $version=DB::table('proposal_item_versions')->insertGetId(['proposal_item_id'=>$item,'version_number'=>1,'item_classification_id'=>$source->item_classification_id,'unit_id'=>$source->unit_id,
+            'description'=>'Item tambahan simulasi','specification'=>'Spesifikasi simulasi','proposed_price'=>'1000.00','reference_snapshot'=>'{}','created_by'=>$this->owner->id,'submitted_at'=>now()]);
+
+        return DB::table('assignment_items')->insertGetId(['review_assignment_id'=>$this->assignment()->id,'proposal_item_id'=>$item,'initial_version_id'=>$version,'examiner_member_id'=>$this->assignmentData['members']['examiner']]);
+    }
+
+    public function test_previous_next_navigation_and_complete_then_continue_to_the_next_unfinished_item(): void
+    {
+        $id=$this->startReview();$this->get('/reviu/'.$id)->assertOk()->assertDontSee('review-nav',false)->assertDontSee('complete_next',false);
+        $second=$this->extraScope();$third=$this->extraScope();$base='/penugasan/'.$this->assignment()->id.'/item/';
+        $this->get('/reviu/'.$id)->assertOk()->assertSee('Item 1 dari 3')->assertSee($base.$second.'/reviu',false)->assertDontSee('rel="prev"',false)->assertSee('value="complete_next"',false);
+        $this->get($base.$second.'/reviu')->assertOk()->assertSee('Item 2 dari 3')->assertSee($this->desk(),false)->assertSee($base.$third.'/reviu',false);
+        $this->get($base.$third.'/reviu')->assertOk()->assertSee('Item 3 dari 3')->assertDontSee('rel="next"',false);
+
+        // Isian belum lengkap: tetap di reviu ini dan tidak berpindah.
+        $this->saveReview($id,['intent'=>'complete_next','results'=>$this->values($id,'not_assessed')])->assertUnprocessable()->assertJsonValidationErrors('completion');
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'status'=>'in_progress']);
+
+        $this->post('/reviu/'.$id,['record_version'=>$this->token($id),'intent'=>'complete_next','results'=>$this->values($id)])->assertRedirect($base.$second.'/reviu');
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'status'=>'completed']);
+
+        // Dari item terakhir, kembali ke item yang terlewat; setelah semuanya selesai, tetap di reviu.
+        $this->actingAs($this->examiner);$start=fn(int $scope)=>$this->postJson($base.$scope.'/reviu',['record_version'=>AssignmentWork::token($this->assignment())])->assertCreated()->json('id');
+        $last=$start($third);$this->saveReview($last,['intent'=>'complete_next'])->assertOk()->assertJsonPath('next',url($base.$second.'/reviu'));
+        $middle=$start($second);$this->saveReview($middle,['intent'=>'complete_next'])->assertOk()->assertJsonPath('next',null);
+        $this->assertDatabaseHas('item_reviews',['id'=>$middle,'status'=>'completed']);
+
+        // Ketua Tim dapat berpindah item, tetapi tidak mendapat tombol simpan.
+        $this->actorAs($this->lead);$this->get('/reviu/'.$id)->assertOk()->assertSee('Item 1 dari 3')->assertDontSee('name="intent"',false);
+    }
+
     public function test_review_without_mode_keeps_using_the_stored_mode(): void
     {
         $id=$this->startReview();$this->saveReview($id,['result_mode'=>'single','results'=>null,'overall'=>['result'=>'compliant','reason'=>'Satu hasil']])->assertOk();
