@@ -92,6 +92,25 @@ class VerificationWorkflowTest extends MySqlAccessTestCase
         $this->get('/usulan/'.$this->proposal)->assertOk()->assertSee('Verifikasi');
     }
 
+    public function test_local_demo_completion_can_be_resubmitted_without_evidence(): void
+    {
+        // These tests change the app environment; keep the usual test-only CSRF bypass.
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class);
+        $this->app->instance('env','local'); config(['demo.allow_missing_evidence'=>true]);
+        $version=$this->postJson('/usulan/'.$this->proposal.'/item',$this->fields()+[
+            'record_version'=>ProposalDraft::version(Proposal::findOrFail($this->proposal)),
+        ])->assertCreated()->json('version_id');
+        $item=(int)DB::table('proposal_item_versions')->where('id',$version)->value('proposal_item_id');
+        $this->submit(); $this->actorAs($this->bkad); $this->decide($item)->assertOk();
+        $this->actorAs($this->operator); $this->edit($item,['name'=>'Perbaikan data demo']);
+        $this->get('/usulan/'.$this->proposal.'/item/'.$item.'/kelengkapan')->assertOk()
+            ->assertSee('Demo lokal: bukti pendukung boleh dikosongkan.')->assertSee('Saya telah memeriksa data kelengkapan item ini.');
+        $this->resubmit($item)->assertOk();
+        $this->assertDatabaseCount('evidence_files',0);
+        $this->actorAs($this->bkad); $this->decide($item,'ready','Pemeriksaan demo')->assertOk();
+        $this->assertDatabaseHas('proposal_items',['id'=>$item,'status'=>'ready']);
+    }
+
     public function test_return_requires_reason_and_stale_or_invalid_decisions_never_write_history(): void
     {
         $item=$this->item();$this->submit();$this->actorAs($this->bkad);

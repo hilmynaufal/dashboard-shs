@@ -2,21 +2,22 @@
 <html lang="id">
 <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow"><title>Masuk · SHS/SBU</title>
+    <meta name="robots" content="noindex, nofollow"><link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}"><script>document.documentElement.classList.add('js')</script><title>Masuk · SHS/SBU</title>
+    @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="operator-app account-app">
 <main class="login-layout">
     <section class="login-intro" aria-label="Sistem Informasi SHS New">
-        <div class="brand"><span class="brand-mark"><x-ui-icon name="building"/></span><span><strong>SHS <span class="brand-slash">/</span> SBU</strong><small>Sistem Informasi SHS New</small></span></div>
-        <div class="login-purpose"><h2>Usulan tertata.<br>Reviu lebih terarah.</h2><p>Ruang kerja pengusulan standar harga dan reviu Inspektorat Daerah.</p><div class="login-process"><span>Pengusulan</span><x-ui-icon name="arrow"/><span>Reviu</span><x-ui-icon name="arrow"/><span>Rekomendasi</span></div></div>
+        <div class="brand"><x-brand-mark/><span><strong>SHS <span class="brand-slash">/</span> SBU</strong><small>Sistem Informasi SHS New</small></span></div>
+        <div class="login-purpose"><h2>Usulan tertata.<br>Reviu lebih terarah.</h2><p>Ruang kerja pengusulan standar harga dan reviu Inspektorat Daerah.</p><div class="login-process"><div class="login-step"><span><x-ui-icon name="folder"/></span><div>Pengusulan<small>SKPD menyusun item dan bukti survei</small></div></div><div class="login-step"><span><x-ui-icon name="shield"/></span><div>Reviu<small>Kelengkapan, penilaian aspek, dan catatan</small></div></div><div class="login-step"><span><x-ui-icon name="file-check"/></span><div>Rekomendasi<small>Supervisi berjenjang dan KKR</small></div></div></div></div>
         <p class="login-institution">Inspektorat Daerah</p>
     </section>
     <section class="login-form-region">
         <div class="login-form-wrap">
             <div class="page-heading"><div><h1>Masuk ke ruang kerja</h1><p>Gunakan akun yang diberikan pengelola aplikasi.</p></div></div>
-            @if(session('status'))<div class="account-message success" role="status">{{ session('status') }}</div>@endif
-            @if($errors->any() || isset($loginLimitMessage))<div class="account-message error" role="alert">{{ $loginLimitMessage ?? $errors->first() }}</div>@endif
+            @if(session('status'))<div class="account-message success" role="status"><x-ui-icon name="check-circle"/><span>{{ session('status') }}</span></div>@endif
+            @if($errors->any() || isset($loginLimitMessage))<div class="account-message error" role="alert"><x-ui-icon name="alert"/><span>{{ $loginLimitMessage ?? $errors->first() }}</span></div>@endif
             <form method="POST" action="{{ route('session.store') }}" data-submit-form>
                 @csrf
                 <div class="form-field"><label for="email">Email</label><input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="username" required maxlength="255" @error('email') aria-invalid="true" aria-describedby="email-error" @enderror><x-field-error field="email"/></div>

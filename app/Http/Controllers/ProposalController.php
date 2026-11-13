@@ -149,7 +149,7 @@ class ProposalController extends Controller
             $time=now(); DB::table('proposal_item_versions')->whereIn('id',$ids)->whereNull('submitted_at')->update(['submitted_at'=>$time]);
             DB::table('proposal_items')->where('proposal_id',$locked->id)->update(['status'=>'submitted','updated_at'=>$time]);
             $locked->status='submitted';$locked->submitted_at=$time;$locked->save();
-            CatalogAudit::record($request->user()->id,'proposal.submitted','proposal',$locked->id,null,['version_ids'=>$ids,'submitted_at'=>$time->toIso8601String()]);
+            CatalogAudit::record($request->user()->id,'proposal.submitted','proposal',$locked->id,null,['version_ids'=>$ids,'submitted_at'=>$time->toIso8601String(),'evidence_optional_demo'=>\App\Support\DemoMode::allowsMissingEvidence()]);
         },3);
 
         return $request->expectsJson()?response()->json(['message'=>'Usulan berhasil diajukan.']):redirect()->route('proposals.show',$proposal)->with('status','Usulan berhasil diajukan. Isi yang terkirim kini hanya-baca.');

@@ -46,6 +46,9 @@
 .review-layout { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.5fr); gap: 12px; align-items: start; }
 .review-source { position: sticky; top: 12px; max-height: calc(100dvh - 88px); overflow: auto; }
 .review-source h2, .review-layout h3 { overflow-wrap: anywhere; }
+.mode-panel { border: 0; padding: 0; margin: 0; min-width: 0; }
+.mode-panel[hidden] { display: none; }
+.mode-panel > small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; }
 .review-aspect { padding: 12px 0; border-bottom: 1px solid var(--line); }
 .review-aspect > small { display: block; color: var(--muted); font-size: 11px; margin-top: 4px; }
 .review-aspect-heading { display: flex; gap: 8px; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }

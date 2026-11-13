@@ -121,7 +121,7 @@ final class ProposalDraft
         foreach ($rows as $row) {
             try { $lookup->validate(ProposalItemInput::fields($row), true); }
             catch (ValidationException $error) { $problems[$row->item_id] = array_merge(...array_values($error->errors())); }
-            if ($row->files->isEmpty()) { $problems[$row->item_id][] = 'Bukti pendukung belum dilampirkan.'; }
+            if ($row->files->isEmpty() && ! DemoMode::allowsMissingEvidence()) { $problems[$row->item_id][] = 'Bukti pendukung belum dilampirkan.'; }
         }
         if ($itemId === null && DB::table('import_batches')->where('proposal_id',$proposal->id)->where('status','preview')->exists()) { $problems['import'] = ['Simpan atau batalkan pratinjau impor sebelum mengirim usulan.']; }
 

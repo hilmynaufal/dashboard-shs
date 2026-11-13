@@ -130,6 +130,49 @@ class ReviewWorkflowTest extends MySqlAccessTestCase
         $this->get('/reviu/'.$id)->assertOk()->assertSee('Rekaman ini hanya-baca')->assertDontSee('name="intent"',false);
     }
 
+    public function test_single_result_mode_applies_one_result_to_every_aspect_and_can_switch_back(): void
+    {
+        $id=$this->startReview();$this->assertDatabaseHas('item_reviews',['id'=>$id,'result_mode'=>'per_aspect']);
+        $this->get('/reviu/'.$id)->assertOk()->assertSee('Mode penilaian')->assertSee('Satu hasil pemeriksaan')->assertSee('name="overall[result]"',false);
+        $single=fn(array $overall,string $intent='save')=>$this->saveReview($id,['result_mode'=>'single','intent'=>$intent,'results'=>null,'overall'=>$overall]);
+
+        // Satu hasil berlaku untuk seluruh aspek; catatan dan rekomendasi hanya pada aspek pertama.
+        $single(['result'=>'non_compliant','reason'=>'Dasar harga belum ada','recommendation'=>'Lengkapi dasar harga'])->assertOk();
+        $rows=ReviewWork::results($id);$this->assertCount(5,$rows);
+        $this->assertSame(['non_compliant'],$rows->pluck('result')->unique()->values()->all());
+        $this->assertSame('Dasar harga belum ada',$rows[0]->reason);$this->assertSame('Lengkapi dasar harga',$rows[0]->recommendation);
+        $this->assertNull($rows[1]->reason);$this->assertNull($rows[4]->recommendation);
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'result_mode'=>'single','status'=>'in_progress']);
+        $this->get('/reviu/'.$id)->assertOk()->assertSee('Dasar harga belum ada')->assertSee('Berlaku untuk 5 aspek');
+
+        // Belum dinilai tidak dapat diselesaikan; Tidak berlaku wajib beralasan.
+        $single(['result'=>'not_assessed'],'complete')->assertUnprocessable()->assertJsonValidationErrors('completion');
+        $single(['result'=>'not_applicable','reason'=>' '])->assertUnprocessable()->assertJsonValidationErrors('overall.reason');
+        $single(['result'=>'bukan-pilihan'])->assertUnprocessable()->assertJsonValidationErrors('overall.result');
+        $this->assertSame('non_compliant',ReviewWork::results($id)->first()->result);
+
+        // Kembali ke mode per aspek: aspek dinilai sendiri-sendiri dan harus lengkap.
+        $values=$this->values($id,'compliant');$this->saveReview($id,['result_mode'=>'per_aspect','results'=>$values])->assertOk();
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'result_mode'=>'per_aspect']);
+        $this->saveReview($id,['result_mode'=>'per_aspect','results'=>null])->assertUnprocessable()->assertJsonValidationErrors('results');
+        $this->saveReview($id,['result_mode'=>'campuran'])->assertUnprocessable()->assertJsonValidationErrors('result_mode');
+
+        // Penyelesaian mode tunggal.
+        $single(['result'=>'compliant','reason'=>'Seluruh aspek sesuai','recommendation'=>'Lanjutkan'],'complete')->assertOk();
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'status'=>'completed','result_mode'=>'single']);
+        $this->assertSame(['compliant'],ReviewWork::results($id)->pluck('result')->unique()->values()->all());
+        $this->get('/reviu/'.$id)->assertOk()->assertSee('Hasil pemeriksaan')->assertSee('Seluruh aspek sesuai')->assertDontSee('name="intent"',false);
+    }
+
+    public function test_review_without_mode_keeps_using_the_stored_mode(): void
+    {
+        $id=$this->startReview();$this->saveReview($id,['result_mode'=>'single','results'=>null,'overall'=>['result'=>'compliant','reason'=>'Satu hasil']])->assertOk();
+        $payload=['record_version'=>$this->token($id),'intent'=>'save','overall'=>['result'=>'insufficient_evidence','reason'=>'Bukti kurang'],'comparison_price'=>null,'recommended_price'=>null,'recommendation'=>null];
+        $this->postJson('/reviu/'.$id,$payload)->assertOk();
+        $this->assertSame(['insufficient_evidence'],ReviewWork::results($id)->pluck('result')->unique()->values()->all());
+        $this->assertDatabaseHas('item_reviews',['id'=>$id,'result_mode'=>'single']);
+    }
+
     public function test_aspect_master_changes_do_not_rewrite_snapshot_or_required_completion_rules(): void
     {
         $id=$this->startReview();$row=ReviewWork::results($id)->first();

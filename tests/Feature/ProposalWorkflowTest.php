@@ -108,6 +108,69 @@ class ProposalWorkflowTest extends MySqlAccessTestCase
         $this->get('/usulan/buat')->assertOk();$this->get('/usulan')->assertOk();
     }
 
+    public function test_local_demo_can_submit_without_evidence_and_bkad_can_verify_it():void
+    {
+        // These tests change the app environment; keep the usual test-only CSRF bypass.
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class);
+        $this->app->instance('env','local'); config(['demo.allow_missing_evidence'=>true]);
+        $id=$this->package(); $version=$this->item($id);
+        $this->get('/usulan/'.$id.'/periksa')->assertOk()->assertSee('Demo lokal: bukti pendukung boleh dikosongkan.')
+            ->assertSee('Data siap dikirim')->assertDontSee('Data dan bukti sudah lengkap')->assertDontSee('Bukti pendukung belum dilampirkan.');
+        $this->send($id)->assertOk();
+        $this->assertDatabaseHas('proposals',['id'=>$id,'status'=>'submitted']);
+        $this->assertDatabaseCount('evidence_files',0);
+        $event=DB::table('activity_logs')->where('action','proposal.submitted')->where('subject_id',$id)->first();
+        $this->assertTrue(json_decode($event->after_values,true)['evidence_optional_demo']);
+        $this->flushSession(); $this->actingAs($this->actor('bkad'));
+        $this->get('/verifikasi/'.$version->proposal_item_id)->assertOk()->assertSee('Demo lokal: bukti pendukung boleh dikosongkan.');
+        $this->postJson('/verifikasi/'.$version->proposal_item_id,[
+            'result'=>'ready','record_version'=>\App\Support\ItemVerification::token(\App\Models\ProposalItem::findOrFail($version->proposal_item_id)),
+        ])->assertOk();
+        $this->assertDatabaseHas('proposal_items',['id'=>$version->proposal_item_id,'status'=>'ready']);
+    }
+
+    public function test_demo_flag_cannot_relax_evidence_outside_local_or_when_disabled():void
+    {
+        // These tests change the app environment; keep the usual test-only CSRF bypass.
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class);
+        $id=$this->package(); $item=$this->item($id);
+        foreach(['production','staging','testing'] as $environment) {
+            $this->app->instance('env',$environment); config(['demo.allow_missing_evidence'=>true]);
+            $this->get('/usulan/'.$id.'/periksa')->assertOk()->assertSee('Bukti pendukung belum dilampirkan.')
+                ->assertDontSee('Demo lokal: bukti pendukung boleh dikosongkan.');
+            $this->send($id)->assertUnprocessable()->assertJsonValidationErrors('items.'.$item->proposal_item_id);
+        }
+        $this->app->instance('env','local'); config(['demo.allow_missing_evidence'=>false]);
+        $this->postJson('/usulan/'.$id.'/kirim',['confirm'=>true,'demo_allow_missing_evidence'=>true,
+            'record_version'=>ProposalDraft::version(Proposal::findOrFail($id))])->assertUnprocessable();
+        $this->assertDatabaseHas('proposals',['id'=>$id,'status'=>'draft','submitted_at'=>null]);
+    }
+
+    public function test_local_demo_still_requires_item_fields_and_an_open_period():void
+    {
+        // These tests change the app environment; keep the usual test-only CSRF bypass.
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class);
+        $this->app->instance('env','local'); config(['demo.allow_missing_evidence'=>true]);
+        $id=$this->package(); $version=$this->item($id,['account'=>'','price'=>'0','spec'=>'']);
+        $this->send($id)->assertUnprocessable()->assertJsonValidationErrors('items.'.$version->proposal_item_id);
+        $this->assertDatabaseHas('proposals',['id'=>$id,'status'=>'draft']);
+        $complete=$this->package(); $this->item($complete);
+        DB::table('submission_periods')->where('id',$this->periodId)->update(['status'=>'closed']);
+        $this->send($complete)->assertUnprocessable();
+        $this->assertDatabaseHas('proposals',['id'=>$complete,'status'=>'draft']);
+    }
+
+    public function test_local_demo_does_not_ignore_missing_physical_files_already_attached():void
+    {
+        // These tests change the app environment; keep the usual test-only CSRF bypass.
+        $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class);
+        $this->app->instance('env','local'); config(['demo.allow_missing_evidence'=>true]);
+        $id=$this->package(); $version=$this->item($id); $file=$this->evidence($id,$version->proposal_item_id);
+        Storage::disk('local')->delete(DB::table('evidence_files')->where('id',$file)->value('path'));
+        $this->send($id)->assertUnprocessable()->assertJsonValidationErrors('evidence');
+        $this->assertDatabaseHas('proposals',['id'=>$id,'status'=>'draft']);
+    }
+
     public function test_editing_items_appends_immutable_versions_and_rejects_stale_edits():void
     {
         $id=$this->package();$old=$this->item($id);$token=RecordVersion::of((array)$old);

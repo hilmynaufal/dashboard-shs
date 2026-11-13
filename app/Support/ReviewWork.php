@@ -56,10 +56,32 @@ final class ReviewWork
         });
     }
 
-    public static function problems(int $reviewId): array
+    /** Mode tersimpan; "single" berarti satu hasil berlaku untuk semua aspek dan catatannya ada pada baris aspek pertama. */
+    public static function mode(int $reviewId): string
+    {
+        return DB::table('item_reviews')->where('id', $reviewId)->value('result_mode') === 'single' ? 'single' : 'per_aspect';
+    }
+
+    /** Nilai awal formulir mode tunggal: hasil bersama bila seragam, selain itu Belum dinilai. */
+    public static function overall($rows): array
+    {
+        $first = $rows->first();
+        $same = $first && $rows->every(fn ($row) => $row->result === $first->result);
+
+        return ['result' => $same ? $first->result : 'not_assessed', 'reason' => $first->reason ?? null, 'recommendation' => $first->recommendation ?? null];
+    }
+
+    public static function problems(int $reviewId, ?string $mode = null): array
     {
         $rows = self::results($reviewId); $errors = [];
         if ($rows->isEmpty()) { $errors[] = 'Aspek pemeriksaan belum disiapkan; reviu tidak dapat diselesaikan tanpa aspek.'; }
+        if (($mode ?? self::mode($reviewId)) === 'single') {
+            $overall = self::overall($rows);
+            if ($rows->isNotEmpty() && $overall['result'] === 'not_assessed') { $errors[] = 'Hasil pemeriksaan belum dinilai.'; }
+            if ($overall['result'] === 'not_applicable' && trim($overall['reason'] ?? '') === '') { $errors[] = 'Hasil pemeriksaan: jelaskan alasan tidak berlaku.'; }
+
+            return $errors;
+        }
         foreach ($rows as $row) {
             $name = $row->criterion['name'];
             if (($row->criterion['is_required'] ?? true) && $row->result === 'not_assessed') { $errors[] = $name.': aspek wajib belum dinilai.'; }

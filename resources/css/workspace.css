@@ -1,0 +1,401 @@
+/* Lapisan finalisasi ruang kerja. Token dasar tetap di operator.css; berkas ini
+   menambah elevasi, gerak, ikon, varian panel, dan kontrol input bersama. */
+.account-app {
+    --shadow-flat: 0 1px 2px #38220c0a;
+    --shadow-panel: 0 1px 2px #38220c08, 0 8px 24px #38220c0a;
+    --shadow-float: 0 2px 6px #2a1a0c14, 0 18px 44px #2a1a0c24;
+    --ring: 0 0 0 3px #e2703a2e;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --dur-fast: 150ms;
+    --dur: 200ms;
+    --field-line: #ddd7cd;
+}
+
+/* ---------- Kerangka: sidebar ---------- */
+.account-app .sidebar { padding: 18px 12px 10px; }
+.account-app .brand { padding: 0 8px 14px; }
+.account-app .brand-mark { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(160deg, #e9642f, #c9461c); box-shadow: 0 1px 0 #ffffff38 inset, 0 6px 14px #0c090740; }
+.account-app .brand-mark svg { width: 26px; height: 26px; }
+.account-app .org-switch { padding: 9px 10px; box-shadow: 0 0 0 1px #3a342b inset; }
+.account-app .org-switch small { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.account-app .org-avatar { border-radius: 9px; }
+.account-app .org-avatar .icon { width: 16px; height: 16px; }
+.account-app .sidebar nav { display: block; flex: 1; min-height: 0; overflow-y: auto; margin: 4px -4px 0; padding: 0 4px; scrollbar-width: thin; scrollbar-color: #4a4338 transparent; }
+.account-app .sidebar nav a { margin-bottom: 2px; padding: 9px 12px; min-height: 40px; transition: background var(--dur-fast), color var(--dur-fast); }
+.account-app .sidebar nav a .icon { width: 18px; height: 18px; transition: color var(--dur-fast); }
+.account-app .sidebar nav a:hover .icon { color: #e9dfd0; }
+.account-app .sidebar nav a.active { box-shadow: 0 0 0 1px #453e33 inset; }
+.account-app .sidebar nav a.active::before { top: 10px; bottom: 10px; width: 3px; left: -4px; }
+.account-app .nav-section { padding: 16px 12px 6px; font-size: 10px; }
+.account-app .nav-section:first-child { padding-top: 12px; }
+.account-app .sidebar-bottom { margin-top: 0; padding-top: 10px; border-top: 1px solid #332e27; }
+.account-app .period-card { border: 0; background: #2a2620; border-radius: 10px; padding: 10px; margin-bottom: 8px; }
+.account-app .period-card strong { overflow-wrap: anywhere; }
+.account-app a.user-button { border-radius: 10px; padding: 8px; transition: background var(--dur-fast); }
+.account-app a.user-button:hover, .account-app a.user-button.active { background: #2c2822; }
+.account-app a.user-button > .icon { width: 13px; height: 13px; color: #8f8576; }
+.account-app .sidebar-help { border-radius: 8px; transition: background var(--dur-fast), color var(--dur-fast); }
+.account-app .sidebar-help:hover { background: #2c2822; color: #fff; }
+
+/* ---------- Kerangka: topbar dan kepala halaman ---------- */
+.account-app .app-main { background: radial-gradient(ellipse 620px 380px at 100% 0, #edc7b752, transparent), radial-gradient(ellipse 480px 260px at 30% 0, #fffdfa80, transparent); }
+.account-app .breadcrumb a { color: var(--muted); font-weight: 400; border-radius: 6px; }
+.account-app .breadcrumb a:hover { color: var(--ink); }
+.account-app .account-top-profile { padding: 4px 12px 4px 4px; background: var(--surface); border-radius: 22px; box-shadow: var(--shadow-flat); transition: box-shadow var(--dur-fast); max-width: 240px; }
+.account-app .account-top-profile:hover { box-shadow: var(--shadow-panel); }
+.account-app .account-top-profile span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-app .avatar.small { width: 30px; height: 30px; box-shadow: none; font-size: 11px; flex-shrink: 0; }
+.account-app .page-heading { align-items: flex-end; margin-bottom: 16px; }
+.account-app .page-heading h1 { overflow-wrap: anywhere; }
+.account-app .page-heading p:empty { display: none; }
+.account-app .heading-actions { flex-wrap: wrap; justify-content: flex-end; }
+
+/* ---------- Tombol ---------- */
+.account-app .btn { transition: background var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast) var(--ease), color var(--dur-fast); }
+.account-app .btn:active:not(:disabled) { transform: translateY(1px) scale(.985); }
+.account-app .btn.primary { background: linear-gradient(180deg, #d2542a, var(--accent)); box-shadow: 0 1px 0 #ffffff33 inset, 0 4px 10px #7a39152e; }
+.account-app .btn.primary:hover:not(:disabled) { background: linear-gradient(180deg, #c24a22, var(--accent-hover)); box-shadow: 0 1px 0 #ffffff2b inset, 0 6px 16px #7a391540; }
+.account-app .btn.secondary { box-shadow: inset 0 0 0 1px #ded8ce, var(--shadow-flat); }
+.account-app .btn.secondary:hover:not(:disabled) { background: #f3efe8; box-shadow: inset 0 0 0 1px #cfc7ba, var(--shadow-flat); }
+.account-app .btn.icon-text { border-radius: 8px; padding: 5px 9px; color: #5d564b; }
+.account-app .btn.icon-text:hover { background: var(--surface-muted); color: var(--ink); }
+.account-app .btn.danger { color: var(--danger); }
+.account-app .btn[data-busy]::before { content: ''; width: 13px; height: 13px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: ws-spin 700ms linear infinite; }
+.account-app form[data-submit-busy="true"] button[type="submit"]:disabled { opacity: .78; }
+
+/* ---------- Isian ---------- */
+.account-app .form-field input, .account-app .form-field textarea, .account-app .form-field select,
+.account-app .search-field input, .account-app .select-wrap select { transition: border-color var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast); }
+.account-app .form-field input:hover, .account-app .form-field textarea:hover, .account-app .form-field select:hover { border-color: #cbc3b6; }
+.account-app .form-field input:focus-visible, .account-app .form-field textarea:focus-visible, .account-app .form-field select:focus-visible,
+.account-app .search-field input:focus-visible, .account-app .select-wrap select:focus-visible { outline: none; border-color: #d9683a; box-shadow: var(--ring); }
+.account-app .form-field [aria-invalid="true"] { border-color: #cf7a66; background: #fffaf8; }
+.account-app .form-field select { appearance: none; padding-right: 34px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23716b61' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; }
+.account-app .form-field input[type="file"] { padding: 8px; }
+.account-app .form-field small { font-size: 11px; }
+.account-app .field-error { display: flex; gap: 5px; align-items: baseline; }
+.account-app .field-error::before { content: '!'; display: inline-grid; place-items: center; width: 13px; height: 13px; border-radius: 50%; background: var(--danger); color: #fff; font-size: 9px; font-weight: 600; flex-shrink: 0; transform: translateY(1px); }
+.account-app .field-counter { float: right; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.account-app .field-counter.near { color: var(--warning); }
+.account-app .table-toolbar .form-field { margin: 0; display: flex; align-items: center; gap: 8px; }
+.account-app .table-toolbar .form-field label { margin: 0; color: var(--muted); font-weight: 400; white-space: nowrap; }
+.account-app .table-toolbar .form-field select { min-height: 38px; padding-top: 8px; padding-bottom: 8px; }
+.account-app .table-toolbar h2 { font-size: 15px; }
+
+/* ---------- Blok keterangan dan toast ---------- */
+.account-app .account-message { display: flex; gap: 10px; align-items: flex-start; padding: 11px 14px; border-radius: 12px; background: #efe9dc; color: #5f4d2c; font-size: 12px; line-height: 1.55; box-shadow: 0 0 0 1px #0000000a inset; }
+.account-app .account-message > .icon { width: 17px; height: 17px; margin-top: 1px; }
+.account-app .account-message.success { background: #e1f0e9; color: #0a5f4f; }
+.account-app .account-message.error { background: #fbe9e3; color: #8c3527; }
+.account-app .account-message .btn { margin-top: 6px; }
+.account-app p.account-message { display: block; }
+.js .account-app [data-toast] { position: fixed; right: 24px; bottom: 24px; z-index: 90; margin: 0; max-width: min(440px, calc(100vw - 32px)); align-items: center; background: #2b2721; color: #fbf6ec; padding: 12px 12px 12px 14px; box-shadow: var(--shadow-float); animation: ws-toast-in 260ms var(--ease) both; }
+.js .account-app [data-toast] > .icon { color: #7fd0b3; margin-top: 0; }
+.js .account-app [data-toast].leaving { animation: ws-toast-out 180ms ease-in forwards; }
+.account-app .toast-close { display: grid; place-items: center; width: 28px; height: 28px; margin-left: 6px; border-radius: 8px; background: transparent; color: #cfc6b6; flex-shrink: 0; }
+.account-app .toast-close:hover { background: #3a352d; color: #fff; }
+.account-app .toast-close .icon { width: 14px; height: 14px; }
+
+/* ---------- Panel, tabel, status ---------- */
+.account-app .table-panel, .account-app .form-panel, .account-app .evidence-panel, .account-app .submit-panel { box-shadow: var(--shadow-panel); }
+.account-app .submit-panel, .account-app .evidence-panel { position: sticky; top: 12px; }
+.account-app .section-heading { align-items: flex-start; justify-content: space-between; }
+.account-app .section-heading > div { min-width: 0; flex: 1; }
+.account-app .package-summary { background: transparent; padding: 0; gap: 0; margin-bottom: 14px; display: flex; flex-wrap: wrap; }
+.account-app .package-summary > div { padding: 2px 22px 2px 0; margin-right: 22px; border-right: 1px solid #ddd6ca; }
+.account-app .package-summary > div:last-child { border-right: 0; margin-right: 0; }
+.account-app .package-summary strong { font-size: 14px; }
+.account-app .table-scroll { padding: 0; }
+.account-app thead th { position: sticky; top: 0; z-index: 1; background: #faf7f1; padding: 9px 16px; border-top: 1px solid var(--line); letter-spacing: .02em; }
+.account-app tbody td { padding: 10px 16px; transition: background var(--dur-fast); }
+.account-app tbody tr:hover { background: #faf6f0; }
+.account-app tbody td > strong { font-weight: 500; }
+.account-app .table-toolbar { padding: 12px 16px; flex-wrap: wrap; }
+.account-app .table-footer { padding: 10px 16px; font-size: 11px; }
+.account-app .package-icon { border-radius: 10px; height: 34px; }
+.account-app .package-icon.sbu { background: #eee9f6; color: #6f57a8; }
+.account-app .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .85; flex-shrink: 0; }
+.account-app .badge:has(.status-dot)::before, .account-app .badge.plain::before { content: none; }
+.account-app .badge { padding: 4px 9px 4px 8px; font-size: 11px; }
+.account-app .type-label { font-size: 10px; }
+.account-app .empty-state { padding: 44px 24px; }
+.account-app .empty-state > .icon { width: 22px; height: 22px; padding: 11px; box-sizing: content-box; border-radius: 14px; background: #f3eee6; color: #9a8a70; margin-bottom: 12px; }
+.account-app .empty-state h2, .account-app .empty-state h3 { font-size: 15px; }
+.account-app .empty-state p { margin: 6px auto 14px; }
+.account-app .quiet-note { font-size: 11px; }
+.account-app .progress-cell { font-size: 11px; color: var(--muted); }
+.account-app .progress-track { width: 72px; height: 5px; }
+.account-app .progress-track i { transform-origin: left; animation: ws-grow 600ms var(--ease) both; }
+.account-app .row-actions { display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+.account-app .row-menu { position: relative; }
+.account-app .row-menu > summary { list-style: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; color: var(--muted); transition: background var(--dur-fast); }
+.account-app .row-menu > summary::-webkit-details-marker { display: none; }
+.account-app .row-menu > summary:hover, .account-app .row-menu[open] > summary { background: var(--surface-muted); color: var(--ink); }
+.account-app .row-menu > summary .icon { width: 16px; height: 16px; }
+.account-app .row-menu-list { position: absolute; right: 0; top: calc(100% + 4px); z-index: 20; min-width: 190px; padding: 6px; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px #0000000d, var(--shadow-float); display: grid; animation: ws-pop 160ms var(--ease) both; transform-origin: top right; }
+.account-app .row-menu-list a { display: flex; align-items: center; gap: 9px; padding: 8px 10px; min-height: 36px; border-radius: 8px; font-size: 12px; color: var(--ink); white-space: nowrap; }
+.account-app .row-menu-list a:hover { background: var(--surface-muted); }
+.account-app .row-menu-list .icon { width: 15px; height: 15px; color: var(--muted); }
+
+/* Tab pemantauan dan filter status menjadi kontrol segmen dan pil. */
+.account-app .progress-tabs { display: inline-flex; gap: 2px; padding: 3px; background: #e9e4db; border-radius: 12px; flex-wrap: wrap; }
+.account-app .progress-tabs .btn { min-height: 36px; padding: 7px 13px; box-shadow: none; background: transparent; color: #5d564b; border-radius: 9px; }
+.account-app .progress-tabs .btn.primary { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-flat); }
+.account-app .progress-tabs .btn span { padding: 0 6px; border-radius: 6px; background: #0000000d; font-size: 10px; }
+.account-app .progress-statuses .btn { min-height: 34px; padding: 6px 12px; border-radius: 20px; }
+.account-app .progress-statuses .btn.primary { background: var(--ink); box-shadow: none; }
+.account-app .progress-indicator { background: var(--surface); border: 0; border-radius: 12px; box-shadow: var(--shadow-flat); padding: 10px 14px; transition: box-shadow var(--dur-fast), transform var(--dur-fast) var(--ease); }
+.account-app .progress-indicator:hover { box-shadow: var(--shadow-panel); transform: translateY(-1px); }
+.account-app .progress-indicator.is-current { box-shadow: 0 0 0 1.5px var(--accent) inset; background: #fff8f3; }
+.account-app .progress-indicator strong { font-size: 18px; letter-spacing: -.02em; }
+.account-app .catalog-tabs { display: inline-flex; gap: 2px; padding: 3px; background: #e9e4db; border-radius: 12px; }
+.account-app .catalog-tabs a { min-height: 36px; padding: 7px 14px; background: transparent; border-radius: 9px; }
+.account-app .catalog-tabs a.selected { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-flat); }
+
+/* ---------- Bilah simpan ---------- */
+.account-app .form-actionbar { position: sticky; bottom: 0; z-index: 5; margin: 16px -16px -16px; padding: 12px 16px; background: color-mix(in srgb, var(--surface) 94%, transparent); border-top: 1px solid var(--line); border-radius: 0 0 16px 16px; }
+.account-app .submit-panel .form-actionbar, .account-app .evidence-panel .form-actionbar { position: static; margin: 12px 0 0; padding: 12px 0 0; background: none; }
+.account-app > .app-main main > .form-actionbar { position: static; margin: 16px 0 0; padding: 0; border: 0; background: none; }
+.account-app .dirty-note { margin-right: auto; display: none; align-items: center; gap: 6px; font-size: 11px; color: var(--warning); }
+.account-app form.is-dirty .dirty-note { display: inline-flex; }
+.account-app .dirty-note::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* ---------- Combobox ---------- */
+.account-app .combo { position: relative; }
+.account-app .combo-control { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-height: 42px; padding: 4px 34px 4px 6px; border: 1px solid var(--field-line); border-radius: 8px; background: var(--surface); cursor: text; transition: border-color var(--dur-fast), box-shadow var(--dur-fast); }
+.account-app .combo-control:hover { border-color: #cbc3b6; }
+.account-app .combo-control:focus-within { border-color: #d9683a; box-shadow: var(--ring); }
+.account-app .combo.invalid .combo-control { border-color: #cf7a66; }
+.account-app .form-field .combo-control input, .account-app .combo-control input { flex: 1; min-width: 120px; min-height: 32px; border: 0; padding: 4px 6px; background: transparent; box-shadow: none; outline: none; font-size: 12px; color: var(--ink); }
+.account-app .form-field .combo-control input:focus-visible { box-shadow: none; }
+.account-app .combo-caret { position: absolute; right: 4px; top: 5px; display: grid; place-items: center; width: 30px; height: 32px; border-radius: 6px; background: transparent; color: var(--muted); }
+.account-app .combo-caret:hover { background: var(--surface-muted); color: var(--ink); }
+.account-app .combo-caret .icon { width: 14px; height: 14px; transition: transform var(--dur) var(--ease); }
+.account-app .combo.open .combo-caret .icon { transform: rotate(180deg); }
+.account-app .combo-list { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; max-height: 264px; overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px #0000000d, var(--shadow-float); animation: ws-pop 160ms var(--ease) both; transform-origin: top center; }
+.account-app .combo-list[hidden] { display: none; }
+.account-app .combo-option { display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; min-height: 36px; border-radius: 8px; font-size: 12px; cursor: pointer; }
+.account-app .combo-option[aria-selected="true"] { background: #f5eee5; }
+.account-app .combo-option.is-chosen { color: var(--accent-hover); font-weight: 500; }
+.account-app .combo-option code, .account-app .chip code, .account-app .combo-hint code { font-family: inherit; font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
+.account-app .combo-option span { color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.account-app .combo-option.plain span { color: inherit; }
+.account-app .combo-status { padding: 10px; font-size: 11px; color: var(--muted); }
+.account-app .combo-skeleton { height: 12px; margin: 10px; border-radius: 6px; background: linear-gradient(90deg, #efeae2 25%, #f8f4ee 45%, #efeae2 65%); background-size: 300% 100%; animation: ws-shimmer 1.200s linear infinite; }
+.account-app .combo-skeleton:nth-child(2) { width: 70%; }
+.account-app .combo-hint { display: flex !important; align-items: center; gap: 6px; margin-top: 5px; font-size: 11px !important; color: #4d6a5c !important; }
+.account-app .combo-hint .icon { width: 13px; height: 13px; }
+.account-app .combo-hint.unknown { color: var(--warning) !important; }
+.account-app .chip { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 4px 4px 4px 9px; border-radius: 8px; background: #f3ede4; color: var(--ink); font-size: 11px; line-height: 1.4; animation: ws-pop 160ms var(--ease) both; }
+.account-app .chip span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 26ch; }
+.account-app .chip.unknown { background: #f9edce; }
+.account-app .chip.unknown span { color: #885711; }
+.account-app .chip button { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: transparent; color: var(--muted); flex-shrink: 0; }
+.account-app .chip button:hover { background: #e3dbcf; color: var(--ink); }
+.account-app .chip button .icon { width: 12px; height: 12px; }
+.account-app .visually-kept { position: absolute !important; width: 1px !important; height: 1px !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+/* ---------- Isian rupiah ---------- */
+.account-app .money-field { position: relative; }
+.account-app .money-field::before { content: 'Rp'; position: absolute; left: 12px; top: 0; height: 42px; display: grid; place-items: center; font-size: 12px; color: var(--muted); pointer-events: none; }
+.account-app .form-field .money-field input { padding-left: 38px; font-variant-numeric: tabular-nums; }
+
+/* ---------- Pilihan segmen dan kartu keputusan ---------- */
+.account-app .segmented { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: #ece7de; border-radius: 10px; max-width: 100%; }
+.account-app .segmented button { min-height: 36px; padding: 7px 13px; border-radius: 8px; background: transparent; color: #5d564b; font-size: 12px; font-weight: 500; transition: background var(--dur-fast), color var(--dur-fast), box-shadow var(--dur-fast); }
+.account-app .segmented button:hover { color: var(--ink); }
+.account-app .segmented button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-flat), 0 0 0 1px #0000000a; }
+.account-app .segmented button[aria-checked="true"][data-tone="green"] { color: #08715d; }
+.account-app .segmented button[aria-checked="true"][data-tone="warning"] { color: #885711; }
+.account-app .segmented button[aria-checked="true"][data-tone="danger"] { color: var(--danger); }
+.account-app .choice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.account-app .choice-cards button { display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 10px 12px; text-align: left; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--field-line); color: var(--ink); font-size: 12px; font-weight: 500; transition: box-shadow var(--dur-fast), background var(--dur-fast); }
+.account-app .choice-cards button::before { content: ''; width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px #b9b0a2; flex-shrink: 0; transition: box-shadow var(--dur-fast); }
+.account-app .choice-cards button:hover { background: #faf6f0; }
+.account-app .choice-cards button[aria-checked="true"] { background: #fff8f3; box-shadow: inset 0 0 0 1.5px var(--accent); }
+.account-app .choice-cards button[aria-checked="true"]::before { box-shadow: inset 0 0 0 5px var(--accent); }
+.account-app .required-flag { color: var(--accent); font-weight: 500; }
+
+/* ---------- Unggah berkas ---------- */
+.account-app .dropzone { position: relative; display: grid; justify-items: center; gap: 4px; padding: 22px 14px; border: 1.5px dashed #cbbfae; border-radius: 12px; background: #faf7f1; text-align: center; cursor: pointer; transition: background var(--dur-fast), border-color var(--dur-fast); }
+.account-app .dropzone:hover, .account-app .dropzone.dragging { background: #f6ebe0; border-color: #d9683a; }
+.account-app .dropzone:focus-within { border-color: #d9683a; box-shadow: var(--ring); }
+.account-app .dropzone > .icon { width: 20px; height: 20px; padding: 9px; box-sizing: content-box; border-radius: 12px; background: var(--surface); color: var(--accent); box-shadow: var(--shadow-flat); margin-bottom: 4px; transition: transform var(--dur) var(--ease); }
+.account-app .dropzone.dragging > .icon { transform: translateY(-3px); }
+.account-app .dropzone strong { font-size: 12px; }
+.account-app .dropzone span { font-size: 11px; color: var(--muted); }
+.account-app .form-field .dropzone input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; opacity: 0; cursor: pointer; }
+.account-app .dropzone-file { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 10px; border-radius: 10px; background: #f3eee6; font-size: 12px; animation: ws-pop 160ms var(--ease) both; }
+.account-app .dropzone-file.invalid { background: #fbe9e3; color: #8c3527; }
+.account-app .dropzone-file .icon { width: 16px; height: 16px; flex-shrink: 0; }
+.account-app .dropzone-file strong { display: block; overflow-wrap: anywhere; font-weight: 500; }
+.account-app .dropzone-file small { margin: 0; }
+.account-app .proposal-file { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: start; }
+.account-app .proposal-file::before { content: ''; grid-row: span 3; width: 30px; height: 36px; border-radius: 7px; background: #f5e9dc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239d703c' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M6 3h8l4 4v14H6z'/%3E%3Cpath d='M14 3v4h4M9 12h6M9 16h6'/%3E%3C/svg%3E") center / 17px no-repeat; }
+.account-app .proposal-file > * { grid-column: 2; }
+.account-app .proposal-file .btn { justify-self: start; margin-left: -9px; }
+
+/* ---------- Dialog konfirmasi ---------- */
+.account-app dialog.confirm-dialog { width: 420px; padding: 22px; box-shadow: var(--shadow-float); }
+.account-app dialog.confirm-dialog[open] { animation: ws-dialog 200ms var(--ease) both; }
+.account-app dialog.confirm-dialog::backdrop { background: #211a1370; animation: ws-fade 200ms ease-out both; }
+.account-app .confirm-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #f9edce; color: #885711; margin-bottom: 12px; }
+.account-app .confirm-icon .icon { width: 20px; height: 20px; }
+.account-app .confirm-dialog h2 { font-size: 17px; }
+.account-app .confirm-dialog p { margin: 6px 0 18px; color: var(--muted); font-size: 13px; }
+.account-app .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* ---------- Alat daftar: pilih semua, cari, tugaskan massal ---------- */
+.account-app .list-tools-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 12px; margin-bottom: 8px; border-radius: 10px; background: #f6f2eb; font-size: 12px; }
+.account-app .list-tools-bar .search-field { width: 240px; }
+.account-app .list-tools-bar .search-field input { background: var(--surface); }
+.account-app .list-tools-bar .count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.account-app .list-tools-bar select { min-height: 38px; padding: 7px 30px 7px 10px; border: 1px solid var(--field-line); border-radius: 8px; background-color: var(--surface); font-size: 12px; color: var(--ink); }
+.account-app .access-role-option { padding: 8px 10px; border-radius: 8px; transition: background var(--dur-fast); }
+.account-app .access-role-option:hover { background: #f6f2eb; }
+.account-app .access-role-option:has(input:checked) { background: #fff3ea; }
+.account-app .access-role-options { gap: 2px 12px; }
+
+/* ---------- Alur tahap (stepper) ---------- */
+.account-app .flow { display: flex; list-style: none; margin: 0 0 14px; padding: 14px 18px; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-panel); overflow-x: auto; }
+.account-app .flow li { position: relative; flex: 1; min-width: 96px; display: grid; justify-items: center; gap: 6px; text-align: center; font-size: 11px; color: var(--muted); }
+.account-app .flow li::before { content: ''; position: absolute; top: 13px; right: 50%; width: 100%; height: 2px; background: #e8e2d8; }
+.account-app .flow li:first-child::before { content: none; }
+.account-app .flow li > span { position: relative; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--surface); box-shadow: inset 0 0 0 2px #e0d9cd; font-size: 11px; font-weight: 600; color: var(--muted); }
+.account-app .flow li > span .icon { width: 14px; height: 14px; }
+.account-app .flow li.done::before, .account-app .flow li.current::before { background: var(--accent); }
+.account-app .flow li.done > span { background: var(--accent); color: #fff; box-shadow: none; }
+.account-app .flow li.current > span { box-shadow: inset 0 0 0 2px var(--accent), 0 0 0 4px #e2703a26; color: var(--accent); }
+.account-app .flow li.current strong { color: var(--ink); }
+.account-app .flow li strong { font-weight: 500; }
+
+/* ---------- Beranda ---------- */
+.account-app .home-stats { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-bottom: 16px; }
+.account-app .home-stat { display: flex; align-items: center; gap: 11px; color: inherit; border-radius: 12px; }
+.account-app .home-stat .stat-icon { width: 42px; height: 42px; box-shadow: var(--shadow-flat); transition: transform var(--dur) var(--ease), box-shadow var(--dur-fast); }
+.account-app a.home-stat:hover .stat-icon { transform: translateY(-2px); box-shadow: var(--shadow-panel); }
+.account-app .home-stat strong { display: block; font-size: 22px; line-height: 1.1; letter-spacing: -.03em; }
+.account-app .home-stat small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+.account-app .home-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, 1fr); gap: 12px; align-items: start; }
+.account-app .home-panel { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-panel); overflow: hidden; }
+.account-app .home-panel > header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px 10px; }
+.account-app .home-panel > header p { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.account-app .queue-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid #efebe5; color: inherit; transition: background var(--dur-fast); }
+.account-app .queue-row:hover { background: #faf6f0; }
+.account-app .queue-row:hover > .icon:last-child { transform: translateX(3px); color: var(--accent); }
+.account-app .queue-row > .icon:last-child { width: 14px; height: 14px; color: #a39a8c; transition: transform var(--dur) var(--ease), color var(--dur-fast); }
+.account-app .queue-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; background: #f1ece4; color: #79664e; }
+.account-app .queue-icon .icon { width: 17px; height: 17px; }
+.account-app .queue-icon.warning { background: #f9edce; color: #885711; }
+.account-app .queue-icon.blue { background: #e6eef3; color: #356683; }
+.account-app .queue-icon.purple { background: #eee9fa; color: #6650ae; }
+.account-app .queue-icon.green { background: #e1f0e9; color: #08715d; }
+.account-app .queue-row > div { flex: 1; min-width: 0; }
+.account-app .queue-row strong { display: block; font-size: 13px; font-weight: 500; }
+.account-app .queue-row small { display: block; color: var(--muted); font-size: 11px; margin-top: 1px; }
+.account-app .queue-count { min-width: 30px; padding: 3px 8px; border-radius: 8px; background: #f1ece4; text-align: center; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.account-app .queue-count.hot { background: var(--accent); color: #fff; }
+.account-app .home-empty { display: flex; gap: 12px; align-items: center; padding: 18px 16px 20px; border-top: 1px solid #efebe5; font-size: 12px; color: var(--muted); }
+.account-app .home-empty .queue-icon { background: #e1f0e9; color: #08715d; }
+.account-app .home-side { display: grid; gap: 12px; }
+.account-app .period-panel { padding: 16px; }
+.account-app .period-panel .summary-label { margin-bottom: 4px; }
+.account-app .period-panel h2 { font-size: 16px; overflow-wrap: anywhere; }
+.account-app .period-meter { height: 6px; border-radius: 6px; background: #ece7de; margin: 12px 0 8px; overflow: hidden; }
+.account-app .period-meter i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #e2703a, var(--accent)); transform-origin: left; animation: ws-grow 700ms var(--ease) both; }
+.account-app .period-dates { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+.account-app .shortcut-list { display: grid; padding: 0 8px 8px; }
+.account-app .shortcut-list a { display: flex; align-items: center; gap: 10px; padding: 9px 8px; min-height: 40px; border-radius: 10px; font-size: 12px; transition: background var(--dur-fast); }
+.account-app .shortcut-list a:hover { background: #f6f2eb; }
+.account-app .shortcut-list .icon { width: 16px; height: 16px; color: var(--muted); }
+.account-app .account-role-list { padding: 0 16px 16px; }
+
+/* ---------- Login ---------- */
+.account-app .login-intro { position: relative; overflow: hidden; background: #211e1a; }
+.account-app .login-intro::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, #ffffff06 0 1px, transparent 1px 56px), repeating-linear-gradient(0deg, #ffffff05 0 1px, transparent 1px 56px); mask-image: radial-gradient(ellipse 90% 80% at 20% 60%, #000 20%, transparent 75%); }
+.account-app .login-intro::after { content: ''; position: absolute; right: -140px; bottom: -160px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, #d9501f38, transparent); }
+.account-app .login-intro > * { position: relative; z-index: 1; }
+.account-app .login-process { display: grid; gap: 0; margin-top: 30px; max-width: 320px; font-size: 13px; color: #e4dccd; }
+.account-app .login-step { display: flex; align-items: center; gap: 12px; padding: 9px 0; position: relative; }
+.account-app .login-step + .login-step::before { content: ''; position: absolute; left: 16px; top: -9px; height: 18px; width: 1px; background: #4a4338; }
+.account-app .login-step > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: #2f2a24; color: #f0a37e; box-shadow: 0 0 0 1px #40392f inset; flex-shrink: 0; }
+.account-app .login-step .icon { width: 16px; height: 16px; }
+.account-app .login-step small { display: block; color: #a89f90; font-size: 11px; }
+.account-app .login-form-region { background: radial-gradient(ellipse 520px 340px at 100% 0, #edc7b752, transparent); }
+.account-app .login-form-wrap { padding: 28px; background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-panel); max-width: 430px; }
+.account-app .login-form-wrap .full-button { margin-top: 6px; min-height: 44px; }
+.account-app .password-field button { display: grid; place-items: center; right: 3px; top: 3px; width: 36px; min-height: 36px; height: 36px; padding: 0; color: var(--muted); font-size: 0; }
+.account-app .password-field button:hover { background: var(--surface-muted); color: var(--ink); }
+.account-app .password-field button::before { content: ''; width: 17px; height: 17px; background: currentColor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.600-7 10-7 10 7 10 7-3.600 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center / contain no-repeat; }
+.account-app .password-field button[aria-pressed="true"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3l18 18M10.600 5.200A9.600 9.600 0 0 1 12 5c6.400 0 10 7 10 7a17 17 0 0 1-3.300 4.200M6.300 6.400A17 17 0 0 0 2 12s3.600 7 10 7a9.500 9.500 0 0 0 4.200-1M9.900 9.900a3 3 0 0 0 4.200 4.200'/%3E%3C/svg%3E"); }
+.account-app .password-field input { padding-right: 46px; }
+
+/* ---------- Butir reviu dan riwayat ---------- */
+.account-app .review-aspect { padding: 14px 0; }
+.account-app .review-aspect-heading { align-items: center; }
+.account-app .review-note { padding: 14px 0; }
+.account-app .verification-history-entry { padding-left: 18px; position: relative; }
+.account-app .verification-history-entry::before { content: ''; position: absolute; left: 0; top: 18px; width: 8px; height: 8px; border-radius: 50%; background: var(--surface); box-shadow: inset 0 0 0 2px #cbbfae; }
+.account-app .proposal-check-row { padding: 12px 0; }
+
+/* ---------- Gerak ---------- */
+@keyframes ws-spin { to { transform: rotate(360deg); } }
+@keyframes ws-pop { from { opacity: 0; transform: translateY(-4px) scale(.98); } }
+@keyframes ws-fade { from { opacity: 0; } }
+@keyframes ws-dialog { from { opacity: 0; transform: translateY(8px) scale(.97); } }
+@keyframes ws-toast-in { from { opacity: 0; transform: translateY(12px); } }
+@keyframes ws-toast-out { to { opacity: 0; transform: translateY(8px); } }
+@keyframes ws-grow { from { transform: scaleX(0); } }
+@keyframes ws-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .account-app *, .account-app *::before, .account-app *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition: none !important; }
+}
+
+/* ---------- Layar sempit ---------- */
+@media (max-width: 1000px) {
+    .account-app .home-grid { grid-template-columns: 1fr; }
+    .account-app .submit-panel, .account-app .evidence-panel { position: static; }
+}
+@media (max-width: 720px) {
+    .account-app .page-heading { align-items: stretch; flex-direction: column; }
+    .account-app .heading-actions { justify-content: flex-start; }
+    .account-app .choice-cards { grid-template-columns: 1fr; }
+    .account-app .package-summary > div { border-right: 0; margin-right: 0; flex: 1 1 40%; padding: 4px 0; }
+    .account-app .login-form-wrap { padding: 20px; }
+    .account-app .login-intro::after { display: none; }
+    .js .account-app [data-toast] { left: 16px; right: 16px; bottom: 16px; }
+    .account-app .account-top-profile { padding: 4px; }
+    .account-app .list-tools-bar .search-field { width: 100%; }
+    .account-app .form-actionbar { flex-wrap: wrap; }
+}
+@media (max-width: 720px) {
+    .account-app .account-top-profile .avatar { display: grid; }
+    .account-app .account-top-profile { margin-left: auto; box-shadow: none; background: transparent; }
+    .account-app .flow { padding: 12px 8px; }
+    .account-app .flow li { min-width: 62px; font-size: 10px; }
+}
+@media (max-width: 720px) {
+    .account-app .breadcrumb a, .account-app .breadcrumb .icon { display: none; }
+    .account-app .breadcrumb strong { max-width: 55vw; }
+}
+
+/* Jarak antar kartu: panel yang bersaudara langsung di dalam <main> diberi jarak seragam.
+   Dibungkus :where() agar aturan khusus halaman tetap menang. */
+:where(.account-app main) > :where(.table-panel, .form-panel, .evidence-panel, .submit-panel, .account-message) + :where(*:not(.form-actionbar)) { margin-top: 16px; }
+
+/* Template instrumen ZI */
+.account-app .tpl-meta { color: var(--muted); font-size: 12px; line-height: 1.55; }
+.account-app .tpl-warn { color: var(--danger); font-weight: 600; }
+.account-app .tpl-issues { margin: 8px 0 0 18px; font-size: 13px; line-height: 1.6; color: #8c3527; }
+.account-app .tpl-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; margin-top: 12px; }
+.account-app header > .tpl-actions { margin-top: 0; }
+.account-app .tpl-group { padding: 14px 16px; border-top: 1px solid #ece6db; }
+.account-app .tpl-group > header { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.account-app .tpl-group h3 { font-size: 14px; font-weight: 600; }
+.account-app .tpl-group .table-scroll { border-radius: 10px; box-shadow: inset 0 0 0 1px #ece6db; }
+.account-app .tpl-items th:nth-child(1) { width: 64px; }
+.account-app .tpl-items th:nth-child(2) { width: 52%; }
+.account-app details.tpl-edit > summary { list-style: none; cursor: pointer; }
+.account-app details.tpl-edit > summary::-webkit-details-marker { display: none; }
+.account-app details.tpl-edit[open] { flex-basis: 100%; }
+.account-app details.tpl-edit[open] > form { margin-top: 12px; padding: 14px; border-radius: 12px; background: #f6f2ea; }

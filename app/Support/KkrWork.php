@@ -114,7 +114,8 @@ final class KkrWork
             $results=ReviewWork::results($id)->map(fn($r)=>['aspect_id'=>$r->review_aspect_id,'criterion'=>$r->criterion,'result'=>$r->result,'reason'=>$r->reason,'recommendation'=>$r->recommendation])->all();
             $entries[]=['review_id'=>$id,'scope_id'=>$review->assignment_item_id,'item_id'=>$item->id,'item_state'=>['status'=>$item->status,'lock_version'=>$item->lock_version],
                 'review'=>['status'=>$review->status,'reviewed_by'=>$review->reviewed_by,'reviewed_by_name'=>User::find($review->reviewed_by)?->name,'completed_at'=>$review->completed_at,'lock_version'=>$review->lock_version,
-                    'comparison_price'=>$review->comparison_price,'recommended_price'=>$review->recommended_price,'recommendation'=>$review->recommendation,'results'=>$results],
+                    'comparison_price'=>$review->comparison_price,'recommended_price'=>$review->recommended_price,'recommendation'=>$review->recommendation,'results'=>$results]
+                    +($review->result_mode==='single'?['result_mode'=>'single']:[]),
                 'reviewed_version'=>self::version($review->item_version_id),'latest_submitted_version'=>self::version(ItemVerification::latest($item->id,true)->id),
                 'notes'=>$notes,'has_open_notes'=>count(array_filter($notes,fn($n)=>$n['status']!=='resolved'))>0];
         }

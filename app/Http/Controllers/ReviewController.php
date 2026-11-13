@@ -65,7 +65,7 @@ class ReviewController extends Controller
             ->select('note.*', 'author.name as author_name')->orderByDesc('note.id')->paginate(10, ['*'], 'note_page')->withQueryString();
 
         return view('reviews.show', $this->source($version) + [
-            'review' => $review, 'assignment' => $assignment, 'results' => ReviewWork::results($review->id),
+            'review' => $review, 'assignment' => $assignment, 'results' => $results = ReviewWork::results($review->id), 'overall' => ReviewWork::overall($results),
             'notes' => $notes, 'recordVersion' => Gate::allows('update', $review) ? ReviewWork::token($review) : null,
             'problems' => ReviewWork::problems($review->id),
         ]);
@@ -74,30 +74,52 @@ class ReviewController extends Controller
     public function save(Request $request, ItemReview $review): JsonResponse|RedirectResponse
     {
         Gate::authorize('update', $review);
+        // Tanpa result_mode, formulir/klien lama tetap memakai mode yang tersimpan pada reviu.
+        $request->mergeIfMissing(['result_mode' => $review->result_mode ?? 'per_aspect']);
+        $single = $request->input('result_mode') === 'single';
         $data = $request->validate([
             'record_version' => ['required', 'string', 'regex:/\A[a-f0-9]{64}\z/'], 'intent' => ['required', Rule::in(['save', 'complete'])],
+            'result_mode' => ['required', Rule::in(array_keys(ItemReview::MODES))],
+            'comparison_price' => ['nullable'], 'recommended_price' => ['nullable'], 'recommendation' => ['nullable', 'string', 'max:10000'],
+        ] + ($single ? [
+            'overall' => ['required', 'array:result,reason,recommendation'], 'overall.result' => ['required', Rule::in(array_keys(ItemReview::RESULTS))],
+            'overall.reason' => ['nullable', 'string', 'max:10000'], 'overall.recommendation' => ['nullable', 'string', 'max:10000'],
+        ] : [
             'results' => ['required', 'array', 'min:1', 'max:200'], 'results.*' => ['required', 'array:result,reason,recommendation'],
             'results.*.result' => ['required', Rule::in(array_keys(ItemReview::RESULTS))],
             'results.*.reason' => ['nullable', 'string', 'max:10000'], 'results.*.recommendation' => ['nullable', 'string', 'max:10000'],
-            'comparison_price' => ['nullable'], 'recommended_price' => ['nullable'], 'recommendation' => ['nullable', 'string', 'max:10000'],
-        ], AccountValidation::MESSAGES);
+        ]), AccountValidation::MESSAGES);
         $comparison = ReviewWork::money($data['comparison_price'] ?? null, 'comparison_price');
         $recommended = ReviewWork::money($data['recommended_price'] ?? null, 'recommended_price');
         DB::transaction(function () use ($request, $review, $data, $comparison, $recommended): void {
             [$locked, $item] = ReviewWork::lockReview($request->user(), $review->id, $data['record_version']);
-            $rows = ReviewWork::results($locked->id); $expected = $rows->pluck('id')->map(fn ($id) => (string)$id)->all(); sort($expected, SORT_STRING);
-            $provided = array_map('strval', array_keys($data['results'])); sort($provided, SORT_STRING);
-            if ($provided !== $expected) { throw ValidationException::withMessages(['results' => 'Daftar aspek tidak sesuai reviu ini. Muat ulang sebelum menyimpan.']); }
-            foreach ($rows as $row) {
-                $value = $data['results'][$row->id];
-                if ($value['result'] === 'not_applicable' && trim($value['reason'] ?? '') === '') {
-                    throw ValidationException::withMessages(['results.'.$row->id.'.reason' => 'Jelaskan alasan aspek tidak berlaku.']);
+            $rows = ReviewWork::results($locked->id); $mode = $data['result_mode'];
+            if ($mode === 'single') {
+                // Satu hasil berlaku untuk semua aspek; catatan dan rekomendasi disimpan sekali pada aspek pertama agar tidak berulang di KKR.
+                $overall = $data['overall'];
+                if ($overall['result'] === 'not_applicable' && trim($overall['reason'] ?? '') === '') {
+                    throw ValidationException::withMessages(['overall.reason' => 'Jelaskan alasan hasil pemeriksaan tidak berlaku.']);
                 }
-                DB::table('review_results')->where('id', $row->id)->update(['result' => $value['result'], 'reason' => $value['reason'] ?? null, 'recommendation' => $value['recommendation'] ?? null, 'updated_at' => now()]);
+                foreach ($rows->values() as $index => $row) {
+                    DB::table('review_results')->where('id', $row->id)->update(['result' => $overall['result'],
+                        'reason' => $index === 0 ? ($overall['reason'] ?? null) : null, 'recommendation' => $index === 0 ? ($overall['recommendation'] ?? null) : null, 'updated_at' => now()]);
+                }
+            } else {
+                $expected = $rows->pluck('id')->map(fn ($id) => (string)$id)->all(); sort($expected, SORT_STRING);
+                $provided = array_map('strval', array_keys($data['results'])); sort($provided, SORT_STRING);
+                if ($provided !== $expected) { throw ValidationException::withMessages(['results' => 'Daftar aspek tidak sesuai reviu ini. Muat ulang sebelum menyimpan.']); }
+                foreach ($rows as $row) {
+                    $value = $data['results'][$row->id];
+                    if ($value['result'] === 'not_applicable' && trim($value['reason'] ?? '') === '') {
+                        throw ValidationException::withMessages(['results.'.$row->id.'.reason' => 'Jelaskan alasan aspek tidak berlaku.']);
+                    }
+                    DB::table('review_results')->where('id', $row->id)->update(['result' => $value['result'], 'reason' => $value['reason'] ?? null, 'recommendation' => $value['recommendation'] ?? null, 'updated_at' => now()]);
+                }
             }
+            $locked->result_mode = $mode;
             $locked->comparison_price = $comparison; $locked->recommended_price = $recommended; $locked->recommendation = $data['recommendation'] ?? null;
             if ($data['intent'] === 'complete') {
-                $problems = ReviewWork::problems($locked->id);
+                $problems = ReviewWork::problems($locked->id, $mode);
                 if (\App\Support\NoteWork::forItem($item->id)->whereIn('note.status', ['sent', 'responded'])->exists()) { $problems[] = 'Masih ada catatan resmi yang belum selesai ditindaklanjuti.'; }
                 if ($problems) { throw ValidationException::withMessages(['completion' => $problems]); }
                 $locked->status = 'completed'; $locked->completed_at = now(); $item->status = 'reviewed';
