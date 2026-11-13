@@ -3,13 +3,14 @@
 @section('subtitle',$proposal->number.' · '.$organization.' · Versi terkirim '.$version->version_number)
 @section('actions')@can('viewHistory',$item)<a class="btn secondary" href="{{ route('proposals.items.history',[$proposal,$item]) }}">Riwayat item</a>@endcan <a class="btn secondary" href="{{ route('verification.index') }}">Kembali ke antrean</a><a class="btn secondary" href="{{ route('proposals.show',$proposal) }}">Lihat paket</a>@endsection
 @section('content')
+<x-demo-evidence-notice/>
 <div class="check-layout">
     <section class="form-panel">@include('verification.item-content')</section>
-    <aside class="submit-panel"><h2>Hasil kelengkapan</h2><p class="verification-current-status"><span class="badge {{ $item->status==='ready'?'green':($item->status==='needs_completion'?'warning':'blue') }}">{{ \App\Models\ProposalItem::LABELS[$item->status] }}</span></p>
+    <aside class="submit-panel"><h2>Hasil kelengkapan</h2><p class="verification-current-status"><span class="badge {{ \App\Support\StatusTone::of($item->status) }}">{{ \App\Models\ProposalItem::LABELS[$item->status] }}</span></p>
     @can('verify',$item)
     <form method="POST" action="{{ route('verification.decide',$item) }}" data-submit-form>@csrf
         <input type="hidden" name="record_version" value="{{ old('record_version',$recordVersion) }}">
-        <div class="form-field"><label for="result">Keputusan</label><select id="result" name="result" required><option value="">Pilih hasil pemeriksaan</option><option value="ready" @selected(old('result')==='ready')>Siap direviu</option><option value="needs_completion" @selected(old('result')==='needs_completion')>Perlu dilengkapi</option></select><x-field-error field="result"/></div>
+        <div class="form-field"><label for="result">Keputusan</label><select id="result" name="result" required data-choices="cards" data-requires-reason="needs_completion" data-reason-field="reason"><option value="">Pilih hasil pemeriksaan</option><option value="ready" @selected(old('result')==='ready')>Siap direviu</option><option value="needs_completion" @selected(old('result')==='needs_completion')>Perlu dilengkapi</option></select><x-field-error field="result"/></div>
         <div class="form-field"><label for="reason">Alasan atau catatan</label><textarea id="reason" name="reason" rows="5" maxlength="5000" aria-describedby="reason-help">{{ old('reason') }}</textarea><small id="reason-help">Wajib untuk pengembalian. Alasan ini dapat dibaca Operator SKPD.</small><x-field-error field="reason"/></div>
         <p class="form-bottom-note">Keputusan berlaku untuk versi terkirim yang ditampilkan dan dicatat dalam riwayat.</p>
         @if($errors->has('record_version'))<a class="btn secondary access-reload" href="{{ route('verification.show',$item) }}">Muat ulang pemeriksaan</a>@endif

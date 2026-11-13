@@ -31,3 +31,11 @@ Evidence: server-rendered HTML and real MySQL endpoint tests; frontend regressio
 for restoration of submit controls. Source-only independent review closed three
 material findings. Authenticated Operator browser/keyboard inspection remains
 pending; no claim of visual certification or user acceptance.
+
+Local demo exception requested by the developer: when APP_ENV=local and
+DEMO_ALLOW_MISSING_EVIDENCE=true, absent evidence does not block sending or
+BKAD verification. Check/completion/verification pages disclose the exception;
+readiness and agreement copy refer to data without claiming evidence is complete.
+All other validation and uploaded-file integrity checks remain enforced.
+The default is false and the flag has no effect outside local. See
+docs/local-demo-evidence.md. Layout and visual tokens remain unchanged.

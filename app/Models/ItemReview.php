@@ -11,6 +11,8 @@ class ItemReview extends Model
         'insufficient_evidence' => 'Belum cukup bukti', 'not_applicable' => 'Tidak berlaku',
     ];
 
+    public const MODES = ['per_aspect' => 'Per aspek', 'single' => 'Satu hasil pemeriksaan'];
+
     public const STATUSES = ['in_progress' => 'Dalam pemeriksaan', 'awaiting_response' => 'Menunggu tanggapan', 'recheck' => 'Pemeriksaan ulang', 'completed' => 'Selesai diperiksa'];
 
     protected function casts(): array

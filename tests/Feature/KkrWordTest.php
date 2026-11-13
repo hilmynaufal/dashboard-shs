@@ -57,8 +57,8 @@ class KkrWordTest extends MySqlAccessTestCase
         $response=$this->get($this->url($doc))->assertOk()->assertHeader('Content-Type','application/vnd.openxmlformats-officedocument.wordprocessingml.document')->assertHeader('X-Content-Type-Options','nosniff');
         $this->assertStringContainsString('no-store',$response->headers->get('Cache-Control'));
         $dom=$this->xml($response->getContent());$xpath=new \DOMXPath($dom);$xpath->registerNamespace('w','http://schemas.openxmlformats.org/wordprocessingml/2006/main');
-        $this->assertSame(2,$xpath->query('//w:tbl/w:tr')->length);
-        foreach ($xpath->query('//w:tbl/w:tr') as $i=>$row) {
+        $this->assertSame(2,$xpath->query('//w:tbl[count(w:tblGrid/w:gridCol)=8]/w:tr')->length);
+        foreach ($xpath->query('//w:tbl[count(w:tblGrid/w:gridCol)=8]/w:tr') as $i=>$row) {
             $cells=$xpath->query('w:tc',$row);$this->assertSame(8,$cells->length);
             foreach ($cells as $j=>$cell) {
                 $value='';foreach($xpath->query('.//w:t|.//w:br',$cell) as $part){$value.=$part->localName==='br'?"\n":$part->textContent;}

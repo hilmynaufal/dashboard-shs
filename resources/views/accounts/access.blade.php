@@ -24,7 +24,7 @@
         </fieldset>
         <div class="form-field">
             <label for="organization_id">SKPD <span class="optional">(wajib untuk Operator SKPD)</span></label>
-            <select id="organization_id" name="organization_id" aria-describedby="organization-help"><option value="">Tanpa SKPD</option>@foreach($organizations as $organization)<option value="{{ $organization->id }}" @selected((string)old('organization_id',$access['organization_id']) === (string)$organization->id)>{{ $organization->name }}{{ $organization->is_active ? '' : ' (nonaktif — pilih SKPD aktif)' }}</option>@endforeach</select>
+            <select id="organization_id" name="organization_id" aria-describedby="organization-help" data-combobox><option value="">Tanpa SKPD</option>@foreach($organizations as $organization)<option value="{{ $organization->id }}" @selected((string)old('organization_id',$access['organization_id']) === (string)$organization->id)>{{ $organization->name }}{{ $organization->is_active ? '' : ' (nonaktif — pilih SKPD aktif)' }}</option>@endforeach</select>
             <small id="organization-help">Operator hanya mengakses usulan organisasi yang ditetapkan. Mengganti SKPD tidak memindahkan data usulan lama.</small>
             <x-field-error field="organization_id"/>
         </div>

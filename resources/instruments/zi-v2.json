@@ -1,0 +1,555 @@
+{
+  "6": {
+    "group": "Pemenuhan · Penyusunan Tim Kerja",
+    "title": "Unit kerja telah membentuk tim untuk melakukan pembangunan Zona Integritas",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika Tim telah dibentuk di dalam unit kerja."
+    ]
+  },
+  "7": {
+    "group": "Pemenuhan · Penyusunan Tim Kerja",
+    "title": "Penentuan anggota Tim dipilih melalui prosedur/mekanisme yang jelas",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika dengan prosedur/mekanisme yang jelas dan mewakili seluruh unsur dalam unit kerja",
+      "b. Jika sebagian menggunakan prosedur yang mewakili sebagian besar unsur dalam unit kerja",
+      "c. Jika tidak di seleksi."
+    ]
+  },
+  "9": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Terdapat dokumen rencana kerja pembangunan Zona Integritas menuju WBK/WBBM",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika memiliki rencana kerja pembangunan Zona Integritas."
+    ]
+  },
+  "10": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Dalam dokumen pembangunan terdapat target-target prioritas yang relevan dengan tujuan pembangunan WBK/WBBM",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika semua target-target prioritas relevan dengan tujuan pembangunan WBK/WBBM",
+      "b. Jika sebagian target-target prioritas relevan dengan tujuan pembangunan WBK/WBBM",
+      "c. Jika tidak ada target-target prioritas yang relevan dengan tujuan pembangunan WBK/WBBM"
+    ]
+  },
+  "11": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Terdapat mekanisme atau media untuk mensosialisasikan pembangunan WBK/WBBM",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika telah dilakukan pengelolaan media/aktivitas interaktif yang efektif untuk menginformasikan pembangunan ZI kepada internal dan stakeholder secara berkala",
+      "b. Jika pengelolaan media/aktivitas interaktif dilakukan secara terbatas dan tidak secara berkala",
+      "c. Jika pengelolaan media/aktivitas interaktif belum dilakukan"
+    ]
+  },
+  "13": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Seluruh kegiatan pembangunan sudah dilaksanakan sesuai dengan rencana",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "b. Jika sebagian besar kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "c. Jika sebagian kecil kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "d. Jika belum ada kegiatan pembangunan yang dilakukan sesuai dengan rencana"
+    ]
+  },
+  "14": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Terdapat monitoring dan evaluasi terhadap pembangunan Zona Integritas",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika monitoring dan evaluasi melibatkan pimpinan dan dilakukan secara berkala",
+      "b. Jika monitoring dan evaluasi melibatkan pimpinan tetapi tidak secara berkala",
+      "c. Jika monitoring dan evaluasi tidak melibatkan pimpinan dan tidak secara berkala",
+      "d. Jika tidak terdapat monitoring dan evaluasi terhadap pembangunan zona integritas"
+    ]
+  },
+  "15": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Hasil Monitoring dan Evaluasi telah ditindaklanjuti",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM telah ditindaklanjuti",
+      "b. Jika sebagian besar catatan/rekomendasi hasil monitoring danevaluasi tim internal atas persiapan dan pelaksanaan kegiatanUnit WBK/WBBM telah ditindaklanjuti",
+      "c. Jika sebagian kecil catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM telah ditindaklanjuti",
+      "d. Jika catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM belum ditindaklanjuti"
+    ]
+  },
+  "17": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Pimpinan berperan sebagai role model dalam pelaksanaan Pembangunan WBK/WBBM",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "ya, jika pimpinan menjadi contoh pelaksanaan nilai-nilai organisasi."
+    ]
+  },
+  "18": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Sudah ditetapkan agen perubahan",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika agen perubahan telah ditetapkan dan berkontribusi terhadap perubahan pada unit kerjanya",
+      "b. Jika agen perubahan telah ditetapkan namun belum berkontribusi terhadap perubahan pada unit kerjanya",
+      "c. Jika belum terdapat agen perubahan"
+    ]
+  },
+  "19": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Telah dibangun budaya kerja dan pola pikir di lingkungan organisasi",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika telah dilakukan upaya pembangunan budaya kerja dan pola pikir dan mampu mengurangi resistensi atas perubahan",
+      "b. Jika telah dilakukan upaya pembangunan budaya kerja dan pola pikir tapi masih terdapat resistensi atas perubahan",
+      "c. Jika belum terdapat upaya pembangunan budaya kerja dan pola pikir"
+    ]
+  },
+  "20": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Anggota organisasi terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM dan usulan-usulan dari anggota diakomodasikan dalam keputusan",
+      "b. Jika sebagian besar anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+      "c. Jika sebagian kecil anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+      "d. Jika belum ada anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM"
+    ]
+  },
+  "23": {
+    "group": "Pemenuhan · Prosedur Operasional Tetap (SOP) Kegiatan Utama",
+    "title": "SOP mengacu pada peta proses bisnis instansi",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua SOP unit telah mengacu peta proses bisnis dan juga melakukan inovasi yang selaras",
+      "b. Jika semua SOP unit telah mengacu peta proses bisnis",
+      "c. Jika sebagian SOP unit telah mengacu peta proses bisnis",
+      "d. Jika belum terdapat SOP unit yang mengacu peta proses bisnis"
+    ]
+  },
+  "24": {
+    "group": "Pemenuhan · Prosedur Operasional Tetap (SOP) Kegiatan Utama",
+    "title": "Prosedur operasional tetap (SOP) telah diterapkan",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Jika unit telah menerapkan seluruh SOP yang ditetapkan organisasi dan juga melakukan inovasi pada SOP yang diterapkan",
+      "b. Jika unit telah menerapkan seluruh SOP yang ditetapkan organisasi",
+      "c. Jika unit telah menerapkan sebagian besar SOP yang ditetapkan organisasi",
+      "d. Jika unit telah menerapkan sebagian kecil SOP yang ditetapkan organisasi",
+      "e. Jika unit belum menerapkan SOP yang telah ditetapkan organisasi"
+    ]
+  },
+  "25": {
+    "group": "Pemenuhan · Prosedur Operasional Tetap (SOP) Kegiatan Utama",
+    "title": "Prosedur operasional tetap (SOP) telah dievaluasi",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Jika seluruh SOP utama telah dievaluasi dan telah ditindaklanjuti berupa perbaikan SOP atau usulan perbaikan SOP",
+      "b. Jika sebagian besar SOP utama telah dievaluasi dan telah ditindaklanjuti berupa perbaikan SOP atau usulan perbaikan SOP",
+      "c. Jika sebagian besar SOP utama telah dievaluasi tetapi belum ditindaklanjuti",
+      "d. Jika sebagian kecil SOP utama telah dievaluasi",
+      "e. Jika SOP belum pernah dievaluasi"
+    ]
+  },
+  "27": {
+    "group": "Pemenuhan · Sistem Pemerintahan Berbasis Elektronik (SPBE)",
+    "title": "Sistem pengukuran kinerja unit sudah menggunakan teknologi informasi",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika unit memiliki sistem pengukuran kinerja (e-performance/e-sakip) yang menggunakan teknologi informasi dan juga melakukan inovasi",
+      "b. Jika unit memiliki sistem pengukuran kinerja (e-performance/e-sakip) yang menggunakan teknologi informasi",
+      "c. Jika belum memiliki sistem pengukuran kinerja (e-performance/e-sakip) yang menggunakan teknologi informasi"
+    ]
+  },
+  "28": {
+    "group": "Pemenuhan · Sistem Pemerintahan Berbasis Elektronik (SPBE)",
+    "title": "Operasionalisasi manajemen SDM sudah menggunakan teknologi informasi",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika unit memiliki operasionalisasi manajemen SDM yang menggunakan teknologi informasi dan juga melakukan inovasi",
+      "b. Jika unit memiliki operasionalisasi manajemen SDM yang menggunakan teknologi informasi secara terpusat",
+      "c. Jika belum menggunakan teknologi informasi dalam operasionalisasi manajemen SDM"
+    ]
+  },
+  "29": {
+    "group": "Pemenuhan · Sistem Pemerintahan Berbasis Elektronik (SPBE)",
+    "title": "Pemberian pelayanan kepada publik sudah menggunakan teknologi informasi",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika unit memberikan pelayanan kepada publik dengan menggunakan teknologi informasi terpusat/unit sendiri dan terdapat inovasi",
+      "b. Jika unit memberikan pelayanan kepada publik dengan menggunakan teknologi informasi secara terpusat",
+      "c. Jika belum memberikan pelayanan kepada publik dengan menggunakan teknologi informasi"
+    ]
+  },
+  "30": {
+    "group": "Pemenuhan · Sistem Pemerintahan Berbasis Elektronik (SPBE)",
+    "title": "Telah dilakukan monitoring dan dan evaluasi terhadap pemanfaatan teknologi informasi dalam pengukuran kinerja unit, operasionalisasi SDM, dan pemberian layanan kepada publik",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika laporan monitoring dan evaluasi terhadap pemanfaatan teknologi informasi dalam pengukuran kinerja unit, operasionalisasi SDM, dan pemberian layanan kepada publik sudah dilakukan secara berkala",
+      "b. Jika laporan monitoring dan evaluasi terhadap pemanfaatan teknologi informasi dalam pengukuran kinerja unit, operasionalisasi SDM, dan pemberian layanan kepada publik sudah dilakukan tetapi tidak secara berkala",
+      "c. Jika tidak terdapat monitoring dan evaluasi terhadap pemanfaatan teknologi informasi dalam pengukuran kinerja unit, operasionalisasi SDM, dan pemberian layanan kepada publik"
+    ]
+  },
+  "32": {
+    "group": "Pemenuhan · Keterbukaan Informasi Publik",
+    "title": "Kebijakan tentang keterbukaan informasi publik telah diterapkan",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika sudah terdapat Pejabat Pengelola Informasi Publik (PPID) yang menyebarkan seluruh informasi yang dapat diakses secara mutakhir dan lengkap",
+      "b. Jika sudah terdapat PPID yang menyebarkan sebagian informasi yang dapat diakses secara mutakhir dan lengkap",
+      "c. Jika belum ada PPID dan belum melakukan penyebaran informasi publik"
+    ]
+  },
+  "33": {
+    "group": "Pemenuhan · Keterbukaan Informasi Publik",
+    "title": "Kebijakan tentang keterbukaan informasi publik telah diterapkan",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika dilakukan monitoring dan evaluasi pelaksanaan kebijakan keterbukaan informasi publik dan telah ditindaklanjuti",
+      "b. Jika monitoring dan evaluasi pelaksanaan kebijakan keterbukaan informasi publik telah dilakukan tetapi belum ditindaklanjuti",
+      "c. Jika monitoring dan evaluasi pelaksanaan kebijakan keterbukaan informasi publik belum dilakukan"
+    ]
+  },
+  "36": {
+    "group": "Pemenuhan · Perencanaan Kebutuhan Pegawai sesuai dengan Kebutuhan Organisasi",
+    "title": "Kebutuhan pegawai yang disusun oleh unit kerja mengacu kepada peta jabatan dan hasil analisis beban kerja untuk masing-masing jabatan",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika kebutuhan pegawai yang disusun oleh unit kerja mengacu kepada peta jabatan dan hasil analisis beban kerja untuk masing-masing jabatan."
+    ]
+  },
+  "37": {
+    "group": "Pemenuhan · Perencanaan Kebutuhan Pegawai sesuai dengan Kebutuhan Organisasi",
+    "title": "Penempatan pegawai hasil rekrutmen murni mengacu kepada kebutuhan pegawai yang telah disusun per jabatan",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua penempatan pegawai hasil rekrutmen murni mengacu kepada kebutuhan pegawai yang telah disusun per jabatan",
+      "b. Jika sebagian besar penempatan pegawai hasil rekrutmen murni mengacu kepada kebutuhan pegawai yang telah disusun per jabatan",
+      "c. Jika sebagian kecil penempatan pegawai hasil rekrutmen murni mengacu kepada kebutuhan pegawai yang telah disusun per jabatan",
+      "d. Jika penempatan pegawai hasil rekrutmen murni tidak mengacu kepada kebutuhan pegawai yang telah disusun per jabatan"
+    ]
+  },
+  "38": {
+    "group": "Pemenuhan · Perencanaan Kebutuhan Pegawai sesuai dengan Kebutuhan Organisasi",
+    "title": "Telah dilakukan monitoring dan evaluasi terhadap penempatan pegawai rekrutmen untuk memenuhi kebutuhan jabatan dalam organisasi telah memberikan perbaikan terhadap kinerja unit kerja",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika sudah dilakukan monitoring dan evaluasi terhadap penempatan pegawai hasil rekrutmen untuk memenuhi kebutuhan jabatan dalam organisasi telah memberikan perbaikan terhadap kinerja unit kerja."
+    ]
+  },
+  "40": {
+    "group": "Pemenuhan · Pola Mutasi Internal",
+    "title": "Dalam melakukan pengembangan karier pegawai, telah dilakukan mutasi pegawai antar jabatan",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika dilakukan mutasi pegawai antar jabatan sebagai wujud dari pengembangan karier pegawai."
+    ]
+  },
+  "41": {
+    "group": "Pemenuhan · Pola Mutasi Internal",
+    "title": "Dalam melakukan mutasi pegawai antar jabatan telah memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Jika semua mutasi pegawai antar jabatan telah memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan organisasi dan juga unit kerja memberikan pertimbangan terkait hal ini",
+      "b. Jika semua mutasi pegawai antar jabatan telah memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan organisasi",
+      "c. Jika sebagian besar mutasi pegawai antar jabatan telah memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan organisasi",
+      "d. Jika sebagian kecil semua mutasi pegawai antar jabatan telah memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan organisasi",
+      "e. Jika mutasi pegawai antar jabatan belum memperhatikan kompetensi jabatan dan mengikuti pola mutasi yang telah ditetapkan organisasi"
+    ]
+  },
+  "42": {
+    "group": "Pemenuhan · Pola Mutasi Internal",
+    "title": "Telah dilakukan monitoring dan evaluasi terhadap kegiatan mutasi yang telah dilakukan dalam kaitannya dengan perbaikan kinerja",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika sudah dilakukan monitoring dan evaluasi terhadap kegiatan mutasi yang telah dilakukan dalam kaitannya dengan perbaikan kinerja."
+    ]
+  },
+  "44": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Unit Kerja melakukan Training Need Analysis Untuk pengembangan kompetensi",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika sudah dilakukan Training Need Analysis Untuk pengembangan kompetensi."
+    ]
+  },
+  "45": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Dalam menyusun rencana pengembangan kompetensi pegawai, telah mempertimbangkan hasil pengelolaan kinerja pegawai",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua rencana pengembangan kompetensi pegawai mempertimbangkan hasil pengelolaan kinerja pegawai",
+      "b. Jika sebagian besar rencana pengembangan kompetensi pegawai mempertimbangkan hasil pengelolaan kinerja pegawai",
+      "c. Jika sebagian kecil rencana pengembangan kompetensi pegawai mempertimbangkan hasil pengelolaan kinerja pegawai",
+      "d. Jika belum ada rencana pengembangan kompetensi pegawai yang mempertimbangkan hasil pengelolaan kinerja pegawai"
+    ]
+  },
+  "46": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Tingkat kesenjangan kompetensi pegawai yang ada dengan standar kompetensi yang ditetapkan untuk masing-masing jabatan",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika persentase kesenjangan kompetensi pegawai dengan standar kompetensi yang ditetapkan sebesar <25%",
+      "b. Jika persentase kesenjangan kompetensi pegawai dengan standar kompetensi yang ditetapkan sebesar >25%-50%",
+      "c. Jika sebagian besar kompetensi pegawai dengan standar kompetensi yang ditetapkan untuk masing-masing jabatan >50% -75%",
+      "d. Jika persentase kesenjangan kompetensi pegawai dengan standar kompetensi yang ditetapkan sebesar >75%-100%"
+    ]
+  },
+  "47": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Pegawai di Unit Kerja telah memperoleh kesempatan/hak untuk mengikuti diklat maupun pengembangan kompetensi lainnya",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika seluruh pegawai di Unit Kerja telah memperoleh kesempatan/hak untuk mengikuti diklat maupun pengembangan kompetensi lainnya",
+      "b. Jika sebagian besar pegawai di Unit Kerja telah memperoleh kesempatan/hak untuk mengikuti diklat maupun pengembangan kompetensi lainnya",
+      "c. Jika sebagian kecil pegawai di Unit Kerja telah memperoleh kesempatan/hak untuk mengikuti diklat maupun pengembangan kompetensi lainnya",
+      "d. Jika belum ada pegawai di Unit Kerja telah memperoleh kesempatan/hak untuk mengikuti diklat maupun pengembangan kompetensi lainnya"
+    ]
+  },
+  "48": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Dalam pelaksanaan pengembangan kompetensi, unit kerja melakukan upaya pengembangan kompetensi kepada pegawai (seperti pengikutsertaan pada lembaga pelatihan, in-house training, coaching, atau mentoring)",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika unit kerja melakukan upaya pengembangan kompetensi kepada seluruh pegawai",
+      "b. Jika unit kerja melakukan upaya pengembangan kompetensi kepada sebagian besar pegawai",
+      "c. Jika unit kerja melakukan upaya pengembangan kompetensi kepada sebagian kecil pegawai",
+      "d. Jika unit kerja belum melakukan upaya pengembangan kompetensi kepada pegawai"
+    ]
+  },
+  "49": {
+    "group": "Pemenuhan · Pengembangan Pegawai Berbasis Kompetensi",
+    "title": "Telah dilakukan monitoring dan evaluasi terhadap hasil pengembangan kompetensi dalam kaitannya dengan perbaikan kinerja",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika monitoring dan evaluasi terhadap hasil pengembangan kompetensi dalam kaitannya dengan perbaikan kinerja telah dilakukan secara berkala",
+      "b. Jika monitoring dan evaluasi terhadap hasil pengembangan kompetensi dalam kaitannya dengan perbaikan kinerja telah dilakukan namun tidak secara berkala",
+      "c. Jika monitoring dan evaluasi terhadap hasil pengembangan kompetensi dalam kaitannya dengan perbaikan kinerja belum dilakukan"
+    ]
+  },
+  "51": {
+    "group": "Pemenuhan · Penetapan Kinerja Individu",
+    "title": "Terdapat penetapan kinerja individu yang terkait dengan perjanjian kinerja organisasi",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika seluruh penetapan kinerja individu terkait dengan kinerja organisasi serta perjanjian kinerja selaras dengan sasaran kinerja pegawai (SKP)",
+      "b. Jika sebagian besar penetapan kinerja individu terkait dengan kinerja organisasi",
+      "c. Jika sebagian kecil penetapan kinerja individu terkait dengan kinerja organisasi",
+      "d. Jika belum ada penetapan kinerja individu terkait dengan kinerja organisasi"
+    ]
+  },
+  "52": {
+    "group": "Pemenuhan · Penetapan Kinerja Individu",
+    "title": "Ukuran kinerja individu telah memiliki kesesuaian dengan indikator kinerja individu level diatasnya",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika seluruh ukuran kinerja individu telah memiliki kesesuaian dengan indikator kinerja individu level diatasnya serta menggambarkan logic model",
+      "b. Jika sebagian besar ukuran kinerja individu telah memiliki kesesuaian dengan indikator kinerja individu level diatasnya",
+      "c. Jika sebagian kecil ukuran kinerja individu telah memiliki kesesuaian dengan indikator kinerja individu level diatasnya",
+      "d. Jika ukuran kinerja individu belum memiliki kesesuaian dengan indikator kinerja individu level diatasnya"
+    ]
+  },
+  "53": {
+    "group": "Pemenuhan · Penetapan Kinerja Individu",
+    "title": "Pengukuran kinerja individu dilakukan secara periodik",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Jika pengukuran kinerja individu dilakukan secara bulanan",
+      "b. Jika pengukuran kinerja individu dilakukan secara triwulanan",
+      "c. Jika pengukuran kinerja individu dilakukan secara semesteran",
+      "d. Jika pengukuran kinerja individu dilakukan secara tahunan",
+      "e. Jika pengukuran kinerja individu belum dilakukan"
+    ]
+  },
+  "54": {
+    "group": "Pemenuhan · Penetapan Kinerja Individu",
+    "title": "Hasil penilaian kinerja individu telah dijadikan dasar untuk pemberian reward",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika hasil penilaian kinerja individu telah dijadikan dasar untuk pemberian reward (Seperti: pengembangan karir individu, atau penghargaan)"
+    ]
+  },
+  "56": {
+    "group": "Pemenuhan · Penegakan Aturan Disiplin/Kode Etik/Kode Perilaku Pegawai",
+    "title": "Aturan disiplin/kode etik/kode perilaku telah dilaksanakan/diimplementasikan",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika unit kerja telah mengimplementasikan seluruh aturan disiplin/kode etik/kode perilaku yang ditetapkan organisasi dan juga membuat inovasi terkait aturan disiplin/kode etik/kode perilaku yang sesuai dengan karakteristik unit kerja",
+      "b. Jika unit kerja telah mengimplementasikan seluruh aturan disiplin/kode etik/kode perilaku yang ditetapkan organisasi",
+      "c. Jika unit kerja telah mengimplementasikan sebagian aturan disiplin/kode etik/kode perilaku yang ditetapkan organisasi",
+      "d. Jika unit kerja belum mengimplementasikan aturan disiplin/kode etik/kode perilaku yang ditetapkan organisasi"
+    ]
+  },
+  "58": {
+    "group": "Pemenuhan · Sistem Informasi Kepegawaian",
+    "title": "Data informasi kepegawaian unit kerja telah dimutakhirkan secara berkala",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika data informasi kepegawaian unit kerja dapat diakses oleh pegawai dan dimutakhirkan setiap ada perubahan data pegawai",
+      "b. Jika data informasi kepegawaian unit kerja dapat diakses oleh pegawai dan dimutakhirkan namun secara berkala",
+      "c. Jika data informasi kepegawaian unit kerja belum dimutakhirkan"
+    ]
+  },
+  "125": {
+    "group": "Reform · Komitmen dalam perubahan",
+    "title": "Agen perubahan telah membuat perubahan yang konkret di Instansi (dalam 1 tahun)",
+    "type": "%",
+    "rubric": [
+      "Hitung Jumlah Perubahan yang dibuat (baris 127) dibagi Jumlah Agen Perubahan (baris 126). Gunakan angka unit untuk jawaban unit dan angka hasil reviu TPI untuk skor."
+    ],
+    "labels": {
+      "numerator": "Jumlah perubahan yang dibuat",
+      "denominator": "Jumlah agen perubahan"
+    }
+  },
+  "128": {
+    "group": "Reform · Komitmen dalam perubahan",
+    "title": "Perubahan yang dibuat Agen Perubahan telah terintegrasi dalam sistem manajemen",
+    "type": "%",
+    "rubric": [
+      "Hitung Jumlah Perubahan yang telah diintegrasikan dalam sistem manajemen (baris 130) dibagi Jumlah Perubahan yang dibuat (baris 129). Gunakan angka unit untuk jawaban unit dan angka hasil reviu TPI untuk skor."
+    ],
+    "labels": {
+      "numerator": "Jumlah perubahan terintegrasi",
+      "denominator": "Jumlah perubahan yang dibuat"
+    }
+  },
+  "132": {
+    "group": "Reform · Komitmen Pimpinan",
+    "title": "Pimpinan memiliki komitmen terhadap pelaksanaan reformasi birokrasi, dengan adanya target capaian reformasi yang jelas di dokumen perencanaan",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian besar (diatas 80%) sudah tercapai",
+      "b. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian (diatas 50%) sudah tercapai",
+      "c. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian kecil (dibawah 50%) sudah tercapai",
+      "d. Target capaian zona integritassudah ada di dokumen perencanaan unit kerja, namun belum ada yang tercapai (masih dalam tahap pembangunan)",
+      "e. Tidak ada target capaian zona integritasdi dokumen perencanaan unit kerja"
+    ]
+  },
+  "134": {
+    "group": "Reform · Membangun Budaya Kerja",
+    "title": "Instansi membangun budaya kerja positif dan menerapkan nilai-nilai organisasi dalam pelaksanaan tugas sehari-hari",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Budaya kerja dan nilai-nilai organisasi telah dinternalisasi ke seluruh anggota organisasi, dan penerapannya dituangkan dalam standar operasional pelaksanaan kegiatan/tugas",
+      "b. Budaya kerja dan nilai-nilai organisasi telah dinternalisasi ke seluruh anggota organisasi, namun belum dituangkan dalam standar operasional pelaksanaan kegiatan/tugas",
+      "c. Budaya kerja dan nilai-nilai organisasi telah disusun, namun belum dinternalisasi ke seluruh anggota organisasi",
+      "d. Belum menyusun budaya kerja dan nilai-nilai organisasi"
+    ]
+  },
+  "137": {
+    "group": "Reform · Peta Proses Bisnis Mempengaruhi Penyederhanaan Jabatan",
+    "title": "Telah disusun peta proses bisnis dengan adanya penyederhanaan jabatan",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Peta proses bisnis telah disusun dan mempengaruhi penyederhanaan seluruh jabatan",
+      "b. Peta proses bisnis telah disusun dan mempengaruhi penyederhanaan sebagian besar (lebih dari 50%) jabatan",
+      "c. Peta proses bisnis telah disusun dan mempengaruhi penyederhanaan sebagian kecil (kurang dari 50%) jabatan",
+      "d. Peta proses bisnis telah disusun dan belum mempengaruhi penyederhanaan jabatan"
+    ]
+  },
+  "139": {
+    "group": "Reform · Sistem Pemerintahan Berbasis Elektronik (SPBE) yang Terintegrasi",
+    "title": "Implementasi SPBE telah terintegrasi dan mampu mendorong pelaksanaan pelayanan publik yang lebih cepat dan efisien",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Implementasi SPBE telah terintegrasi dan mampu mendorong pelaksanaan pelayanan publik yang lebih cepat dan efisien",
+      "b. Implementasi SPBE telah mampu mendorong pelaksanaan pelayanan publik yang lebih cepat dan efisien, namun belum terintegrasi (parsial)",
+      "c. Implementasi SPBE belum mendorong pelaksanaan pelayanan publik yang lebih cepat dan efisien"
+    ]
+  },
+  "140": {
+    "group": "Reform · Sistem Pemerintahan Berbasis Elektronik (SPBE) yang Terintegrasi",
+    "title": "Implementasi SPBE telah terintegrasi dan mampu mendorong pelaksanaan pelayanan internal organisasi yang lebih cepat dan efisien",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Implementasi SPBE telah terintegrasi dan mampu mendorong pelaksanaan pelayanan internal unit kerja yang lebih cepat dan efisien",
+      "b. Implementasi SPBE telah mampu mendorong pelaksanaan pelayanan internal unit kerja yang lebih cepat dan efisien, namun belum terintegrasi (parsial)",
+      "c. Implementasi SPBE belum mendorong pelaksanaan pelayanan internal unit kerja yang lebih cepat dan efisien"
+    ]
+  },
+  "142": {
+    "group": "Reform · Transformasi Digital Memberikan Nilai Manfaat",
+    "title": "Transformasi digital pada bidang proses bisnis utama telah mampu memberikan nilai manfaat bagi unit kerja secara optimal",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Kriteria huruf b telah terpenuhi dan penerapan atau penggunaan dari manfaat/dampak dari c",
+      "b. Kriteria huruf c telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang proses bisnis utama telah diterapkan/digunakan oleh unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "c. Kriteria huruf d telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang proses bisnis utama telah mampu direalisasikan pada unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "d. Kriteria huruf e telah terpenuhi dan kapabilitas prakiraan dan pelacakan terhadap sasaran dan target manfaat/dampak dari transformasi digital pada bidang proses bisnis utama",
+      "e. Sasaran dan target manfaat/dampak dari transformasi digital pada bidang proses bisnis utama telah direncanakan, didefinisikan, dan ditetapkan"
+    ]
+  },
+  "143": {
+    "group": "Reform · Transformasi Digital Memberikan Nilai Manfaat",
+    "title": "Transformasi digital pada bidang administrasi pemerintahan telah mampu memberikan nilai manfaat bagi unit kerja secara optimal",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Kriteria huruf b telah terpenuhi dan penerapan atau penggunaan dari manfaat/dampak dari transformasi digital pada bidang administrasi pemerintahan bagi unit kerja telah dilakukan validasi dan evaluasi serta ditindaklanjuti secara berkelanjutan",
+      "b. Kriteria huruf c telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang administrasi pemerintahan telah diterapkan/digunakan oleh unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "c. Kriteria huruf d telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang administrasi pemerintahan telah mampu direalisasikan pada unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "d. Kriteria huruf e telah terpenuhi dan kapabilitas prakiraan dan pelacakan terhadap sasaran dan target manfaat/dampak dari transformasi digital pada bidang administrasi pemerintahan",
+      "e. Sasaran dan target manfaat/dampak dari transformasi digital pada bidang administrasi pemerintahan telah direncanakan, didefinisikan, dan ditetapkan"
+    ]
+  },
+  "144": {
+    "group": "Reform · Transformasi Digital Memberikan Nilai Manfaat",
+    "title": "Transformasi digital pada bidang pelayanan publik telah mampu memberikan nilai manfaat bagi unit kerja secara optimal",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Kriteria huruf b telah terpenuhi dan penerapan atau penggunaan dari manfaat/dampak dari transformasi digital pada bidang pelayanan publik bagi unit kerja telah dilakukan validasi dan evaluasi serta ditindaklanjuti secara berkelanjutan",
+      "b. Kriteria huruf c telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang pelayanan publik telah diterapkan/digunakan oleh unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "c. Kriteria huruf d telah terpenuhi dan manfaat/dampak dari transformasi digital pada bidang pelayanan publik telah mampu direalisasikan pada unit kerja sesuai dengan sasaran dan target manfaat/dampak",
+      "d. Kriteria huruf e telah terpenuhi dan kapabilitas prakiraan dan pelacakan terhadap sasaran dan target manfaat/dampak dari transformasi digital pada bidang pelayanan publik",
+      "e. Sasaran dan target manfaat/dampak dari transformasi digital pada bidang pelayanan publik telah direncanakan, didefinisikan, dan ditetapkan"
+    ]
+  },
+  "147": {
+    "group": "Reform · Kinerja Individu",
+    "title": "Ukuran kinerja individu telah berorientasi hasil (outcome) sesuai pada levelnya",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Seluruh ukuran kinerja individu telah berorientasi hasil (outcome) sesuai pada levelnya",
+      "b. Sebagian ukuran kinerja individu telah berorientasi hasil (outcome) sesuai pada levelnya",
+      "c. Tidak ada ukuran kinerja individu yang berorientasi hasil (outcome)"
+    ]
+  },
+  "149": {
+    "group": "Reform · Assessment Pegawai",
+    "title": "Hasil assement telah dijadikan pertimbangan untuk mutasi dan pengembangan karir pegawai",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Seluruh hasil assessment dijadikan dasar mutasi internal dan pengembangan kompetensi pegawai",
+      "b. Hasil assessment belum seluruhnya dijadikan mutasi internal dan pengembangan kompetensi pegawai",
+      "c. Hasil assessment belum dijadikan dasar mutasi internal dan pengembangan kompetensi pegawai"
+    ]
+  },
+  "151": {
+    "group": "Reform · Pelanggaran Disiplin Pegawai",
+    "title": "Penurunan pelanggaran disiplin pegawai",
+    "type": "%",
+    "rubric": [
+      "Persentase pernurunan pelanggaran disiplin pegawai diperoleh dari Jumlah pelanggaran tahun sebelumnya dikurangi Jumlah pelanggaran tahun ini kemudian dibagi dengan Jumlah pelanggaran tahun sebelumnya"
+    ],
+    "formula": "reduction",
+    "fields": [
+      {
+        "name": "previous",
+        "label": "Jumlah pelanggaran tahun sebelumnya",
+        "required": true
+      },
+      {
+        "name": "current",
+        "label": "Jumlah pelanggaran tahun ini",
+        "required": true
+      },
+      {
+        "name": "sanctioned",
+        "label": "Jumlah pelanggaran yang telah diberikan sanksi/hukuman",
+        "required": false
+      }
+    ]
+  }
+}

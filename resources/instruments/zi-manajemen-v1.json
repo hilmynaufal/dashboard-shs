@@ -1,0 +1,159 @@
+{
+  "6": {
+    "group": "Pemenuhan · Penyusunan Tim Kerja",
+    "title": "Unit kerja telah membentuk tim untuk melakukan pembangunan Zona Integritas",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika Tim telah dibentuk di dalam unit kerja."
+    ]
+  },
+  "7": {
+    "group": "Pemenuhan · Penyusunan Tim Kerja",
+    "title": "Penentuan anggota Tim dipilih melalui prosedur/mekanisme yang jelas",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika dengan prosedur/mekanisme yang jelas dan mewakili seluruh unsur dalam unit kerja",
+      "b. Jika sebagian menggunakan prosedur yang mewakili sebagian besar unsur dalam unit kerja",
+      "c. Jika tidak di seleksi."
+    ]
+  },
+  "9": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Terdapat dokumen rencana kerja pembangunan Zona Integritas menuju WBK/WBBM",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "Ya, jika memiliki rencana kerja pembangunan Zona Integritas."
+    ]
+  },
+  "10": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Dalam dokumen pembangunan terdapat target-target prioritas yang relevan dengan tujuan pembangunan WBK/WBBM",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika semua target-target prioritas relevan dengan tujuan pembangunan WBK/WBBM",
+      "b. Jika sebagian target-target prioritas relevan dengan tujuan pembangunan WBK/WBBM",
+      "c. Jika tidak ada target-target prioritas yang relevan dengan tujuan pembangunan WBK/WBBM"
+    ]
+  },
+  "11": {
+    "group": "Pemenuhan · Rencana Pembangunan Zona Integritas",
+    "title": "Terdapat mekanisme atau media untuk mensosialisasikan pembangunan WBK/WBBM",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika telah dilakukan pengelolaan media/aktivitas interaktif yang efektif untuk menginformasikan pembangunan ZI kepada internal dan stakeholder secara berkala",
+      "b. Jika pengelolaan media/aktivitas interaktif dilakukan secara terbatas dan tidak secara berkala",
+      "c. Jika pengelolaan media/aktivitas interaktif belum dilakukan"
+    ]
+  },
+  "13": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Seluruh kegiatan pembangunan sudah dilaksanakan sesuai dengan rencana",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "b. Jika sebagian besar kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "c. Jika sebagian kecil kegiatan pembangunan telah dilaksanakan sesuai dengan rencana",
+      "d. Jika belum ada kegiatan pembangunan yang dilakukan sesuai dengan rencana"
+    ]
+  },
+  "14": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Terdapat monitoring dan evaluasi terhadap pembangunan Zona Integritas",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika monitoring dan evaluasi melibatkan pimpinan dan dilakukan secara berkala",
+      "b. Jika monitoring dan evaluasi melibatkan pimpinan tetapi tidak secara berkala",
+      "c. Jika monitoring dan evaluasi tidak melibatkan pimpinan dan tidak secara berkala",
+      "d. Jika tidak terdapat monitoring dan evaluasi terhadap pembangunan zona integritas"
+    ]
+  },
+  "15": {
+    "group": "Pemenuhan · Pemantauan dan Evaluasi Pembangunan WBK/WBBM",
+    "title": "Hasil Monitoring dan Evaluasi telah ditindaklanjuti",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM telah ditindaklanjuti",
+      "b. Jika sebagian besar catatan/rekomendasi hasil monitoring danevaluasi tim internal atas persiapan dan pelaksanaan kegiatanUnit WBK/WBBM telah ditindaklanjuti",
+      "c. Jika sebagian kecil catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM telah ditindaklanjuti",
+      "d. Jika catatan/rekomendasi hasil monitoring dan evaluasi tim internal atas persiapan dan pelaksanaan kegiatan Unit WBK/WBBM belum ditindaklanjuti"
+    ]
+  },
+  "17": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Pimpinan berperan sebagai role model dalam pelaksanaan Pembangunan WBK/WBBM",
+    "type": "Ya/Tidak",
+    "rubric": [
+      "ya, jika pimpinan menjadi contoh pelaksanaan nilai-nilai organisasi."
+    ]
+  },
+  "18": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Sudah ditetapkan agen perubahan",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika agen perubahan telah ditetapkan dan berkontribusi terhadap perubahan pada unit kerjanya",
+      "b. Jika agen perubahan telah ditetapkan namun belum berkontribusi terhadap perubahan pada unit kerjanya",
+      "c. Jika belum terdapat agen perubahan"
+    ]
+  },
+  "19": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Telah dibangun budaya kerja dan pola pikir di lingkungan organisasi",
+    "type": "A/B/C",
+    "rubric": [
+      "a. Jika telah dilakukan upaya pembangunan budaya kerja dan pola pikir dan mampu mengurangi resistensi atas perubahan",
+      "b. Jika telah dilakukan upaya pembangunan budaya kerja dan pola pikir tapi masih terdapat resistensi atas perubahan",
+      "c. Jika belum terdapat upaya pembangunan budaya kerja dan pola pikir"
+    ]
+  },
+  "20": {
+    "group": "Pemenuhan · Perubahan pola pikir dan budaya kerja",
+    "title": "Anggota organisasi terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Jika semua anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM dan usulan-usulan dari anggota diakomodasikan dalam keputusan",
+      "b. Jika sebagian besar anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+      "c. Jika sebagian kecil anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM",
+      "d. Jika belum ada anggota terlibat dalam pembangunan Zona Integritas menuju WBK/WBBM"
+    ]
+  },
+  "125": {
+    "group": "Reform · Komitmen dalam perubahan",
+    "title": "Agen perubahan telah membuat perubahan yang konkret di Instansi (dalam 1 tahun)",
+    "type": "%",
+    "rubric": [
+      "Hitung Jumlah Perubahan yang dibuat (baris 127) dibagi Jumlah Agen Perubahan (baris 126). Gunakan angka unit untuk jawaban unit dan angka hasil reviu TPI untuk skor."
+    ]
+  },
+  "128": {
+    "group": "Reform · Komitmen dalam perubahan",
+    "title": "Perubahan yang dibuat Agen Perubahan telah terintegrasi dalam sistem manajemen",
+    "type": "%",
+    "rubric": [
+      "Hitung Jumlah Perubahan yang telah diintegrasikan dalam sistem manajemen (baris 130) dibagi Jumlah Perubahan yang dibuat (baris 129). Gunakan angka unit untuk jawaban unit dan angka hasil reviu TPI untuk skor."
+    ]
+  },
+  "132": {
+    "group": "Reform · Komitmen Pimpinan",
+    "title": "Pimpinan memiliki komitmen terhadap pelaksanaan reformasi birokrasi, dengan adanya target capaian reformasi yang jelas di dokumen perencanaan",
+    "type": "A/B/C/D/E",
+    "rubric": [
+      "a. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian besar (diatas 80%) sudah tercapai",
+      "b. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian (diatas 50%) sudah tercapai",
+      "c. Target capaian zona integritas sudah ada di dokumen perencanaan unit kerja dan sebagian kecil (dibawah 50%) sudah tercapai",
+      "d. Target capaian zona integritassudah ada di dokumen perencanaan unit kerja, namun belum ada yang tercapai (masih dalam tahap pembangunan)",
+      "e. Tidak ada target capaian zona integritasdi dokumen perencanaan unit kerja"
+    ]
+  },
+  "134": {
+    "group": "Reform · Membangun Budaya Kerja",
+    "title": "Instansi membangun budaya kerja positif dan menerapkan nilai-nilai organisasi dalam pelaksanaan tugas sehari-hari",
+    "type": "A/B/C/D",
+    "rubric": [
+      "a. Budaya kerja dan nilai-nilai organisasi telah dinternalisasi ke seluruh anggota organisasi, dan penerapannya dituangkan dalam standar operasional pelaksanaan kegiatan/tugas",
+      "b. Budaya kerja dan nilai-nilai organisasi telah dinternalisasi ke seluruh anggota organisasi, namun belum dituangkan dalam standar operasional pelaksanaan kegiatan/tugas",
+      "c. Budaya kerja dan nilai-nilai organisasi telah disusun, namun belum dinternalisasi ke seluruh anggota organisasi",
+      "d. Belum menyusun budaya kerja dan nilai-nilai organisasi"
+    ]
+  }
+}

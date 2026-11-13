@@ -29,6 +29,25 @@ Setiap aspek mempunyai hasil, catatan/alasan dan rekomendasi tersendiri. Pilihan
 hasil: Belum dinilai, Sesuai, Tidak sesuai, Belum cukup bukti, atau Tidak berlaku.
 Alasan Tidak berlaku wajib diisi, termasuk pada aspek opsional.
 
+## Mode penilaian: per aspek atau satu hasil
+
+Pemeriksa memilih **Mode penilaian** pada formulir reviu (tersimpan di
+`item_reviews.result_mode`, awal `per_aspect`):
+
+- **Per aspek** — tiap aspek punya hasil, catatan/alasan, dan rekomendasi sendiri
+  (perilaku sebelumnya).
+- **Satu hasil pemeriksaan** — satu hasil, catatan/alasan, dan rekomendasi berlaku
+  untuk semua aspek. Server menyalin hasil itu ke setiap baris `review_results`
+  agar monitoring dan KKR tetap konsisten; catatan dan rekomendasi hanya disimpan
+  pada aspek pertama supaya tidak berulang di KKR. Penyelesaian memerlukan hasil
+  selain Belum dinilai, dan Tidak berlaku wajib beralasan.
+
+Hanya panel mode aktif yang dikirim. Permintaan tanpa `result_mode` memakai mode
+tersimpan. Beralih mode tidak menghapus apa pun selain menimpa nilai aspek sesuai
+isian yang dikirim. Snapshot KKR menambahkan `result_mode: single` hanya untuk
+mode tunggal (snapshot lama tidak berubah); HTML dan Word menampilkannya sebagai
+satu baris "Hasil pemeriksaan".
+
 Harga usulan tetap berasal dari versi usulan. Harga pembanding, rekomendasi
 harga, dan rekomendasi item disimpan terpisah pada `item_reviews`. Nilai kosong
 berarti belum diisi, berbeda dari angka nol. Harga memakai desimal teks hingga

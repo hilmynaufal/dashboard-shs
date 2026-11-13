@@ -1,0 +1,243 @@
+{
+  "scales": {
+    "Ya/Tidak": {
+      "Ya": 1,
+      "Tidak": 0
+    },
+    "A/B/C": {
+      "A": 1,
+      "B": 0.5,
+      "C": 0
+    },
+    "A/B/C/D": {
+      "A": 1,
+      "B": 0.67,
+      "C": 0.33,
+      "D": 0
+    },
+    "A/B/C/D/E": {
+      "A": 1,
+      "B": 0.75,
+      "C": 0.5,
+      "D": 0.25,
+      "E": 0
+    }
+  },
+  "percent": {
+    "cap": 1
+  },
+  "thresholds": {
+    "WBK": 0.6,
+    "WBBM": 0.75
+  },
+  "areas": [
+    {
+      "key": "manajemen-perubahan",
+      "name": "Manajemen Perubahan",
+      "max": 8,
+      "groups": [
+        {
+          "key": "tim",
+          "items": [
+            6,
+            7
+          ],
+          "include": [
+            "rencana"
+          ],
+          "weight": 0.5
+        },
+        {
+          "key": "rencana",
+          "items": [
+            9,
+            10,
+            11
+          ],
+          "weight": 1
+        },
+        {
+          "key": "monev",
+          "items": [
+            13,
+            14,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "key": "pola-pikir",
+          "items": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "weight": 1.5
+        },
+        {
+          "key": "komitmen-perubahan",
+          "items": [
+            125,
+            128
+          ],
+          "weight": 2
+        },
+        {
+          "key": "komitmen-pimpinan",
+          "items": [
+            132
+          ],
+          "weight": 1
+        },
+        {
+          "key": "budaya-kerja",
+          "items": [
+            134
+          ],
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "key": "penataan-tatalaksana",
+      "name": "Penataan Tatalaksana",
+      "max": 7,
+      "groups": [
+        {
+          "key": "sop",
+          "items": [
+            23,
+            24,
+            25
+          ],
+          "weight": 1
+        },
+        {
+          "key": "spbe",
+          "items": [
+            27,
+            28,
+            29,
+            30
+          ],
+          "weight": 2
+        },
+        {
+          "key": "keterbukaan-informasi",
+          "items": [
+            32,
+            33
+          ],
+          "weight": 0.5
+        },
+        {
+          "key": "peta-proses-bisnis",
+          "items": [
+            137
+          ],
+          "weight": 0.5
+        },
+        {
+          "key": "spbe-terintegrasi",
+          "items": [
+            139,
+            140
+          ],
+          "weight": 1
+        },
+        {
+          "key": "transformasi-digital",
+          "items": [
+            142,
+            143,
+            144
+          ],
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "key": "penataan-sdm",
+      "name": "Penataan Sistem Manajemen SDM Aparatur",
+      "max": 10,
+      "groups": [
+        {
+          "key": "kebutuhan-pegawai",
+          "items": [
+            36,
+            37,
+            38
+          ],
+          "weight": 0.25
+        },
+        {
+          "key": "mutasi-internal",
+          "items": [
+            40,
+            41,
+            42
+          ],
+          "weight": 0.5
+        },
+        {
+          "key": "pengembangan-kompetensi",
+          "items": [
+            44,
+            45,
+            46,
+            47,
+            48,
+            49
+          ],
+          "weight": 1.25
+        },
+        {
+          "key": "kinerja-individu-penetapan",
+          "items": [
+            51,
+            52,
+            53,
+            54
+          ],
+          "weight": 2
+        },
+        {
+          "key": "disiplin-kode-etik",
+          "items": [
+            56
+          ],
+          "weight": 0.75
+        },
+        {
+          "key": "sistem-informasi-kepegawaian",
+          "items": [
+            58
+          ],
+          "weight": 0.25
+        },
+        {
+          "key": "kinerja-individu",
+          "items": [
+            147
+          ],
+          "weight": 1.5
+        },
+        {
+          "key": "assessment-pegawai",
+          "items": [
+            149
+          ],
+          "weight": 1.5
+        },
+        {
+          "key": "pelanggaran-disiplin",
+          "items": [
+            151
+          ],
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

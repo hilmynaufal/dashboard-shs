@@ -18,14 +18,19 @@ final class KkrPrint
         abort_unless(in_array($version->template_version, [self::TEMPLATE, 'supervision-v1'], true), 409, 'Template versi KKR belum didukung. Hubungi pengelola.');
         $s=$version->snapshot; $a=$s['source']['assignment']; $rows=[];
         foreach ($s['source']['entries'] as $index=>$entry) {
-            $v=$entry['reviewed_version']; $r=$entry['review']; $lines=['Versi diperiksa: '.$v['version_number'], 'Pemeriksa: '.$r['reviewed_by_name'],
-                'Harga pembanding: '.self::money($r['comparison_price']), 'Rekomendasi harga: '.self::money($r['recommended_price'])];
-            foreach ($r['results'] as $result) {
-                $lines[]=$result['criterion']['name'].': '.(ItemReview::RESULTS[$result['result']]??$result['result']);
+            $v=$entry['reviewed_version']; $r=$entry['review']; $lines=['Versi diperiksa: '.$v['version_number'], 'Pemeriksa: '.$r['reviewed_by_name']];
+            // Isian yang kosong tidak ditampilkan; hanya yang terisi.
+            if ($r['comparison_price']!==null) { $lines[]='Harga pembanding: '.self::money($r['comparison_price']); }
+            if ($r['recommended_price']!==null) { $lines[]='Rekomendasi harga: '.self::money($r['recommended_price']); }
+            // Mode tunggal: satu hasil untuk semua aspek; catatan dan rekomendasi tersimpan pada aspek pertama.
+            $results=($r['result_mode']??'per_aspect')==='single'?array_slice($r['results'],0,1):$r['results'];
+            foreach ($results as $result) {
+                $label=ItemReview::RESULTS[$result['result']]??$result['result'];
+                $lines[]=($r['result_mode']??'per_aspect')==='single'?'Hasil pemeriksaan: '.$label:$result['criterion']['name'].': '.$label;
                 if ($result['reason']) { $lines[]='Catatan / alasan: '.$result['reason']; }
                 if ($result['recommendation']) { $lines[]='Rekomendasi: '.$result['recommendation']; }
             }
-            $lines[]='Rekomendasi item: '.($r['recommendation']??'Belum diisi');
+            if (trim((string)($r['recommendation']??''))!=='') { $lines[]='Rekomendasi item: '.$r['recommendation']; }
             if ($entry['latest_submitted_version']['id']!==$v['id']) {
                 $latest=$entry['latest_submitted_version'];
                 $lines[]='Usulan terkirim terbaru: versi '.$latest['version_number'].' · '.$latest['description'].' · '.self::money($latest['proposed_price']).'. Penilaian tetap merujuk versi diperiksa.';

@@ -14,10 +14,11 @@ The review table has these eight columns, in order: No., Kode, Uraian,
 Spesifikasi, Satuan, Harga, Pengusul, Catatan Hasil Reviu. The implemented
 A4 portrait geometry is 11907 × 16839 twips; margins top 964, left/right/bottom 851 and
 header/footer distances 709. The proportional eight-column grid is fitted to
-the 10205-twip usable width. The DOCX uses Calibri 11pt document typography,
-separate from the application's approved Jakarta UI. The supplied examples
-were not re-opened during this documentation pass; no client rows or personal
-identity data are copied into documentation or demonstration content.
+the 10205-twip usable width. The Word layout follows Form. 5 with a ruled form heading, a paired identity block,
+gray section bands, a light green repeating header and three team signature columns.
+The form uses Arial 11pt. The findings table uses Calibri 11pt with an 8pt header
+and row numbers. Legal basis, scope, narratives and names come from the selected
+version. The template contains no reference-document identities or sample findings.
 
 `instansi-shs-v1` names the implemented template contract. Preparation now
 captures template, purpose and work steps alongside existing narrative and
@@ -28,7 +29,10 @@ template versions and failed source integrity checks block output.
 HTML and DOCX consume the same eight cell strings and narratives; exact decimal
 money uses `ProposalMoney`, never floating-point conversion. Notes include
 aspect results, comparison/recommended prices, responses and latest submitted
-version context without treating a newer proposal as re-reviewed. XML escaping
+version context without treating a newer proposal as re-reviewed. Fields left
+empty (comparison price, recommended price, item recommendation) are omitted
+from the notes cell instead of printing "Belum diisi"; archived final exports
+keep their retained text. XML escaping
 and shared removal of invalid XML control characters preserve safe text.
 Word repeats the header row, permits rows to split over pages, has no fixed
 row height, and uses a PAGE footer field starting at one. Fields refresh on open.
@@ -73,6 +77,6 @@ package structure, repeating headers, PAGE fields, deterministic bytes, and
 immutability after live reference/source changes. The reported K-18 checkpoint
 passed 159 PHP tests / 2016 assertions after scoped heading-action wrapping.
 The source-only design review permits shipment within this evidence boundary.
-Word desktop layout inspection was stopped by the developer;
-pagination/render fidelity and real-account UI QA remain unverified. K-18 is
-therefore not represented as fully accepted or finished in PSE.
+The Form. 5 revision was also rendered locally in desktop Word with synthetic
+multiline findings to inspect page continuation and the closing signature block.
+Real-account UI QA and PSE acceptance remain separate.

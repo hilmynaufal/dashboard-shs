@@ -1,7 +1,7 @@
 @extends('layouts.workspace')
 @section('title','Pemantauan')
 @section('subtitle','Progres pengajuan, reviu, dan tindak lanjut sesuai akses Anda.')
-@section('actions')<a class="btn secondary" href="{{ route('progress.index',array_filter(['view'=>$view,'status'=>$status,'metric'=>$metric])) }}">Muat ulang</a>@endsection
+@section('actions')<a class="btn secondary" href="{{ route('progress.index',array_filter(['view'=>$view,'status'=>$status,'metric'=>$metric])) }}"><x-ui-icon name="refresh"/>Muat ulang</a>@endsection
 @section('content')
 @php
     $views=\App\Support\ProgressBoard::VIEWS;
@@ -31,7 +31,7 @@
     @forelse($rows as $row)<tr>
         <td>{{ $view==='items'?'Item #'.$row->id:($view==='notes'?$row->category:($row->number??'Nomor belum tersedia')) }}</td>
         <td>{{ $row->title??'Data versi belum tersedia' }}@if(in_array($view,['items','notes'],true))<small class="cell-detail">{{ $row->number }}</small>@endif</td>
-        <td><span class="badge neutral">{{ $labels[$row->status]??$row->status }}</span></td>
+        <td><span class="badge {{ \App\Support\StatusTone::of($row->status) }}">{{ $labels[$row->status]??$row->status }}</span></td>
         @if($view==='packages')<td>{{ $row->item_count }}</td>@endif
         <td><a class="btn icon-text" href="{{ match($view){'packages'=>route('proposals.show',$row->id),'notes'=>route('notes.show',$row->id),'kkr'=>route('kkr.show',$row->id),default=>$metric?route('reviews.show',$row->review_id):($row->version_id?route('proposals.items.version',[$row->proposal_id,$row->id,$row->version_id]):route('proposals.show',$row->proposal_id))} }}">{{ $metric?'Buka reviu':'Buka' }} <span class="sr-only">{{ $view==='notes'?$row->category:($row->title??'rincian') }}</span></a></td>
     </tr>@empty<tr><td colspan="{{ $view==='packages'?5:4 }}">Tidak ada {{ mb_strtolower($views[$view]) }} pada pilihan ini dalam lingkup akses Anda.</td></tr>@endforelse

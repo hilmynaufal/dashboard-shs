@@ -1,0 +1,103 @@
+{
+  "scales": {
+    "Ya/Tidak": {
+      "Ya": 1,
+      "Tidak": 0
+    },
+    "A/B/C": {
+      "A": 1,
+      "B": 0.5,
+      "C": 0
+    },
+    "A/B/C/D": {
+      "A": 1,
+      "B": 0.67,
+      "C": 0.33,
+      "D": 0
+    },
+    "A/B/C/D/E": {
+      "A": 1,
+      "B": 0.75,
+      "C": 0.5,
+      "D": 0.25,
+      "E": 0
+    }
+  },
+  "percent": {
+    "cap": 1
+  },
+  "thresholds": {
+    "WBK": 0.6,
+    "WBBM": 0.75
+  },
+  "areas": [
+    {
+      "key": "manajemen-perubahan",
+      "name": "Manajemen Perubahan",
+      "max": 8,
+      "groups": [
+        {
+          "key": "tim",
+          "items": [
+            6,
+            7
+          ],
+          "include": [
+            "rencana"
+          ],
+          "weight": 0.5
+        },
+        {
+          "key": "rencana",
+          "items": [
+            9,
+            10,
+            11
+          ],
+          "weight": 1
+        },
+        {
+          "key": "monev",
+          "items": [
+            13,
+            14,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "key": "pola-pikir",
+          "items": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "weight": 1.5
+        },
+        {
+          "key": "komitmen-perubahan",
+          "items": [
+            125,
+            128
+          ],
+          "weight": 2
+        },
+        {
+          "key": "komitmen-pimpinan",
+          "items": [
+            132
+          ],
+          "weight": 1
+        },
+        {
+          "key": "budaya-kerja",
+          "items": [
+            134
+          ],
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

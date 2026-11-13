@@ -19,33 +19,33 @@ colors:
   info: "#6650ae"
 typography:
   headline:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "32px"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-.035em"
   headline-mobile:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "27px"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-.035em"
   title:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "18px"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "-.02em"
   body:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "14px"
     lineHeight: 1.5
   table:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
     lineHeight: 1.5
   button:
-    fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif"
     fontSize: "12px"
     fontWeight: 500
     lineHeight: 1.4
@@ -153,7 +153,7 @@ perhatian, galat, dan reviu. Badge memiliki pasangan latar lembut tersendiri.
 
 ## Typography
 
-Plus Jakarta Sans dibundel melalui Vite untuk judul dan isi, dengan fallback
+Manrope dibundel melalui Vite untuk judul dan isi, dengan fallback
 sans-serif pada frontmatter. Angka memakai `tabular-nums`.
 
 - **Headline:** judul halaman; versi mobile mengikuti `headline-mobile`.
@@ -261,9 +261,38 @@ pemuatan, dan keberhasilan memberi tindakan berikutnya yang konkret.
 
 ## Revisi kepadatan
 
-Atas arahan pengembang, gunakan Plus Jakarta Sans bobot 400/500/600 serta
+Atas arahan pengembang, gunakan Manrope bobot 400/500/600 serta
 jarak yang lebih rapat pada header, ringkasan, toolbar, tabel, dan formulir.
 Ukuran teks dipertahankan; kepadatan berasal dari margin, padding, dan gap.
 Label menu sidebar kembali ke bobot biasa (400), dengan pilihan aktif 500.
 Percobaan kepadatan kedua memakai gap antarseksi 12px, judul/subjudul 2px,
 dan jarak filter ke tabel 8px.
+
+## Finalisasi ruang kerja (12 November 2026)
+
+Lapisan `resources/css/workspace.css` dan `resources/js/workspace.js` berlaku
+untuk seluruh layar berakun (`.account-app`); prototipe K-3 tidak berubah.
+
+- **Elevasi:** tiga tingkat bernama, `--shadow-flat`, `--shadow-panel`,
+  `--shadow-float` (menu, dialog, toast).
+- **Gerak:** 150 sampai 220 ms dengan `--ease` (ease-out), hanya `opacity` dan
+  `transform`. Dipakai untuk tekan tombol, tombol sibuk, toast, daftar pilihan,
+  dialog, dan bilah progres. Tidak ada animasi masuk halaman; reduced-motion
+  mematikan semuanya.
+- **Ikon:** `x-ui-icon` memuat sekitar 45 ikon garis 24px/1.6; tiap menu punya
+  ikon sendiri. `x-brand-mark` adalah penanda produk sementara, bukan lambang
+  instansi; ganti satu berkas itu dan `public/favicon.svg` saat logo resmi ada.
+- **Navigasi:** sidebar berkelompok (Ruang kerja, Reviu, Arsip & laporan,
+  Administrasi), kartu periode terbuka, dan breadcrumb bertingkat lewat
+  `@section('crumbs')`.
+- **Status:** warna badge selalu dari `App\Support\StatusTone::of()`; netral
+  untuk draf, biru untuk diajukan, ungu untuk dalam proses reviu/supervisi,
+  kuning untuk menunggu tindakan, hijau untuk siap/selesai.
+- **Kontrol input (peningkatan progresif, nama field tetap):**
+  `data-reference` (combobox referensi; `data-multiple-reference` menjadi
+  chip), `select[data-combobox]`, `select[data-choices="segmented|cards"]`,
+  `data-requires-reason`, `input[inputmode=decimal]` (format rupiah),
+  `input[type=file][data-dropzone]`, `form[data-guard]`, `data-check-scope`,
+  `data-bulk-assign`, dan `data-status-confirm` (dialog aplikasi).
+- **Pola baru:** alur tahap `.flow`, menu baris `details.row-menu`, bilah
+  simpan lengket, blok keterangan berikon, dan beranda ringkasan per peran.

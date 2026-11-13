@@ -94,7 +94,7 @@ class VerificationController extends Controller
             if ($proposal->status === 'submitted') { $proposal->status = 'verification'; }
             $proposal->touch(); $proposal->save();
             CatalogAudit::record($request->user()->id, 'verification.decided', 'verification_result', $resultId, null,
-                ['item_id' => $locked->id, 'version_id' => $version->id, 'result' => $data['result']]);
+                ['item_id' => $locked->id, 'version_id' => $version->id, 'result' => $data['result'], 'evidence_optional_demo' => \App\Support\DemoMode::allowsMissingEvidence()]);
         }, 3);
         $message = $data['result'] === 'ready' ? 'Item dinyatakan siap direviu.' : 'Item dikembalikan kepada SKPD untuk dilengkapi.';
 
@@ -122,7 +122,7 @@ class VerificationController extends Controller
             $locked->status = 'submitted'; $locked->lock_version++; $locked->save();
             $package->touch();
             CatalogAudit::record($request->user()->id, 'verification.resubmitted', 'proposal_item_version', $version->id, null,
-                ['proposal_id' => $package->id, 'item_id' => $item]);
+                ['proposal_id' => $package->id, 'item_id' => $item, 'evidence_optional_demo' => \App\Support\DemoMode::allowsMissingEvidence()]);
         }, 3);
 
         return $request->expectsJson() ? response()->json(['message' => 'Kelengkapan dikirim untuk diperiksa BKAD kembali.'])

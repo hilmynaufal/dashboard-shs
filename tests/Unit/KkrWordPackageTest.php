@@ -10,7 +10,7 @@ class KkrWordPackageTest extends TestCase
     public function test_long_multiline_content_has_eight_columns_repeating_headers_page_fields_and_no_fixed_row_height(): void
     {
         $long=implode("\n",array_fill(0,18,'Catatan simulasi panjang untuk memeriksa kelanjutan tabel dan keterbacaan seluruh narasi.'));
-        $m=['title'=>'KERTAS KERJA REVIU','institution'=>'Instansi simulasi','subject'=>'KKR pengujian tampilan','facts'=>[['Nomor KKR','SIMULASI'],['Versi','1']],
+        $m=['title'=>'KERTAS KERJA REVIU','institution'=>'Instansi simulasi','subject'=>'KKR pengujian tampilan','facts'=>[['Nomor KKR','SIMULASI'],['Versi','1'],['Nama Obrik','Instansi simulasi'],['Tahun Anggaran','2026'],['Periode','Periode simulasi'],['Penugasan','Penugasan simulasi'],['Dasar pemeriksaan','Surat tugas simulasi'],['Ruang lingkup','Usulan dalam penugasan simulasi']],
             'purpose'=>'Tujuan simulasi','work_steps'=>"Langkah pertama\nLangkah kedua",'headers'=>\App\Support\KkrPrint::HEADERS,
             'rows'=>array_map(fn($i)=>[(string)$i,'001.020','Item simulasi '.$i,'Spesifikasi simulasi','Paket','Rp 1.250,25','SKPD simulasi',$long],range(1,3)),
             'conclusion'=>'Kesimpulan simulasi','recommendation'=>'Rekomendasi simulasi','supervision'=>[],'team'=>[['role'=>'Pemeriksa','name'=>'Aktor simulasi']]];
@@ -20,7 +20,12 @@ class KkrWordPackageTest extends TestCase
             $this->assertTrue($zip->open($path));
             for($i=0;$i<$zip->numFiles;$i++){$xml=$zip->getFromIndex($i);$dom=new \DOMDocument;$this->assertTrue($dom->loadXML($xml,LIBXML_NONET));$this->assertStringNotContainsString('TargetMode="External"',$xml);}
             $document=$zip->getFromName('word/document.xml');$dom=new \DOMDocument;$dom->loadXML($document);$x=new \DOMXPath($dom);$x->registerNamespace('w','http://schemas.openxmlformats.org/wordprocessingml/2006/main');
-            $this->assertSame(8,$x->query('//w:tblGrid/w:gridCol')->length);$this->assertSame(4,$x->query('//w:tr')->length);
+            $this->assertSame(4,$x->query('//w:tbl')->length);
+            $findings = '//w:tbl[count(w:tblGrid/w:gridCol)=8]';
+            $this->assertSame(4,$x->query($findings.'/w:tr')->length);
+            $this->assertSame(8,$x->query($findings.'/w:tr[1]/w:tc/w:tcPr/w:shd[@w:fill="C5E0B3"]')->length);
+            $this->assertSame(5,$x->query('//w:shd[@w:fill="D9D9D9"]')->length);
+            $this->assertSame(3,$x->query('(//w:tbl)[last()]/w:tr[last()]/w:tc')->length);
             $this->assertSame(1,$x->query('//w:tr[1]/w:trPr/w:tblHeader')->length);$this->assertSame(0,$x->query('//w:cantSplit|//w:trHeight|//w:noWrap')->length);
             $this->assertStringContainsString('PAGE',$zip->getFromName('word/footer1.xml'));$this->assertStringContainsString('w:updateFields',$zip->getFromName('word/settings.xml'));
             $this->assertSame(3*18,substr_count($dom->textContent,'Catatan simulasi panjang'));
